@@ -1,5 +1,13 @@
 *.class
 
+.idea
+*.iml
+
+gurobi
+
+.DS_Store
+cplex_studio
+
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
