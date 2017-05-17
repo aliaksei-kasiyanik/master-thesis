@@ -10,6 +10,8 @@ import ilog.concert.IloException;
 import ilog.concert.IloIntVar;
 import ilog.concert.IloNumVar;
 import ilog.cplex.IloCplex;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -59,8 +61,9 @@ public class TripRunner {
             put(7L, 7);
             put(8L, 12);
         }};
-        LinkedHashMap<RouteCriteria, Double> criteria = new LinkedHashMap<RouteCriteria, Double>() {{
-            put(RouteCriteria.MAX_POI, 10.0);
+        List<Pair<RouteCriteria, Double>> criteria = new LinkedList<Pair<RouteCriteria, Double>>() {{
+            add(new ImmutablePair<>(RouteCriteria.MAX_POI, 0.1));
+            add(new ImmutablePair<>(RouteCriteria.MIN_TIME, 0.1));
         }};
 
         return new InputParameters(
@@ -110,7 +113,7 @@ public class TripRunner {
             IloIntVar[] x = model.boolVarArray(arcs.size());
 
             //    Maximize VISIT arcs count
-            addObjectiveFunction(model, x, visitArcsMask);
+            addMaxVisitObjectiveFunction(model, x, visitArcsMask);
 
             //constraints (3) - (4)
             addUniqueInOutArcsConstraint(model, x, incomingArcs);
@@ -185,7 +188,7 @@ public class TripRunner {
 //        }
 //    }
 
-//    private void addObjectiveFunction(IloCplex model, IloNumVar[] x, int[] visitingArcsIndexes) throws IloException {
+//    private void addMaxVisitObjectiveFunction(IloCplex model, IloNumVar[] x, int[] visitingArcsIndexes) throws IloException {
 //        IloNumVar[] visitArcsVariables = new IloNumVar[visitingArcsIndexes.length];
 //        int i = 0;
 //        for (int index : visitingArcsIndexes) {
@@ -195,7 +198,7 @@ public class TripRunner {
 //        model.addMaximize(model.sum(visitArcsVariables));
 //    }
 
-    private void addObjectiveFunction(IloCplex model, IloNumVar[] x, int[] visitMask) throws IloException {
+    private void addMaxVisitObjectiveFunction(IloCplex model, IloNumVar[] x, int[] visitMask) throws IloException {
         model.addMaximize(model.scalProd(visitMask, x));
     }
 

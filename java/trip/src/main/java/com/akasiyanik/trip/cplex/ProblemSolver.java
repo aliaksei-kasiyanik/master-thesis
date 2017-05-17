@@ -1,14 +1,13 @@
 package com.akasiyanik.trip.cplex;
 
 import com.akasiyanik.trip.domain.InputParameters;
+import com.akasiyanik.trip.domain.RouteCriteria;
 import com.akasiyanik.trip.domain.TransportMode;
 import com.akasiyanik.trip.domain.network.arcs.BaseArc;
-import com.akasiyanik.trip.domain.network.arcs.DummyStartFinishArc;
 import com.akasiyanik.trip.domain.network.nodes.BaseNode;
-import ilog.concert.IloException;
-import ilog.concert.IloIntVar;
-import ilog.concert.IloNumVar;
+import ilog.concert.*;
 import ilog.cplex.IloCplex;
+import org.apache.commons.lang3.tuple.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,10 +25,15 @@ public class ProblemSolver {
 
     private static final Logger logger = LoggerFactory.getLogger(ProblemSolver.class);
 
+
+    private InputParameters parameters;
+
     private List<BaseArc> arcs;
 
 
     private int[] visitArcsMask;
+
+    private int[] minTimeMask;
 
     private Map<Long, List<Integer>> visitArcsByLocation;
 
@@ -47,12 +51,26 @@ public class ProblemSolver {
     private Set<Integer> finishArcs;
 
 
+    private IloIntVar[] x;
+
+    private IloCplex model;
+
+
+    private IloLinearIntExpr maxPoiFunction;
+    private IloLinearIntExpr minTimeFunction;
+
+    private IloLinearIntExpr objectiveExpression;
+
+
+    private IloObjective objectiveFunction;
+
     public ProblemSolver(List<BaseArc> arcs, InputParameters parameters) {
         this.arcs = new ArrayList<>(arcs);
-        build(parameters);
+        this.parameters = parameters;
+        build();
     }
 
-    private void build(InputParameters parameters) {
+    private void build() {
 
         startI = new BaseNode(parameters.getDeparturePointId(), parameters.getDepartureTime());
         finishJ = new BaseNode(parameters.getArrivalPointId(), parameters.getArrivalTime());
@@ -71,53 +89,107 @@ public class ProblemSolver {
                 .boxed()
                 .collect(Collectors.groupingBy(i -> arcs.get(i).getI().getId()));
 
+
+        minTimeMask = new int[arcs.size()];
+        finishArcs.forEach(i -> {
+            BaseArc arc = arcs.get(i);
+            if (arc.getMode() == TransportMode.DUMMY_START_FINISH) {
+                minTimeMask[i] = arc.getI().getTime();
+            } else {
+                minTimeMask[i] = arc.getJ().getTime();
+            }
+        });
+
     }
 
 
     public List<BaseArc> solve() {
 
         try {
-            IloCplex model = new IloCplex();
+            model = new IloCplex();
+            x = model.boolVarArray(arcs.size());
 
-
-            IloIntVar[] x = model.boolVarArray(arcs.size());
-            addConstraints(model, x, startI, startArcs, finishArcs);
-
-            model.exportModel("trip.lp");
-
-            logger.info("CPLEX problem solving...");
-
-            boolean isSolved = model.solve();
+            addMandatoryConstraints();
 
             List<BaseArc> result = null;
-            if (isSolved) {
-                logger.info("CPLEX Solution status = " + model.getStatus());
-                logger.info("Solution value  = " + model.getObjValue());
+            List<Pair<RouteCriteria, Double>> criteria = parameters.getCriteria();
 
-                result = new ArrayList<>();
-                double[] values = model.getValues(x);
-                for (int i = 0; i < x.length; ++i) {
-                    logger.debug("Variable " + i + ": Value = " + values[i]);
-                    if (values[i] == 1) {
-                        result.add(arcs.get(i));
-                    }
+            double objectiveValue = 0.0;
+
+            for (int i = 0; i < criteria.size(); i++) {
+
+                if (i > 0) {
+                    Pair<RouteCriteria, Double> prevCriteria = criteria.get(i - 1);
+                    addConstraintFromPreviousProblem(prevCriteria.getLeft(), prevCriteria.getRight(), objectiveValue);
                 }
-                Collections.sort(result, (a1, a2) -> a1.getI().getTime() - a2.getI().getTime());
+                addObjectiveFunction(criteria.get(i).getLeft());
 
-            } else {
-                logger.warn("CPLEX Solution status = " + model.getStatus());
+                model.exportModel("trip" + i + ".lp");
+
+                logger.info("CPLEX problem solving...");
+
+                boolean isSolved = model.solve();
+
+                if (isSolved) {
+                    logger.info("CPLEX Solution status = " + model.getStatus());
+                    objectiveValue = model.getObjValue();
+                    logger.info("Solution value  = " + objectiveValue);
+
+                    result = new ArrayList<>();
+                    double[] values = model.getValues(x);
+                    for (int j = 0; j < x.length; ++j) {
+                        logger.debug("Variable " + j + ": Value = " + values[j]);
+                        if (values[j] == 1) {
+                            result.add(arcs.get(j));
+                        }
+                    }
+                    Collections.sort(result, (a1, a2) -> a1.getI().getTime() - a2.getI().getTime());
+
+                } else {
+                    logger.warn("CPLEX Solution status = " + model.getStatus());
+                }
             }
+
             return result;
         } catch (IloException e) {
             throw new RuntimeException(e);
         }
     }
 
+    private void addConstraintFromPreviousProblem(RouteCriteria criteria, double coeff,  double prevObjectiveResult) throws IloException {
+
+        switch (criteria) {
+            case MAX_POI: {
+                model.addGe(objectiveExpression, Math.floor(prevObjectiveResult * (1 - coeff)));
+                break;
+            }
+            default: {
+                model.addLe(objectiveExpression, Math.ceil(prevObjectiveResult * (1 + coeff)));
+            }
+        }
+    }
+
+    private void addObjectiveFunction(RouteCriteria criteria) throws IloException {
+        if (objectiveFunction != null) {
+            model.remove(objectiveFunction);
+        }
+
+        switch (criteria) {
+            case MAX_POI: {
+                objectiveExpression = getMaxPoiFunction();
+                objectiveFunction = model.addMaximize(objectiveExpression);
+                break;
+            }
+            case MIN_TIME: {
+                objectiveExpression = getMinTimeFunction();
+                objectiveFunction = model.addMinimize(objectiveExpression);
+                break;
+            }
+        }
+    }
 
 
-    private void addConstraints(IloCplex model, IloIntVar[] x, BaseNode startI, Set<Integer> startArcs, Set<Integer> finishArcs) throws IloException {
-
-        addMaxPoiObjectiveFunction(model, x, visitArcsMask);
+    private void addMandatoryConstraints() throws IloException {
 
         //constraints (3) - (4)
         addUniqueInOutArcsConstraint(model, x, incomingArcs);
@@ -141,11 +213,32 @@ public class ProblemSolver {
 
         //constraint(9)
         //TODO switching between modes implies transfer mode
+
+    }
+
+    private void addMinTimeObjectiveFunction(IloCplex model, IloIntVar[] x, int[] minTimeMask) throws IloException {
+        model.addMinimize(model.scalProd(minTimeMask, x));
     }
 
 
-    private void addMaxPoiObjectiveFunction(IloCplex model, IloNumVar[] x, int[] visitMask) throws IloException {
-        model.addMaximize(model.scalProd(visitMask, x));
+    private IloLinearIntExpr getMaxPoiFunction() throws IloException {
+        if (maxPoiFunction == null) {
+            maxPoiFunction = model.scalProd(visitArcsMask, x);
+        }
+        return maxPoiFunction;
     }
+
+    private IloLinearIntExpr getMinTimeFunction() throws IloException {
+        if (minTimeFunction == null) {
+            minTimeFunction = model.scalProd(minTimeMask, x);
+        }
+        return minTimeFunction;
+    }
+
+
+    private void addMaxPoiConstraint(IloCplex model, IloNumVar[] x, int[] visitMask, double minPoiToVisit) throws IloException {
+        model.addGe(model.scalProd(visitMask, x), minPoiToVisit);
+    }
+
 
 }

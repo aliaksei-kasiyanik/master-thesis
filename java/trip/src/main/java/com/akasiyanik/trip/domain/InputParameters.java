@@ -1,7 +1,9 @@
 package com.akasiyanik.trip.domain;
 
+import org.apache.commons.lang3.tuple.Pair;
+
 import java.time.LocalTime;
-import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -31,7 +33,7 @@ public class InputParameters {
     private final Set<TransportMode> modes;
 
     // ranked criteria and relative deviations
-    private final LinkedHashMap<RouteCriteria, Double> criteria;
+    private final List<Pair<RouteCriteria, Double>> criteria;
 
     public InputParameters(Long departurePointId,
                            Long arrivalPointId,
@@ -39,7 +41,7 @@ public class InputParameters {
                            LocalTime arrivalTime,
                            Set<TransportMode> modes,
                            Map<Long, Integer> visitPoi,
-                           LinkedHashMap<RouteCriteria, Double> criteria) {
+                           List<Pair<RouteCriteria, Double>> criteria) {
         this.criteria = criteria;
         this.modes = modes;
         this.visitPoi = visitPoi;
@@ -73,7 +75,7 @@ public class InputParameters {
         return modes;
     }
 
-    public LinkedHashMap<RouteCriteria, Double> getCriteria() {
+    public List<Pair<RouteCriteria, Double>> getCriteria() {
         return criteria;
     }
 }

@@ -87,6 +87,10 @@ public class CplexNetworkBuilder {
             ));
             add(new BusArc(
                     new BaseNode(places.get("g"), 15),
+                    new BaseNode(places.get("k"), 20)
+            ));
+            add(new BusArc(
+                    new BaseNode(places.get("g"), 15),
                     new BaseNode(places.get("h"), 19)
             ));
             add(new BusArc(
