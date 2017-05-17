@@ -12,12 +12,9 @@ public class VisitArc extends BaseArc {
 
     public VisitArc(BaseNode i, BaseNode j) {
         super(i, j, VISIT);
-        if (i.getId() != j.getId()) {
+        if (!i.getId().equals(j.getId())) {
             throw new RuntimeException("VisitArc must have the same BaseNodes id");
         }
     }
 
-    public int getVisitTime() {
-        return getJ().getTime() - getI().getTime();
-    }
 }

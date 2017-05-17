@@ -3,6 +3,7 @@ package com.akasiyanik.trip.cplex;
 import com.akasiyanik.trip.domain.InputParameters;
 import com.akasiyanik.trip.domain.TransportMode;
 import com.akasiyanik.trip.domain.network.arcs.BaseArc;
+import com.akasiyanik.trip.domain.network.arcs.DummyStartFinishArc;
 import com.akasiyanik.trip.domain.network.nodes.BaseNode;
 import ilog.concert.IloException;
 import ilog.concert.IloIntVar;
@@ -11,10 +12,7 @@ import ilog.cplex.IloCplex;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -40,12 +38,30 @@ public class ProblemSolver {
     private Map<BaseNode, Set<Integer>> incomingArcs;
 
 
-    public ProblemSolver(List<BaseArc> arcs) {
-        this.arcs = arcs;
-        build();
+    private BaseNode startI;
+
+    private BaseNode finishJ;
+
+    private Set<Integer> startArcs;
+
+    private Set<Integer> finishArcs;
+
+
+    public ProblemSolver(List<BaseArc> arcs, InputParameters parameters) {
+        this.arcs = new ArrayList<>(arcs);
+        build(parameters);
     }
 
-    private void build() {
+    private void build(InputParameters parameters) {
+
+        startI = new BaseNode(parameters.getDeparturePointId(), parameters.getDepartureTime());
+        finishJ = new BaseNode(parameters.getArrivalPointId(), parameters.getArrivalTime());
+
+        outgoingArcs = getOutgoingArcsByNodes(arcs);
+        incomingArcs = getIncomingArcsByNodes(arcs);
+
+        startArcs = outgoingArcs.remove(startI);
+        finishArcs = incomingArcs.remove(finishJ);
 
         visitArcsMask = new int[arcs.size()];
         visitArcsByLocation = IntStream
@@ -55,22 +71,14 @@ public class ProblemSolver {
                 .boxed()
                 .collect(Collectors.groupingBy(i -> arcs.get(i).getI().getId()));
 
-
-        outgoingArcs = getOutgoingArcsByNodes(arcs);
-        incomingArcs = getIncomingArcsByNodes(arcs);
-
     }
 
 
-    public List<BaseArc> solve(InputParameters parameters) {
-        BaseNode startI = new BaseNode(parameters.getDeparturePointId(), parameters.getDepartureTime());
-        BaseNode finishJ = new BaseNode(parameters.getArrivalPointId(), parameters.getArrivalTime());
-
-        Set<Integer> startArcs = outgoingArcs.remove(startI);
-        Set<Integer> finishArcs = incomingArcs.remove(finishJ);
+    public List<BaseArc> solve() {
 
         try {
             IloCplex model = new IloCplex();
+
 
             IloIntVar[] x = model.boolVarArray(arcs.size());
             addConstraints(model, x, startI, startArcs, finishArcs);
@@ -94,20 +102,18 @@ public class ProblemSolver {
                         result.add(arcs.get(i));
                     }
                 }
+                Collections.sort(result, (a1, a2) -> a1.getI().getTime() - a2.getI().getTime());
+
             } else {
                 logger.warn("CPLEX Solution status = " + model.getStatus());
             }
-
-
             return result;
         } catch (IloException e) {
             throw new RuntimeException(e);
-        } finally {
-            outgoingArcs.put(startI, startArcs);
-            outgoingArcs.put(finishJ, finishArcs);
         }
-
     }
+
+
 
     private void addConstraints(IloCplex model, IloIntVar[] x, BaseNode startI, Set<Integer> startArcs, Set<Integer> finishArcs) throws IloException {
 

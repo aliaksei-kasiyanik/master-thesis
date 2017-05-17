@@ -4,8 +4,6 @@ import com.akasiyanik.trip.domain.InputParameters;
 import com.akasiyanik.trip.domain.RouteCriteria;
 import com.akasiyanik.trip.domain.TransportMode;
 import com.akasiyanik.trip.domain.network.arcs.BaseArc;
-import com.akasiyanik.trip.domain.network.arcs.BusArc;
-import com.akasiyanik.trip.domain.network.arcs.VisitArc;
 import com.akasiyanik.trip.domain.network.nodes.BaseNode;
 import com.akasiyanik.trip.utils.TimeUtils;
 import ilog.concert.IloException;
@@ -30,26 +28,56 @@ import static com.akasiyanik.trip.utils.CplexUtil.*;
 @Component
 public class TripRunner {
 
+
+
     private static final Logger logger = LoggerFactory.getLogger(ProblemSolver.class);
 
     public static void main(String[] args) {
 
-        List<BaseArc> arcs = getNetworkArcs();
         InputParameters parameters = getFakeInputParameters();
+        List<BaseArc> arcs = new CplexNetworkBuilder(parameters).build();
 
-        ProblemSolver solver = new ProblemSolver(arcs);
-        List<BaseArc> result = solver.solve(parameters);
+        ProblemSolver solver = new ProblemSolver(arcs, parameters);
+        List<BaseArc> result = solver.solve();
 
         logger.info("{}", result);
 
-
 //        new TripRunner().start();
+    }
+
+    private static InputParameters getFakeInputParameters() {
+        Long departurePoint = 1L;
+        LocalTime depatureTime = TimeUtils.minutesToTime(1);
+
+        Long arrivalPoint = 9L;
+        LocalTime arrivalTime = TimeUtils.minutesToTime(35);
+//        LocalTime depatureTime =  LocalTime.of(9, 0);
+//        LocalTime arrivalTime = LocalTime.of(11, 0);
+        Set<TransportMode> modes = EnumSet.of(TransportMode.BUS);
+        Map<Long, Integer> visitPois = new HashMap<Long, Integer>() {{
+            put(3L, 10);
+            put(7L, 7);
+            put(8L, 12);
+        }};
+        LinkedHashMap<RouteCriteria, Double> criteria = new LinkedHashMap<RouteCriteria, Double>() {{
+            put(RouteCriteria.MAX_POI, 10.0);
+        }};
+
+        return new InputParameters(
+                departurePoint,
+                arrivalPoint,
+                depatureTime,
+                arrivalTime,
+                modes,
+                visitPois,
+                criteria
+        );
     }
 
     public List<BaseArc> start() {
         InputParameters tripParameters = getFakeInputParameters();
 
-        List<BaseArc> arcs = getNetworkArcs();
+        List<BaseArc> arcs = new CplexNetworkBuilder(tripParameters).build();
 
 
         BaseNode startI = new BaseNode(1L, 1);
@@ -172,127 +200,9 @@ public class TripRunner {
     }
 
 
-    private static InputParameters getFakeInputParameters() {
-        Long departurePoint = 1L;
-        LocalTime depatureTime = TimeUtils.minutesToTime(1);
 
-        Long arrivalPoint = 9L;
-        LocalTime arrivalTime = TimeUtils.minutesToTime(30);
-//        LocalTime depatureTime =  LocalTime.of(9, 0);
-//        LocalTime arrivalTime = LocalTime.of(11, 0);
-        Set<TransportMode> modes = EnumSet.of(TransportMode.BUS);
-        Map<Long, Integer> visitPois = new HashMap<Long, Integer>() {{
-            put(3L, 10);
-            put(7L, 7);
-            put(8L, 12);
-        }};
-        LinkedHashMap<RouteCriteria, Double> criteria = new LinkedHashMap<RouteCriteria, Double>() {{
-            put(RouteCriteria.MAX_POI, 10.0);
-        }};
 
-        return new InputParameters(
-                departurePoint,
-                arrivalPoint,
-                depatureTime,
-                arrivalTime,
-                modes,
-                visitPois,
-                criteria
-        );
-    }
 
-    private static List<BaseArc> getNetworkArcs() {
-
-        Map<String, Long> places = new HashMap<String, Long>() {{
-            put("a", 1L);
-            put("b", 2L);
-            put("c", 3L);
-            put("d", 4L);
-            put("e", 5L);
-            put("f", 6L);
-            put("g", 7L);
-            put("h", 8L);
-            put("k", 9L);
-        }};
-
-        return new ArrayList<BaseArc>() {{
-            add(new BusArc(
-                    new BaseNode(places.get("a"), 1),
-                    new BaseNode(places.get("b"), 3)
-            ));
-            // right branch
-            add(new BusArc(
-                    new BaseNode(places.get("b"), 3),
-                    new BaseNode(places.get("f"), 7)
-            ));
-            add(new BusArc(
-                    new BaseNode(places.get("f"), 7),
-                    new BaseNode(places.get("g"), 10)
-            ));
-            add(new VisitArc(
-                    new BaseNode(places.get("g"), 10),
-                    new BaseNode(places.get("g"), 15)
-            ));
-            add(new BusArc(
-                    new BaseNode(places.get("g"), 15),
-                    new BaseNode(places.get("h"), 19)
-            ));
-            add(new BusArc(
-                    new BaseNode(places.get("h"), 19),
-                    new BaseNode(places.get("k"), 30)
-            ));
-            add(new BusArc(
-                    new BaseNode(places.get("g"), 10),
-                    new BaseNode(places.get("h"), 14)
-            ));
-            add(new BusArc(
-                    new BaseNode(places.get("h"), 14),
-                    new BaseNode(places.get("k"), 25)
-            ));
-
-            //left branch
-            add(new BusArc(
-                    new BaseNode(places.get("b"), 3),
-                    new BaseNode(places.get("c"), 5)
-            ));
-            add(new VisitArc(
-                    new BaseNode(places.get("c"), 5),
-                    new BaseNode(places.get("c"), 10)
-            ));
-            add(new BusArc(
-                    new BaseNode(places.get("c"), 10),
-                    new BaseNode(places.get("d"), 13)
-            ));
-            add(new BusArc(
-                    new BaseNode(places.get("d"), 13),
-                    new BaseNode(places.get("e"), 17)
-            ));
-            add(new VisitArc(
-                    new BaseNode(places.get("e"), 17),
-                    new BaseNode(places.get("e"), 25)
-            ));
-            add(new BusArc(
-                    new BaseNode(places.get("e"), 25),
-                    new BaseNode(places.get("k"), 30)
-            ));
-            add(new BusArc(
-                    new BaseNode(places.get("c"), 5),
-                    new BaseNode(places.get("d"), 8)
-            ));
-            add(new BusArc(
-                    new BaseNode(places.get("d"), 8),
-                    new BaseNode(places.get("e"), 12)
-            ));
-            add(new BusArc(
-                    new BaseNode(places.get("e"), 12),
-                    new BaseNode(places.get("k"), 17)
-            ));
-            add(new BusArc(
-                    new BaseNode(places.get("e"), 17),
-                    new BaseNode(places.get("k"), 22)
-            ));
-        }};
-    }
 
 
 }

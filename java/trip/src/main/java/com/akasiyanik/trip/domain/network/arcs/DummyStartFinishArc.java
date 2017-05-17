@@ -14,6 +14,9 @@ public class DummyStartFinishArc extends BaseArc {
 
     public DummyStartFinishArc(BaseNode i, BaseNode j) {
         super(i, j, DUMMY_START_FINISH);
+        if (!i.getId().equals(j.getId())) {
+            throw new RuntimeException("VisitArc must have the same BaseNodes id");
+        }
     }
 
 }

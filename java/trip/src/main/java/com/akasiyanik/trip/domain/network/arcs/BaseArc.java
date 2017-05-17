@@ -38,6 +38,11 @@ public class BaseArc {
         return mode;
     }
 
+    public int getTime() {
+        return j.getTime() - i.getTime();
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
