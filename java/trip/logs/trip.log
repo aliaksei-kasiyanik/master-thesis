@@ -3165,3 +3165,44 @@
 .2017-05-18T19:22:15.301 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 35: Value = 0.0 
 .2017-05-18T19:22:15.301 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 36: Value = 0.0 
 .2017-05-18T19:22:15.303 [main] INFO  c.a.trip.cplex.ProblemSolver - [[m=DUMMY_START_FINISH, i=1, a=1, j=1, b=3], [m=BUS, i=1, a=3, j=2, b=4], [m=BUS, i=2, a=4, j=6, b=6], [m=BUS, i=6, a=6, j=7, b=10], [m=VISIT, i=7, a=10, j=7, b=15], [m=BUS, i=7, a=15, j=8, b=19], [m=BUS, i=8, a=19, j=9, b=30], [m=DUMMY_START_FINISH, i=9, a=30, j=9, b=35]] 
+.2017-05-18T19:27:16.321 [main] INFO  c.a.trip.cplex.ProblemSolver - CPLEX problem solving... 
+.2017-05-18T19:27:16.348 [main] INFO  c.a.trip.cplex.ProblemSolver - CPLEX Solution status = Optimal 
+.2017-05-18T19:27:16.349 [main] INFO  c.a.trip.cplex.ProblemSolver - Solution value  = 0.0 
+.2017-05-18T19:27:16.351 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 0: Value = 1.0 
+.2017-05-18T19:27:16.352 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 1: Value = 1.0 
+.2017-05-18T19:27:16.352 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 2: Value = 1.0 
+.2017-05-18T19:27:16.352 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 3: Value = 0.0 
+.2017-05-18T19:27:16.352 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 4: Value = 1.0 
+.2017-05-18T19:27:16.353 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 5: Value = 0.0 
+.2017-05-18T19:27:16.353 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 6: Value = 1.0 
+.2017-05-18T19:27:16.353 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 7: Value = 1.0 
+.2017-05-18T19:27:16.353 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 8: Value = 0.0 
+.2017-05-18T19:27:16.353 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 9: Value = 0.0 
+.2017-05-18T19:27:16.353 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 10: Value = 0.0 
+.2017-05-18T19:27:16.353 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 11: Value = 0.0 
+.2017-05-18T19:27:16.354 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 12: Value = 0.0 
+.2017-05-18T19:27:16.354 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 13: Value = 0.0 
+.2017-05-18T19:27:16.354 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 14: Value = 0.0 
+.2017-05-18T19:27:16.354 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 15: Value = 0.0 
+.2017-05-18T19:27:16.369 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 16: Value = 0.0 
+.2017-05-18T19:27:16.370 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 17: Value = 0.0 
+.2017-05-18T19:27:16.373 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 18: Value = 0.0 
+.2017-05-18T19:27:16.373 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 19: Value = 0.0 
+.2017-05-18T19:27:16.373 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 20: Value = 0.0 
+.2017-05-18T19:27:16.374 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 21: Value = 0.0 
+.2017-05-18T19:27:16.374 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 22: Value = 0.0 
+.2017-05-18T19:27:16.374 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 23: Value = 0.0 
+.2017-05-18T19:27:16.374 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 24: Value = 0.0 
+.2017-05-18T19:27:16.374 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 25: Value = 0.0 
+.2017-05-18T19:27:16.374 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 26: Value = 0.0 
+.2017-05-18T19:27:16.375 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 27: Value = 0.0 
+.2017-05-18T19:27:16.376 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 28: Value = 0.0 
+.2017-05-18T19:27:16.377 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 29: Value = 0.0 
+.2017-05-18T19:27:16.377 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 30: Value = 1.0 
+.2017-05-18T19:27:16.378 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 31: Value = 0.0 
+.2017-05-18T19:27:16.378 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 32: Value = 1.0 
+.2017-05-18T19:27:16.379 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 33: Value = 0.0 
+.2017-05-18T19:27:16.381 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 34: Value = 0.0 
+.2017-05-18T19:27:16.383 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 35: Value = 0.0 
+.2017-05-18T19:27:16.384 [main] DEBUG c.a.trip.cplex.ProblemSolver - Variable 36: Value = 0.0 
+.2017-05-18T19:27:16.401 [main] INFO  c.a.trip.cplex.ProblemSolver - [[m=DUMMY_START_FINISH, i=1, a=1, j=1, b=3], [m=BUS, i=1, a=3, j=2, b=4], [m=BUS, i=2, a=4, j=6, b=6], [m=BUS, i=6, a=6, j=7, b=10], [m=VISIT, i=7, a=10, j=7, b=15], [m=BUS, i=7, a=15, j=8, b=19], [m=BUS, i=8, a=19, j=9, b=30], [m=DUMMY_START_FINISH, i=9, a=30, j=9, b=35]] 

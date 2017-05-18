@@ -30,7 +30,6 @@ public class ProblemSolver {
 
     private List<BaseArc> arcs;
 
-
     private int[] visitArcsMask;
 
     private int[] minTimeMask;
@@ -42,6 +41,8 @@ public class ProblemSolver {
     private int[] transferMask;
 
     private int[] transferTimeMask;
+
+    private int[] walkingTimeMask;
 
     private Map<Long, List<Integer>> visitArcsByLocation;
 
@@ -75,6 +76,7 @@ public class ProblemSolver {
     private IloIntExpr minCO2Function;
     private IloIntExpr minChangesFunction;
     private IloIntExpr minTimeTransferFunction;
+    private IloIntExpr minTimeWalkingFunction;
 
     private IloIntExpr objectiveExpression;
 
@@ -146,6 +148,13 @@ public class ProblemSolver {
                     transferTimeMask[i] = arcs.get(i).getTime();
                 });
 
+        walkingTimeMask = new int[arcs.size()];
+        IntStream
+                .range(0, arcs.size())
+                .filter(i -> arcs.get(i).getMode().equals(Mode.WALK))
+                .forEach(i -> {
+                    walkingTimeMask[i] = arcs.get(i).getTime();
+                });
 
     }
 
@@ -275,6 +284,11 @@ public class ProblemSolver {
                 objectiveFunction = model.addMinimize(objectiveExpression);
                 break;
             }
+            case MIN_TIME_WALKING: {
+                objectiveExpression = getMinTimeWalkingFunction();
+                objectiveFunction = model.addMinimize(objectiveExpression);
+                break;
+            }
             case MIN_CO2: {
                 objectiveExpression = getMinCO2Function();
                 objectiveFunction = model.addMinimize(objectiveExpression);
@@ -325,6 +339,13 @@ public class ProblemSolver {
             minTimeTransferFunction = model.scalProd(transferTimeMask, x);
         }
         return minTimeTransferFunction;
+    }
+
+    private IloIntExpr getMinTimeWalkingFunction() throws IloException {
+        if (minTimeWalkingFunction == null) {
+            minTimeWalkingFunction = model.scalProd(walkingTimeMask, x);
+        }
+        return minTimeWalkingFunction;
     }
 
 
