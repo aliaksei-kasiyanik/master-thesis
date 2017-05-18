@@ -1,15 +1,10 @@
 package com.akasiyanik.trip.cplex;
 
 import com.akasiyanik.trip.domain.InputParameters;
-import com.akasiyanik.trip.domain.RouteCriteria;
 import com.akasiyanik.trip.domain.Mode;
+import com.akasiyanik.trip.domain.RouteCriteria;
 import com.akasiyanik.trip.domain.network.arcs.BaseArc;
-import com.akasiyanik.trip.domain.network.nodes.BaseNode;
 import com.akasiyanik.trip.utils.TimeUtils;
-import ilog.concert.IloException;
-import ilog.concert.IloIntVar;
-import ilog.concert.IloNumVar;
-import ilog.cplex.IloCplex;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.slf4j.Logger;
@@ -18,10 +13,6 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalTime;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
-import static com.akasiyanik.trip.utils.CplexUtil.*;
 
 /**
  * @author akasiyanik
@@ -58,9 +49,10 @@ public class TripRunner {
             put(8L, 12);
         }};
         List<Pair<RouteCriteria, Double>> criteria = new LinkedList<Pair<RouteCriteria, Double>>() {{
-            add(new ImmutablePair<>(RouteCriteria.MIN_COST, 0.3));
-            add(new ImmutablePair<>(RouteCriteria.MIN_TIME, 0.2));
-            add(new ImmutablePair<>(RouteCriteria.MAX_POI, 0.1));
+//            add(new ImmutablePair<>(RouteCriteria.MIN_COST, 0.3));
+            add(new ImmutablePair<>(RouteCriteria.MIN_CO2, 0.3));
+//            add(new ImmutablePair<>(RouteCriteria.MIN_TIME, 0.2));
+//            add(new ImmutablePair<>(RouteCriteria.MAX_POI, 0.1));
         }};
 
         return new InputParameters(

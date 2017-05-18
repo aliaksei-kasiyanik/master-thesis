@@ -37,6 +37,8 @@ public class ProblemSolver {
 
     private int[] costMask;
 
+    private int[] co2Mask;
+
     private Map<Long, List<Integer>> visitArcsByLocation;
 
     private Map<BaseNode, Set<Integer>> outgoingArcs;
@@ -66,9 +68,9 @@ public class ProblemSolver {
     private IloIntExpr maxPoiFunction;
     private IloIntExpr minTimeFunction;
     private IloIntExpr minCostFunction;
+    private IloIntExpr minCO2Function;
 
     private IloIntExpr objectiveExpression;
-
 
     private IloObjective objectiveFunction;
 
@@ -118,6 +120,15 @@ public class ProblemSolver {
                 .range(0, arcs.size())
                 .filter(i -> arcs.get(i).getMode().isTransport())
                 .forEach(i -> costMask[i] = arcs.get(i).getMode().getCost());
+
+        co2Mask = new int[arcs.size()];
+        IntStream
+                .range(0, arcs.size())
+                .filter(i -> arcs.get(i).getMode().isCO2Transport())
+                .forEach(i ->  {
+                    BaseArc arc = arcs.get(i);
+                    co2Mask[i] = arc.getMode().getCo2() * arc.getTime();
+                });
     }
 
 
@@ -236,6 +247,12 @@ public class ProblemSolver {
                 objectiveFunction = model.addMinimize(objectiveExpression);
                 break;
             }
+            case MIN_CO2: {
+                objectiveExpression = getMinCO2Function();
+                objectiveFunction = model.addMinimize(objectiveExpression);
+                break;
+            }
+
         }
     }
 
@@ -259,6 +276,13 @@ public class ProblemSolver {
             minCostFunction = model.scalProd(costMask, x);
         }
         return minCostFunction;
+    }
+
+    private IloIntExpr getMinCO2Function() throws IloException {
+        if (minCO2Function == null) {
+            minCO2Function = model.scalProd(co2Mask, x);
+        }
+        return minCO2Function;
     }
 
 
