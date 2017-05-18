@@ -2,7 +2,9 @@
 \Problem name: ilog.cplex
 
 Minimize
- obj: 30 x17 + 19 x18 + 20 x19 + 22 x20 + 25 x21 + 26 x22
+ obj: 55 x1 + 55 x2 + 55 x3 + 60 x4 + 55 x7 + 55 x9 + 55 x11 + 55 x12 + 55 x13
+      + 55 x14 + 55 x15 + 55 x23 + 55 x24 + 55 x25 + 55 x26 + 60 x29 + 60 x30
+      + 55 x31 + 55 x32 + 55 x33 + 60 x35
 Subject To
  c1:  x1 + x2 <= 1
  c2:  x3 + x4 <= 1

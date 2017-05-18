@@ -35,6 +35,8 @@ public class ProblemSolver {
 
     private int[] minTimeMask;
 
+    private int[] costMask;
+
     private Map<Long, List<Integer>> visitArcsByLocation;
 
     private Map<BaseNode, Set<Integer>> outgoingArcs;
@@ -61,10 +63,11 @@ public class ProblemSolver {
     private IloCplex model;
 
 
-    private IloLinearIntExpr maxPoiFunction;
-    private IloLinearIntExpr minTimeFunction;
+    private IloIntExpr maxPoiFunction;
+    private IloIntExpr minTimeFunction;
+    private IloIntExpr minCostFunction;
 
-    private IloLinearIntExpr objectiveExpression;
+    private IloIntExpr objectiveExpression;
 
 
     private IloObjective objectiveFunction;
@@ -110,6 +113,11 @@ public class ProblemSolver {
             }
         });
 
+        costMask = new int[arcs.size()];
+        IntStream
+                .range(0, arcs.size())
+                .filter(i -> arcs.get(i).getMode().isTransport())
+                .forEach(i -> costMask[i] = arcs.get(i).getMode().getCost());
     }
 
 
@@ -166,6 +174,34 @@ public class ProblemSolver {
         }
     }
 
+    private void addMandatoryConstraints() throws IloException {
+
+        //constraints (3) - (4)
+        addUniqueInOutArcsConstraint(model, x, incomingArcs);
+        addUniqueInOutArcsConstraint(model, x, outgoingArcs);
+
+        //constraints (1) - (2)
+        addOnlyInOutArcConstraint(model, x, startArcs);
+        addOnlyInOutArcConstraint(model, x, finishArcs);
+
+        // constraint (5)
+        addEqualInOutForIntermediateNodesConstraint(model, x, outgoingArcs, incomingArcs);
+
+        //constraint(6)
+        addAtMostOneTransferArcForNodeConstraint(model, x, outInTransferArcs);
+
+        //constraint (7)
+        addAtMostOneVisitArcForLocationConstraint(model, x, visitArcsByLocation);
+
+        //constraint (8)
+        addStartOnlyInSpecifiedLocationConstraint(model, x, outgoingArcs, startI);
+
+        //constraint(9)
+        addRequiredTransferBetweenTransportModesConstraint(model, x, inTransportArcsByNode, outTransportArcsByNode);
+
+    }
+
+
     private void addConstraintFromPreviousProblem(RouteCriteria criteria, double coeff,  double prevObjectiveResult) throws IloException {
 
         switch (criteria) {
@@ -195,49 +231,34 @@ public class ProblemSolver {
                 objectiveFunction = model.addMinimize(objectiveExpression);
                 break;
             }
+            case MIN_COST: {
+                objectiveExpression = getMinCostFunction();
+                objectiveFunction = model.addMinimize(objectiveExpression);
+                break;
+            }
         }
     }
 
 
-    private void addMandatoryConstraints() throws IloException {
-
-        //constraints (3) - (4)
-        addUniqueInOutArcsConstraint(model, x, incomingArcs);
-        addUniqueInOutArcsConstraint(model, x, outgoingArcs);
-
-        //constraints (1) - (2)
-        addOnlyInOutArcConstraint(model, x, startArcs);
-        addOnlyInOutArcConstraint(model, x, finishArcs);
-
-        // constraint (5)
-        addEqualInOutForIntermediateNodesConstraint(model, x, outgoingArcs, incomingArcs);
-
-        //constraint(6)
-        addAtMostOneTransferArcForNodeConstraint(model, x, outInTransferArcs);
-
-        //constraint (7)
-        addAtMostOneVisitArcForLocationConstraint(model, x, visitArcsByLocation);
-
-        //constraint (8)
-        addStartOnlyInSpecifiedLocationConstraint(model, x, outgoingArcs, startI);
-
-        //constraint(9)
-        addRequiredTransferBetweenTransportModesConstraint(model, x, inTransportArcsByNode, outTransportArcsByNode);
-
-    }
-
-    private IloLinearIntExpr getMaxPoiFunction() throws IloException {
+    private IloIntExpr getMaxPoiFunction() throws IloException {
         if (maxPoiFunction == null) {
             maxPoiFunction = model.scalProd(visitArcsMask, x);
         }
         return maxPoiFunction;
     }
 
-    private IloLinearIntExpr getMinTimeFunction() throws IloException {
+    private IloIntExpr getMinTimeFunction() throws IloException {
         if (minTimeFunction == null) {
             minTimeFunction = model.scalProd(minTimeMask, x);
         }
         return minTimeFunction;
+    }
+
+    private IloIntExpr getMinCostFunction() throws IloException {
+        if (minCostFunction == null) {
+            minCostFunction = model.scalProd(costMask, x);
+        }
+        return minCostFunction;
     }
 
 
