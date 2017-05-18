@@ -111,7 +111,7 @@ public class CplexNetworkBuilder {
                     new BaseNode(places.get("f"), 6),
                     new BaseNode(places.get("f"), 7)
             ));
-            add(new BusArc(
+            add(new MetroArc(
                     new BaseNode(places.get("f"), 7),
                     new BaseNode(places.get("l"), 8)
             ));
@@ -119,7 +119,7 @@ public class CplexNetworkBuilder {
                     new BaseNode(places.get("l"), 8),
                     new BaseNode(places.get("l"), 10)
             ));
-            add(new BusArc(
+            add(new MetroArc(
                     new BaseNode(places.get("l"), 10),
                     new BaseNode(places.get("m"), 11)
             ));
@@ -127,7 +127,7 @@ public class CplexNetworkBuilder {
                     new BaseNode(places.get("m"), 11),
                     new BaseNode(places.get("m"), 13)
             ));
-            add(new BusArc(
+            add(new MetroArc(
                     new BaseNode(places.get("m"), 13),
                     new BaseNode(places.get("p"), 19)
             ));
@@ -135,7 +135,7 @@ public class CplexNetworkBuilder {
                     new BaseNode(places.get("p"), 19),
                     new BaseNode(places.get("p"), 21)
             ));
-            add(new BusArc(
+            add(new MetroArc(
                     new BaseNode(places.get("p"), 21),
                     new BaseNode(places.get("h"), 24)
             ));

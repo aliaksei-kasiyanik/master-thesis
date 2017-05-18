@@ -9,6 +9,7 @@ import java.util.EnumSet;
 public enum TransportMode {
 
     BUS,
+    METRO,
     TRANSFER,
     VISIT,
     DUMMY_START_FINISH,
