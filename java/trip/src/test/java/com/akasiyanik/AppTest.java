@@ -5,7 +5,7 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 /**
- * Unit test for simple CplexSolver.
+ * Unit test for simple ExampleCplexSolver.
  */
 public class AppTest 
     extends TestCase

@@ -1,5 +1,6 @@
 package com.akasiyanik.trip.utils;
 
+import com.akasiyanik.trip.domain.TransportMode;
 import com.akasiyanik.trip.domain.network.arcs.BaseArc;
 import com.akasiyanik.trip.domain.network.nodes.BaseNode;
 import ilog.concert.IloException;
@@ -49,6 +50,33 @@ public final class CplexUtil {
         return incomingArcs;
     }
 
+    public static Map<BaseNode, Set<Integer>> getInOutTransferArcsByNodes(List<BaseArc> allArcs) {
+        Map<BaseNode, Set<Integer>> result = new HashMap<>();
+        int index = 0;
+        for (BaseArc arc : allArcs) {
+            if (arc.getMode().equals(TransportMode.TRANSFER)) {
+                // in
+                BaseNode arcI = arc.getI();
+                Set<Integer> indexesI = result.get(arcI);
+                if (indexesI == null) {
+                    indexesI = new HashSet<>();
+                    result.put(arcI, indexesI);
+                }
+                indexesI.add(index);
+
+                BaseNode arcJ = arc.getJ();
+                Set<Integer> indexesJ = result.get(arcJ);
+                if (indexesJ == null) {
+                    indexesJ = new HashSet<>();
+                    result.put(arcJ, indexesJ);
+                }
+                indexesJ.add(index);
+
+                index++;
+            }
+        }
+        return result;
+    }
 
     public static void addStartOnlyInSpecifiedLocationConstraint(IloCplex model, IloIntVar[] x, Map<BaseNode, Set<Integer>> outgoingArcs, BaseNode startI) throws IloException {
         int startTime = startI.getTime();
@@ -74,6 +102,19 @@ public final class CplexUtil {
             }
         }
     }
+
+    public static void addAtMostOneTransferArcForNodeConstraint(IloCplex model, IloIntVar[] x, Map<BaseNode, Set<Integer>> transferArcsByNode) throws IloException {
+        for (Set<Integer> transferArcs : transferArcsByNode.values()) {
+            if (transferArcs.size() > 1) {
+                IloNumVar[] arcsVariables = transferArcs
+                        .stream()
+                        .map(ind -> x[ind])
+                        .toArray(IloNumVar[]::new);
+                model.addLe(model.sum(arcsVariables), 1.0);
+            }
+        }
+    }
+
 
     public static void addEqualInOutForIntermediateNodesConstraint(IloCplex model, IloIntVar[] x, Map<BaseNode, Set<Integer>> outgoingArcs, Map<BaseNode, Set<Integer>> incomingArcs) throws IloException {
         Set<BaseNode> nodes = new HashSet<>();

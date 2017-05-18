@@ -5,7 +5,7 @@ import ilog.concert.IloNumVar;
 import ilog.concert.IloRange;
 import ilog.cplex.IloCplex;
 
-public class CplexSolver {
+public class ExampleCplexSolver {
 
 
     public static void main(String[] args) {

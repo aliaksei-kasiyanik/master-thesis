@@ -41,6 +41,7 @@ public class ProblemSolver {
 
     private Map<BaseNode, Set<Integer>> incomingArcs;
 
+    private Map<BaseNode, Set<Integer>> outInTransferArcs;
 
     private BaseNode startI;
 
@@ -77,6 +78,8 @@ public class ProblemSolver {
 
         outgoingArcs = getOutgoingArcsByNodes(arcs);
         incomingArcs = getIncomingArcsByNodes(arcs);
+
+        outInTransferArcs = getInOutTransferArcsByNodes(arcs);
 
         startArcs = outgoingArcs.remove(startI);
         finishArcs = incomingArcs.remove(finishJ);
@@ -203,7 +206,7 @@ public class ProblemSolver {
         addEqualInOutForIntermediateNodesConstraint(model, x, outgoingArcs, incomingArcs);
 
         //constraint(6)
-        //TODO add transfer mode constraints
+        addAtMostOneTransferArcForNodeConstraint(model, x, outInTransferArcs);
 
         //constraint (7)
         addAtMostOneVisitArcForLocationConstraint(model, x, visitArcsByLocation);
