@@ -41,6 +41,8 @@ public class ProblemSolver {
 
     private int[] transferMask;
 
+    private int[] transferTimeMask;
+
     private Map<Long, List<Integer>> visitArcsByLocation;
 
     private Map<BaseNode, Set<Integer>> outgoingArcs;
@@ -72,6 +74,7 @@ public class ProblemSolver {
     private IloIntExpr minCostFunction;
     private IloIntExpr minCO2Function;
     private IloIntExpr minChangesFunction;
+    private IloIntExpr minTimeTransferFunction;
 
     private IloIntExpr objectiveExpression;
 
@@ -134,10 +137,14 @@ public class ProblemSolver {
                 });
 
         transferMask = new int[arcs.size()];
+        transferTimeMask = new int[arcs.size()];
         IntStream
                 .range(0, arcs.size())
                 .filter(i -> arcs.get(i).getMode().equals(Mode.TRANSFER))
-                .peek(i -> transferMask[i] = 1);
+                .forEach(i -> {
+                    transferMask[i] = 1;
+                    transferTimeMask[i] = arcs.get(i).getTime();
+                });
 
 
     }
@@ -263,6 +270,11 @@ public class ProblemSolver {
                 objectiveFunction = model.addMinimize(objectiveExpression);
                 break;
             }
+            case MIN_TIME_TRANSFER: {
+                objectiveExpression = getMinTimeTransferFunction();
+                objectiveFunction = model.addMinimize(objectiveExpression);
+                break;
+            }
             case MIN_CO2: {
                 objectiveExpression = getMinCO2Function();
                 objectiveFunction = model.addMinimize(objectiveExpression);
@@ -306,6 +318,13 @@ public class ProblemSolver {
             minChangesFunction = model.scalProd(transferMask, x);
         }
         return minChangesFunction;
+    }
+
+    private IloIntExpr getMinTimeTransferFunction() throws IloException {
+        if (minTimeTransferFunction == null) {
+            minTimeTransferFunction = model.scalProd(transferTimeMask, x);
+        }
+        return minTimeTransferFunction;
     }
 
 

@@ -12,7 +12,7 @@ public class TransferArc extends BaseArc {
 
     public TransferArc(BaseNode i, BaseNode j) {
         super(i, j, TRANSFER);
-        if (i.getId() != j.getId()) {
+        if (!i.getId().equals(j.getId())) {
             throw new RuntimeException("TransferArc must have the same BaseNodes id");
         }
     }
