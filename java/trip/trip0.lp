@@ -1,8 +1,8 @@
 \ENCODING=ISO-8859-1
 \Problem name: ilog.cplex
 
-Maximize
- obj: x5 + x7 + x9 + x27 + x33 + x36
+Minimize
+ obj: 19 x16 + 20 x17 + 22 x18 + 25 x19 + 26 x20 + 30 x21
 Subject To
  c1:  x1 + x2 <= 1
  c2:  x3 + x4 <= 1
@@ -42,7 +42,6 @@ Subject To
  c36: - x34 + x36  = 0
  c37: x9 - x13 - x14  = 0
  c38: - x2 + x7  = 0
- c39: 19 x16 + 20 x17 + 22 x18 + 25 x19 + 26 x20 + 30 x21 <= 27
 Bounds
  0 <= x1 <= 1
  0 <= x2 <= 1

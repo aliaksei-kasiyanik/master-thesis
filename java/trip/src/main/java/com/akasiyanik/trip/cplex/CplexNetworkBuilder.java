@@ -1,10 +1,7 @@
 package com.akasiyanik.trip.cplex;
 
 import com.akasiyanik.trip.domain.InputParameters;
-import com.akasiyanik.trip.domain.network.arcs.BaseArc;
-import com.akasiyanik.trip.domain.network.arcs.BusArc;
-import com.akasiyanik.trip.domain.network.arcs.DummyStartFinishArc;
-import com.akasiyanik.trip.domain.network.arcs.VisitArc;
+import com.akasiyanik.trip.domain.network.arcs.*;
 import com.akasiyanik.trip.domain.network.nodes.BaseNode;
 
 import java.util.*;
@@ -65,6 +62,9 @@ public class CplexNetworkBuilder {
             put("g", 7L);
             put("h", 8L);
             put("k", 9L);
+            put("l", 10L);
+            put("m", 11L);
+            put("p", 12L);
         }};
 
         return new ArrayList<BaseArc>() {{
@@ -72,13 +72,13 @@ public class CplexNetworkBuilder {
                     new BaseNode(places.get("a"), 3),
                     new BaseNode(places.get("b"), 4)
             ));
-            // right branch
+            // center branch
             add(new BusArc(
                     new BaseNode(places.get("b"), 4),
-                    new BaseNode(places.get("f"), 7)
+                    new BaseNode(places.get("f"), 6)
             ));
             add(new BusArc(
-                    new BaseNode(places.get("f"), 7),
+                    new BaseNode(places.get("f"), 6),
                     new BaseNode(places.get("g"), 10)
             ));
             add(new VisitArc(
@@ -104,6 +104,48 @@ public class CplexNetworkBuilder {
             add(new BusArc(
                     new BaseNode(places.get("h"), 14),
                     new BaseNode(places.get("k"), 25)
+            ));
+
+            //right branch
+            add(new TransferArc(
+                    new BaseNode(places.get("f"), 6),
+                    new BaseNode(places.get("f"), 7)
+            ));
+            add(new BusArc(
+                    new BaseNode(places.get("f"), 7),
+                    new BaseNode(places.get("l"), 8)
+            ));
+            add(new VisitArc(
+                    new BaseNode(places.get("l"), 8),
+                    new BaseNode(places.get("l"), 10)
+            ));
+            add(new BusArc(
+                    new BaseNode(places.get("l"), 10),
+                    new BaseNode(places.get("m"), 11)
+            ));
+            add(new VisitArc(
+                    new BaseNode(places.get("m"), 11),
+                    new BaseNode(places.get("m"), 13)
+            ));
+            add(new BusArc(
+                    new BaseNode(places.get("m"), 13),
+                    new BaseNode(places.get("p"), 19)
+            ));
+            add(new VisitArc(
+                    new BaseNode(places.get("p"), 19),
+                    new BaseNode(places.get("p"), 21)
+            ));
+            add(new BusArc(
+                    new BaseNode(places.get("p"), 21),
+                    new BaseNode(places.get("h"), 24)
+            ));
+            add(new TransferArc(
+                    new BaseNode(places.get("h"), 24),
+                    new BaseNode(places.get("h"), 25)
+            ));
+            add(new BusArc(
+                    new BaseNode(places.get("h"), 25),
+                    new BaseNode(places.get("k"), 26)
             ));
 
             //left branch
@@ -141,7 +183,7 @@ public class CplexNetworkBuilder {
             ));
             add(new BusArc(
                     new BaseNode(places.get("e"), 12),
-                    new BaseNode(places.get("k"), 17)
+                    new BaseNode(places.get("k"), 19)
             ));
             add(new BusArc(
                     new BaseNode(places.get("e"), 17),
@@ -149,8 +191,6 @@ public class CplexNetworkBuilder {
             ));
         }};
     }
-
-
 
 
 }
