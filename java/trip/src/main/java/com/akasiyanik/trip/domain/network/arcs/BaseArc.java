@@ -1,6 +1,6 @@
 package com.akasiyanik.trip.domain.network.arcs;
 
-import com.akasiyanik.trip.domain.TransportMode;
+import com.akasiyanik.trip.domain.Mode;
 import com.akasiyanik.trip.domain.network.nodes.BaseNode;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -15,9 +15,9 @@ public class BaseArc {
 
     private final BaseNode j;
 
-    private final TransportMode mode;
+    private final Mode mode;
 
-    public BaseArc(BaseNode i, BaseNode j, TransportMode mode) {
+    public BaseArc(BaseNode i, BaseNode j, Mode mode) {
         if (i.getTime() > j.getTime()) {
             throw new RuntimeException("j node time can't be after i node time");
         }
@@ -34,7 +34,7 @@ public class BaseArc {
         return j;
     }
 
-    public TransportMode getMode() {
+    public Mode getMode() {
         return mode;
     }
 

@@ -2,7 +2,7 @@ package com.akasiyanik.trip.cplex;
 
 import com.akasiyanik.trip.domain.InputParameters;
 import com.akasiyanik.trip.domain.RouteCriteria;
-import com.akasiyanik.trip.domain.TransportMode;
+import com.akasiyanik.trip.domain.Mode;
 import com.akasiyanik.trip.domain.network.arcs.BaseArc;
 import com.akasiyanik.trip.domain.network.nodes.BaseNode;
 import com.akasiyanik.trip.utils.TimeUtils;
@@ -55,7 +55,7 @@ public class TripRunner {
         LocalTime arrivalTime = TimeUtils.minutesToTime(35);
 //        LocalTime depatureTime =  LocalTime.of(9, 0);
 //        LocalTime arrivalTime = LocalTime.of(11, 0);
-        Set<TransportMode> modes = EnumSet.of(TransportMode.BUS);
+        Set<Mode> modes = EnumSet.of(Mode.BUS);
         Map<Long, Integer> visitPois = new HashMap<Long, Integer>() {{
             put(3L, 10);
             put(7L, 7);
@@ -96,7 +96,7 @@ public class TripRunner {
         int[] visitArcsMask = new int[arcs.size()];
         Map<Long, List<Integer>> visitArcsByLocation = IntStream
                 .range(0, arcs.size())
-                .filter(i -> arcs.get(i).getMode().equals(TransportMode.VISIT))
+                .filter(i -> arcs.get(i).getMode().equals(Mode.VISIT))
                 .peek(i -> visitArcsMask[i] = 1)
                 .boxed()
                 .collect(Collectors.groupingBy(i -> arcs.get(i).getI().getId()));

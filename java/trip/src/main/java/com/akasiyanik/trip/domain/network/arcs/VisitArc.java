@@ -2,7 +2,7 @@ package com.akasiyanik.trip.domain.network.arcs;
 
 import com.akasiyanik.trip.domain.network.nodes.BaseNode;
 
-import static com.akasiyanik.trip.domain.TransportMode.VISIT;
+import static com.akasiyanik.trip.domain.Mode.VISIT;
 
 /**
  * @author akasiyanik

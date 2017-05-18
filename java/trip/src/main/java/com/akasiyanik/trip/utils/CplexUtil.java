@@ -1,6 +1,6 @@
 package com.akasiyanik.trip.utils;
 
-import com.akasiyanik.trip.domain.TransportMode;
+import com.akasiyanik.trip.domain.Mode;
 import com.akasiyanik.trip.domain.network.arcs.BaseArc;
 import com.akasiyanik.trip.domain.network.nodes.BaseNode;
 import ilog.concert.IloException;
@@ -54,7 +54,7 @@ public final class CplexUtil {
         Map<BaseNode, Set<Integer>> result = new HashMap<>();
         int index = 0;
         for (BaseArc arc : allArcs) {
-            if (arc.getMode().equals(TransportMode.TRANSFER)) {
+            if (arc.getMode().equals(Mode.TRANSFER)) {
                 // in
                 BaseNode arcI = arc.getI();
                 Set<Integer> indexesI = result.get(arcI);

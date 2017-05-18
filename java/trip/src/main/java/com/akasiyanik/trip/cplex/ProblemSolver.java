@@ -2,7 +2,7 @@ package com.akasiyanik.trip.cplex;
 
 import com.akasiyanik.trip.domain.InputParameters;
 import com.akasiyanik.trip.domain.RouteCriteria;
-import com.akasiyanik.trip.domain.TransportMode;
+import com.akasiyanik.trip.domain.Mode;
 import com.akasiyanik.trip.domain.network.arcs.BaseArc;
 import com.akasiyanik.trip.domain.network.nodes.BaseNode;
 import ilog.concert.*;
@@ -87,7 +87,7 @@ public class ProblemSolver {
         visitArcsMask = new int[arcs.size()];
         visitArcsByLocation = IntStream
                 .range(0, arcs.size())
-                .filter(i -> arcs.get(i).getMode().equals(TransportMode.VISIT))
+                .filter(i -> arcs.get(i).getMode().equals(Mode.VISIT))
                 .peek(i -> visitArcsMask[i] = 1)
                 .boxed()
                 .collect(Collectors.groupingBy(i -> arcs.get(i).getI().getId()));
@@ -96,7 +96,7 @@ public class ProblemSolver {
         minTimeMask = new int[arcs.size()];
         finishArcs.forEach(i -> {
             BaseArc arc = arcs.get(i);
-            if (arc.getMode() == TransportMode.DUMMY_START_FINISH) {
+            if (arc.getMode() == Mode.DUMMY_START_FINISH) {
                 minTimeMask[i] = arc.getI().getTime();
             } else {
                 minTimeMask[i] = arc.getJ().getTime();

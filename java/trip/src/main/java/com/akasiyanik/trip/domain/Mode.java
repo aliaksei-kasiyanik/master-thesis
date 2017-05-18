@@ -6,16 +6,20 @@ import java.util.EnumSet;
  * @author akasiyanik
  *         5/5/17
  */
-public enum TransportMode {
+public enum Mode {
 
-    BUS,
-    METRO,
     TRANSFER,
     VISIT,
     DUMMY_START_FINISH,
+
+    WALK,
+
+    BUS,
+    METRO,
+
     ;
 
-//    public static final EnumSet<TransportMode> TRANSPORT = EnumSet.of(BUS);
+    public static final EnumSet<Mode> TRANSPORT = EnumSet.of(BUS, METRO);
 
 
 }

@@ -1,9 +1,8 @@
 package com.akasiyanik.trip.service.network;
 
 import com.akasiyanik.trip.domain.InputParameters;
-import com.akasiyanik.trip.domain.TransportMode;
+import com.akasiyanik.trip.domain.Mode;
 import com.akasiyanik.trip.domain.network.TripNetwork;
-import com.akasiyanik.trip.domain.network.arcs.BaseArc;
 import com.akasiyanik.trip.domain.network.nodes.GeoPoint;
 
 import java.util.Optional;
@@ -24,7 +23,7 @@ public class NetworkGenerationService {
         GeoPoint startPoint = getPointById(points, tripParameters.getDeparturePointId());
         GeoPoint finishPoint = getPointById(points, tripParameters.getDeparturePointId());
 
-        for (TransportMode mode : tripParameters.getModes()) {
+        for (Mode mode : tripParameters.getModes()) {
 
         }
 //        Set<BaseArc>
