@@ -62,7 +62,7 @@ public class TripRunner {
             put(8L, 12);
         }};
         List<Pair<RouteCriteria, Double>> criteria = new LinkedList<Pair<RouteCriteria, Double>>() {{
-            add(new ImmutablePair<>(RouteCriteria.MIN_TIME, 0.4));
+            add(new ImmutablePair<>(RouteCriteria.MIN_TIME, 0.2));
             add(new ImmutablePair<>(RouteCriteria.MAX_POI, 0.1));
         }};
 

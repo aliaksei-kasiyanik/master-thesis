@@ -85,6 +85,11 @@ public class CplexNetworkBuilder {
                     new BaseNode(places.get("g"), 10),
                     Mode.BUS
             ));
+            add(new TransportArc(
+                    new BaseNode(places.get("f"), 6),
+                    new BaseNode(places.get("g"), 10),
+                    Mode.METRO
+            ));
             add(new VisitArc(
                     new BaseNode(places.get("g"), 10),
                     new BaseNode(places.get("g"), 15)
@@ -129,10 +134,9 @@ public class CplexNetworkBuilder {
                     new BaseNode(places.get("l"), 8),
                     new BaseNode(places.get("l"), 10)
             ));
-            add(new TransportArc(
+            add(new WalkArc(
                     new BaseNode(places.get("l"), 10),
-                    new BaseNode(places.get("m"), 11),
-                    Mode.METRO
+                    new BaseNode(places.get("m"), 11)
             ));
             add(new VisitArc(
                     new BaseNode(places.get("m"), 11),
@@ -156,9 +160,10 @@ public class CplexNetworkBuilder {
                     new BaseNode(places.get("h"), 24),
                     new BaseNode(places.get("h"), 25)
             ));
-            add(new WalkArc(
+            add(new TransportArc(
                     new BaseNode(places.get("h"), 25),
-                    new BaseNode(places.get("k"), 26)
+                    new BaseNode(places.get("k"), 26),
+                    Mode.BUS
             ));
 
             //left branch

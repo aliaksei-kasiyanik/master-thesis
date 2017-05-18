@@ -43,6 +43,10 @@ public class ProblemSolver {
 
     private Map<BaseNode, Set<Integer>> outInTransferArcs;
 
+    private Map<BaseNode, Map<Mode, Set<Integer>>> inTransportArcsByNode;
+
+    private Map<BaseNode, Map<Mode, Set<Integer>>> outTransportArcsByNode;
+
     private BaseNode startI;
 
     private BaseNode finishJ;
@@ -80,6 +84,9 @@ public class ProblemSolver {
         incomingArcs = getIncomingArcsByNodes(arcs);
 
         outInTransferArcs = getInOutTransferArcsByNodes(arcs);
+
+        inTransportArcsByNode = getInTransportArcsByNodes(arcs);
+        outTransportArcsByNode = getOutTransportArcsByNodes(arcs);
 
         startArcs = outgoingArcs.remove(startI);
         finishArcs = incomingArcs.remove(finishJ);
@@ -215,7 +222,7 @@ public class ProblemSolver {
         addStartOnlyInSpecifiedLocationConstraint(model, x, outgoingArcs, startI);
 
         //constraint(9)
-        //TODO switching between modes implies transfer mode
+        addRequiredTransferBetweenTransportModesConstraint(model, x, inTransportArcsByNode, outTransportArcsByNode);
 
     }
 

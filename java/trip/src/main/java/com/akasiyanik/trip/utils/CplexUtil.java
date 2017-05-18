@@ -5,6 +5,7 @@ import com.akasiyanik.trip.domain.network.arcs.BaseArc;
 import com.akasiyanik.trip.domain.network.nodes.BaseNode;
 import ilog.concert.IloException;
 import ilog.concert.IloIntVar;
+import ilog.concert.IloNumExpr;
 import ilog.concert.IloNumVar;
 import ilog.cplex.IloCplex;
 
@@ -76,6 +77,115 @@ public final class CplexUtil {
             }
         }
         return result;
+    }
+
+    public static Map<BaseNode, Map<Mode, Set<Integer>>> getInTransportArcsByNodes(List<BaseArc> allArcs) {
+        Map<BaseNode, Map<Mode, Set<Integer>>> result = new HashMap<>();
+        int index = 0;
+        for (BaseArc arc : allArcs) {
+            Mode mode = arc.getMode();
+            if (Mode.TRANSPORT.contains(mode)) {
+
+                // in
+                BaseNode arcJ = arc.getJ();
+                Map<Mode, Set<Integer>> indexesByModes = result.get(arcJ);
+                if (indexesByModes == null) {
+                    indexesByModes = new HashMap<>();
+                    result.put(arcJ, indexesByModes);
+                }
+                Set<Integer> indexesJ = indexesByModes.get(mode);
+                if (indexesJ == null) {
+                    indexesJ = new HashSet<>();
+                    indexesByModes.put(mode, indexesJ);
+                }
+                indexesJ.add(index);
+
+                index++;
+            }
+        }
+        return result;
+    }
+
+    public static Map<BaseNode, Map<Mode, Set<Integer>>> getOutTransportArcsByNodes(List<BaseArc> allArcs) {
+        Map<BaseNode, Map<Mode, Set<Integer>>> result = new HashMap<>();
+        int index = 0;
+        for (BaseArc arc : allArcs) {
+            Mode mode = arc.getMode();
+            if (Mode.TRANSPORT.contains(mode)) {
+
+                // out
+                BaseNode arcI = arc.getI();
+                Map<Mode, Set<Integer>> indexesByModes = result.get(arcI);
+                if (indexesByModes == null) {
+                    indexesByModes = new HashMap<>();
+                    result.put(arcI, indexesByModes);
+                }
+                Set<Integer> indexesI = indexesByModes.get(mode);
+                if (indexesI == null) {
+                    indexesI = new HashSet<>();
+                    indexesByModes.put(mode, indexesI);
+                }
+                indexesI.add(index);
+                index++;
+
+            }
+        }
+        return result;
+    }
+
+    public static void addRequiredTransferBetweenTransportModesConstraint(IloCplex model, IloIntVar[] x, Map<BaseNode, Map<Mode, Set<Integer>>> inTransportArcs, Map<BaseNode, Map<Mode, Set<Integer>>> outTransportArcs) throws IloException {
+        Set<BaseNode> nodes = new HashSet<>();
+        nodes.addAll(inTransportArcs.keySet());
+        nodes.addAll(outTransportArcs.keySet());
+
+        for (BaseNode node : nodes) {
+
+            Map<Mode, Set<Integer>> inArcsByMode = inTransportArcs.get(node);
+            Map<Mode, Set<Integer>> outArcsByMode = outTransportArcs.get(node);
+
+            if (inArcsByMode != null && outArcsByMode != null) {
+
+                Set<Mode> outModes = outArcsByMode.keySet();
+                Map<Mode, IloNumExpr> outArcsSums = new HashMap<>();
+                for (Mode outMode : outModes) {
+                    Set<Integer> outArcs = outArcsByMode.get(outMode);
+                    IloNumVar[] outArcsVariables = outArcs
+                            .stream()
+                            .map(ind -> x[ind])
+                            .toArray(IloNumVar[]::new);
+                    IloNumExpr outSum = model.sum(outArcsVariables);
+                    outArcsSums.put(outMode, outSum);
+                }
+
+
+                for (Mode inMode : inArcsByMode.keySet()) {
+
+                    Set<Integer> inArcs = inArcsByMode.get(inMode);
+
+                    IloNumVar[] inArcsVariables = inArcs
+                            .stream()
+                            .map(ind -> x[ind])
+                            .toArray(IloNumVar[]::new);
+
+                    IloNumExpr inArcsSum = model.sum(inArcsVariables);
+
+                    for (Mode outMode : outModes) {
+                        if (!inMode.equals(outMode)) {
+                           model.addLe(model.sum(inArcsSum, outArcsSums.get(outMode)), 1.0);
+                        }
+                    }
+
+                }
+
+            }
+
+        }
+
+
+
+
+
+
     }
 
     public static void addStartOnlyInSpecifiedLocationConstraint(IloCplex model, IloIntVar[] x, Map<BaseNode, Set<Integer>> outgoingArcs, BaseNode startI) throws IloException {
