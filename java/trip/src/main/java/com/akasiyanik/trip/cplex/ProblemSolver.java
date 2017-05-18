@@ -226,11 +226,6 @@ public class ProblemSolver {
 
     }
 
-    private void addMinTimeObjectiveFunction(IloCplex model, IloIntVar[] x, int[] minTimeMask) throws IloException {
-        model.addMinimize(model.scalProd(minTimeMask, x));
-    }
-
-
     private IloLinearIntExpr getMaxPoiFunction() throws IloException {
         if (maxPoiFunction == null) {
             maxPoiFunction = model.scalProd(visitArcsMask, x);
@@ -245,10 +240,6 @@ public class ProblemSolver {
         return minTimeFunction;
     }
 
-
-    private void addMaxPoiConstraint(IloCplex model, IloNumVar[] x, int[] visitMask, double minPoiToVisit) throws IloException {
-        model.addGe(model.scalProd(visitMask, x), minPoiToVisit);
-    }
 
 
 }
