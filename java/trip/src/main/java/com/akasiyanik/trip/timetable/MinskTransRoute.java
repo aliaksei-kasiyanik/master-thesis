@@ -12,13 +12,12 @@ import java.util.List;
  * @author akasiyanik
  *         5/10/17
  */
-@CompoundIndexes({
-        @CompoundIndex(name = "number1_rev1", def = "{'number' : 1, 'reverse': 1}")
-})
 public class MinskTransRoute {
 
     @Id
     private String id;
+
+    private MinskTransRouteEnum.Type type;
 
     private String number;
 
@@ -30,9 +29,29 @@ public class MinskTransRoute {
 
     private List<List<String>> threads;
 
-    public MinskTransRoute(String number, boolean reverse) {
+    public MinskTransRoute() {
+    }
+
+    public MinskTransRoute(String number, boolean reverse, MinskTransRouteEnum.Type type) {
         this.number = number;
         this.reverse = reverse;
+        this.type = type;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public MinskTransRouteEnum.Type getType() {
+        return type;
+    }
+
+    public void setType(MinskTransRouteEnum.Type type) {
+        this.type = type;
     }
 
     public void setName(String name) {
@@ -85,6 +104,7 @@ public class MinskTransRoute {
 
         return new EqualsBuilder()
                 .append(reverse, that.reverse)
+                .append(type, that.type)
                 .append(number, that.number)
                 .isEquals();
     }
@@ -92,6 +112,7 @@ public class MinskTransRoute {
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
+                .append(type)
                 .append(number)
                 .append(reverse)
                 .toHashCode();

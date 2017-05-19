@@ -1,6 +1,7 @@
 package com.akasiyanik.trip.timetable.html;
 
 import com.akasiyanik.trip.timetable.MinskTransRoute;
+import com.akasiyanik.trip.timetable.MinskTransRouteEnum;
 import com.akasiyanik.trip.utils.IOUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -17,24 +18,24 @@ import java.util.*;
 @Service
 public class HtmlTimetableParser {
 
-    public List<MinskTransRoute> parseFromFile(String filename) {
+    public List<MinskTransRoute> parseFromFile(String filename, MinskTransRouteEnum routeEnum) {
         String html = IOUtils.readFileAsString(filename);
-        return parseFromString(html);
+        return parseFromString(html, routeEnum);
     }
 
-    public List<MinskTransRoute> parseFromString(String html) {
+    public List<MinskTransRoute> parseFromString(String html, MinskTransRouteEnum routeEnum) {
         Document doc = Jsoup.parse(html);
 
         String routeNumber = doc.select("div div div b").first().html();
-        return parseRoutes(doc, routeNumber);
+        return parseRoutes(doc, routeNumber, routeEnum);
     }
 
-    private List<MinskTransRoute> parseRoutes(Document doc, String routeNumber) {
+    private List<MinskTransRoute> parseRoutes(Document doc, String routeNumber, MinskTransRouteEnum routeEnum) {
 
 //        Direct Route (A -> B)
 
         String routeNameAB = doc.select("div div div span").get(0).html();
-        MinskTransRoute routeAB = new MinskTransRoute(routeNumber, false);
+        MinskTransRoute routeAB = new MinskTransRoute(routeNumber, false, routeEnum.getType());
         routeAB.setName(routeNameAB);
 
         Element ABElements = doc.select("div div div table tbody").get(0);
@@ -46,7 +47,7 @@ public class HtmlTimetableParser {
 //        Reverse Route (B -> A)
 
         String routeNameBA = doc.select("div div div span").get(1).html();
-        MinskTransRoute routeBA = new MinskTransRoute(routeNumber, true);
+        MinskTransRoute routeBA = new MinskTransRoute(routeNumber, true, routeEnum.getType());
         routeBA.setName(routeNameBA);
 
         Element BAElements = doc.select("div div div table tbody").get(1);

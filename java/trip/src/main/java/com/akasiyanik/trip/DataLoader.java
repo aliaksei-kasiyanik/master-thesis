@@ -8,7 +8,7 @@ import com.akasiyanik.trip.timetable.html.HtmlTimetableDownloader;
 import com.akasiyanik.trip.timetable.html.HtmlTimetableParser;
 import com.akasiyanik.trip.timetable.network.MinskTransArc;
 import com.akasiyanik.trip.timetable.repository.MongoStopRepository;
-import com.akasiyanik.trip.timetable.repository.MongoTimetableRepository;
+import com.akasiyanik.trip.timetable.repository.MongoRouteRepository;
 import com.akasiyanik.trip.timetable.repository.TimetableRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,7 +41,7 @@ public class DataLoader implements ApplicationRunner {
     private MinskTransBusStopParser busStopParser;
 
     @Autowired
-    private MongoTimetableRepository mongoTimetableRepository;
+    private MongoRouteRepository mongoRouteRepository;
 
     @Autowired
     private MongoStopRepository mongoStopRepository;
@@ -51,13 +51,8 @@ public class DataLoader implements ApplicationRunner {
         loadTimetables(true);
         loadBusStops(false);
         checkStopsAndRoutes();
-//        fakeMongoTest();
     }
 
-
-    public void fakeMongoTest() {
-        mongoTimetableRepository.saveArc(new MinskTransArc());
-    }
 
     public void loadTimetables(boolean reload) {
         for (MinskTransRouteEnum routeEnum : MinskTransRouteEnum.values()) {
@@ -65,9 +60,11 @@ public class DataLoader implements ApplicationRunner {
                 logger.info("Route loading is started: {} {} ", routeEnum.getType(), routeEnum.getNumber());
 
                 String html = timetableDownloader.download(routeEnum);
-                List<MinskTransRoute> routes = timetableParser.parseFromString(html);
+                List<MinskTransRoute> routes = timetableParser.parseFromString(html, routeEnum);
 
-                timetableRepository.save(routeEnum, routes);
+                mongoRouteRepository.saveAll(routes);
+
+//                timetableRepository.save(routeEnum, routes);
                 logger.info("Route loading has been finished: {} {} ", routeEnum.getType(), routeEnum.getNumber());
             }
         }
@@ -84,7 +81,7 @@ public class DataLoader implements ApplicationRunner {
 
     public void checkStopsAndRoutes() {
         List<MinskTransStop> stops = mongoStopRepository.findAll();
-        List<MinskTransRoute> routes = timetableRepository.getByEnum(MinskTransRouteEnum.BUS_64);
+        List<MinskTransRoute> routes = mongoRouteRepository.findAll();
 
         for (MinskTransRoute route : routes) {
             route.getStopIds().stream().forEach(routeStopId -> {
