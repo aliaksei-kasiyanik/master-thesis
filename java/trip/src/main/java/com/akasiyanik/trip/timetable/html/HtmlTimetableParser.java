@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+import static com.akasiyanik.trip.utils.TimeUtils.timeToMinutes;
+
 /**
  * @author akasiyanik
  *         5/11/17
@@ -39,7 +41,7 @@ public class HtmlTimetableParser {
         routeAB.setName(routeNameAB);
 
         Element ABElements = doc.select("div div div table tbody").get(0);
-        List<List<String>> ABThreads = getThreads(ABElements);
+        List<List<Integer>> ABThreads = getThreads(ABElements);
         List<Long>  ABStopsIds = getStops(ABElements);
         routeAB.setStopIds(ABStopsIds);
         routeAB.setThreads(ABThreads);
@@ -51,7 +53,7 @@ public class HtmlTimetableParser {
         routeBA.setName(routeNameBA);
 
         Element BAElements = doc.select("div div div table tbody").get(1);
-        List<List<String>> BAThreads = getThreads(BAElements);
+        List<List<Integer>> BAThreads = getThreads(BAElements);
         List<Long> BAStopsIds = getStops(BAElements);
         routeBA.setStopIds(BAStopsIds);
         routeBA.setThreads(BAThreads);
@@ -72,15 +74,15 @@ public class HtmlTimetableParser {
         return ids;
     }
 
-    private List<List<String>> getThreads(Element routeElements) {
+    private List<List<Integer>> getThreads(Element routeElements) {
         Integer threadsCount = Integer.valueOf(routeElements.select("tr:eq(0) td:eq(2)").attr("colspan"));
-        List<List<String>> threads = new ArrayList<>(threadsCount);
+        List<List<Integer>> threads = new ArrayList<>(threadsCount);
 
         for (int threadIndex = 0; threadIndex < threadsCount; threadIndex++) {
             int trIndex = threadIndex + 2;
             Elements oneThreadElements = routeElements.select("tr:gt(0) td:eq(" + trIndex + ")");
-            List<String> thread = new ArrayList<>(oneThreadElements.size());
-            oneThreadElements.forEach(time -> thread.add(time.html().split("&")[0]));
+            List<Integer> thread = new ArrayList<>(oneThreadElements.size());
+            oneThreadElements.forEach(time -> thread.add(timeToMinutes(time.html().split("&")[0])));
             threads.add(thread);
         }
         return threads;

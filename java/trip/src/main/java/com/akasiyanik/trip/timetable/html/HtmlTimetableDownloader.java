@@ -28,7 +28,7 @@ public class HtmlTimetableDownloader {
             driver.get(routeEnum.getParseUrl());
 
             final String divId = "schedule_list";
-            WebDriverWait wait = new WebDriverWait(driver, 10);
+            WebDriverWait wait = new WebDriverWait(driver, 15);
             WebElement div = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(divId)));
             return div.getAttribute("outerHTML");
         } catch (Exception e) {

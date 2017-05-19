@@ -3,8 +3,6 @@ package com.akasiyanik.trip.timetable;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.CompoundIndex;
-import org.springframework.data.mongodb.core.index.CompoundIndexes;
 
 import java.util.List;
 
@@ -27,7 +25,7 @@ public class MinskTransRoute {
 
     private List<Long> stopIds;
 
-    private List<List<String>> threads;
+    private List<List<Integer>> threads;
 
     public MinskTransRoute() {
     }
@@ -86,11 +84,11 @@ public class MinskTransRoute {
         this.stopIds = stopIds;
     }
 
-    public List<List<String>> getThreads() {
+    public List<List<Integer>> getThreads() {
         return threads;
     }
 
-    public void setThreads(List<List<String>> threads) {
+    public void setThreads(List<List<Integer>> threads) {
         this.threads = threads;
     }
 

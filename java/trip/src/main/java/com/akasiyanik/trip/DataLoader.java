@@ -48,8 +48,8 @@ public class DataLoader implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        loadTimetables(true);
-        loadBusStops(false);
+//        loadTimetables(true);
+//        loadBusStops(false);
         checkStopsAndRoutes();
     }
 
