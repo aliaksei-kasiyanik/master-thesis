@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface StopRepository {
 
-    MinskTransStop getStopById(String id);
+    MinskTransStop getStopById(Long id);
 
     List<MinskTransStop> getAllStops();
 

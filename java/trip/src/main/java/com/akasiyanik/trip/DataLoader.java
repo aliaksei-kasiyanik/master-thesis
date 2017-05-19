@@ -6,10 +6,10 @@ import com.akasiyanik.trip.timetable.MinskTransRouteEnum;
 import com.akasiyanik.trip.timetable.MinskTransStop;
 import com.akasiyanik.trip.timetable.html.HtmlTimetableDownloader;
 import com.akasiyanik.trip.timetable.html.HtmlTimetableParser;
-import com.akasiyanik.trip.timetable.repository.MinskTransStopRepository;
+import com.akasiyanik.trip.timetable.network.MinskTransArc;
+import com.akasiyanik.trip.timetable.repository.MongoStopRepository;
+import com.akasiyanik.trip.timetable.repository.MongoTimetableRepository;
 import com.akasiyanik.trip.timetable.repository.TimetableRepository;
-import com.akasiyanik.trip.utils.GsonSerializer;
-import com.akasiyanik.trip.utils.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +17,6 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.List;
 
 /**
@@ -43,13 +41,22 @@ public class DataLoader implements ApplicationRunner {
     private MinskTransBusStopParser busStopParser;
 
     @Autowired
-    private MinskTransStopRepository busStopRepository;
+    private MongoTimetableRepository mongoTimetableRepository;
+
+    @Autowired
+    private MongoStopRepository mongoStopRepository;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        loadTimetables(false);
+        loadTimetables(true);
         loadBusStops(false);
         checkStopsAndRoutes();
+//        fakeMongoTest();
+    }
+
+
+    public void fakeMongoTest() {
+        mongoTimetableRepository.saveArc(new MinskTransArc());
     }
 
     public void loadTimetables(boolean reload) {
@@ -67,27 +74,28 @@ public class DataLoader implements ApplicationRunner {
     }
 
     public void loadBusStops(boolean reload) {
-        if (reload || !Files.exists(Paths.get("stops/stops.json"))) {
+        if (reload) {
             List<MinskTransStop> stops = busStopParser.parse("src/main/resources/minsk/stops.txt");
-            String stopsJson = GsonSerializer.serialize(stops);
-            IOUtils.writeToFile("stops/stops.json", stopsJson);
+            mongoStopRepository.saveAll(stops);
+//            String stopsJson = GsonSerializer.serialize(stops);
+//            IOUtils.writeToFile("stops/stops.json", stopsJson);
         }
     }
 
     public void checkStopsAndRoutes() {
-        List<MinskTransStop> stops = busStopRepository.getAllStops();
+        List<MinskTransStop> stops = mongoStopRepository.findAll();
         List<MinskTransRoute> routes = timetableRepository.getByEnum(MinskTransRouteEnum.BUS_64);
 
         for (MinskTransRoute route : routes) {
-            route.getStops().entrySet().stream().forEach(routeStop -> {
+            route.getStopIds().stream().forEach(routeStopId -> {
 
                 MinskTransStop mappedStop = stops.stream()
-                        .filter(s -> s.getIds().contains(routeStop.getKey()) && s.getName().equals(routeStop.getValue()))
+                        .filter(s -> s.getIds().contains(routeStopId))
                         .findFirst()
                         .get();
 
                 if (mappedStop == null) {
-                    logger.error("Stop not found: {} {}", routeStop.getKey(), routeStop.getValue());
+                    logger.error("{} - Stop not found:  {}", route.getName(), routeStopId);
                 } else {
                     logger.debug("Stop found: {}", mappedStop);
                 }

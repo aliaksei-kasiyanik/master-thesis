@@ -3,10 +3,9 @@ package com.akasiyanik.trip.timetable;
 import com.akasiyanik.trip.domain.GeoLocation;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.springframework.data.annotation.Id;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @author akasiyanik
@@ -14,33 +13,51 @@ import java.util.Set;
  */
 public class MinskTransStop {
 
-    //from MinskTrans
-//    private String id;
+    @Id
+    private String id;
 
     private String name;
 
-    private Map<String, GeoLocation> idWithLocations;
+    private LinkedHashSet<Long> ids = new LinkedHashSet<>();
 
-    public MinskTransStop(String name) {
-        this.name = name;
-        idWithLocations = new HashMap<>();
+    private List<GeoLocation> locations = new ArrayList<>();
+
+//    private Map<String, GeoLocation> idWithLocations;
+
+
+    public MinskTransStop() {
     }
 
-    public MinskTransStop(Map<String, GeoLocation> idWithLocations, String name) {
-        this.idWithLocations = idWithLocations;
-        this.name = name;
+    public String getId() {
+        return id;
     }
 
-    public Map<String, GeoLocation> getIdWithLocations() {
-        return idWithLocations;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
         return name;
     }
 
-    public Set<String> getIds() {
-        return idWithLocations.keySet();
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public LinkedHashSet<Long> getIds() {
+        return ids;
+    }
+
+    public void setIds(LinkedHashSet<Long> ids) {
+        this.ids = ids;
+    }
+
+    public List<GeoLocation> getLocations() {
+        return locations;
+    }
+
+    public void setLocations(List<GeoLocation> locations) {
+        this.locations = locations;
     }
 
     @Override
@@ -53,7 +70,6 @@ public class MinskTransStop {
 
         return new EqualsBuilder()
                 .append(name, that.name)
-                .append(idWithLocations, that.idWithLocations)
                 .isEquals();
     }
 
@@ -61,7 +77,6 @@ public class MinskTransStop {
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
                 .append(name)
-                .append(idWithLocations)
                 .toHashCode();
     }
 
@@ -69,7 +84,8 @@ public class MinskTransStop {
     public String toString() {
         return "MinskTransStop{" +
                 "name='" + name + '\'' +
-                ", idWithLocations=" + idWithLocations +
+                ", ids=" + ids +
+                ", locations=" + locations +
                 '}';
     }
 }

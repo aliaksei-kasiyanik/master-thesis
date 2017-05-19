@@ -31,7 +31,8 @@ public class MinskTransBusStopParser {
                     if (currentStop != null) {
                         result.add(currentStop);
                     }
-                    currentStop = new MinskTransStop(name);
+                    currentStop = new MinskTransStop();
+                    currentStop.setName(name.trim());
                 }
                 String id = tokens[0];
                 String lat = tokens[6];
@@ -39,7 +40,9 @@ public class MinskTransBusStopParser {
                 if (StringUtils.isNotBlank(id) && StringUtils.isNotBlank(lat) && StringUtils.isNotBlank(lon)) {
                     Double latD = Double.valueOf(tokens[6].trim()) / 100000.0;
                     Double lonD = Double.valueOf(tokens[7].trim()) / 100000.0;
-                    currentStop.getIdWithLocations().put(id, new GeoLocation(latD, lonD));
+                    Long idL = Long.valueOf(tokens[0].trim());
+                    currentStop.getIds().add(idL);
+                    currentStop.getLocations().add(new GeoLocation(latD, lonD));
                 }
             }
             if (currentStop != null) {

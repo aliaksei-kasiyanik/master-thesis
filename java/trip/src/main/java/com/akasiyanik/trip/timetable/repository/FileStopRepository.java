@@ -12,12 +12,12 @@ import java.util.List;
  *         5/11/17
  */
 @Repository
-public class MinskTransStopRepository implements StopRepository {
+public class FileStopRepository implements StopRepository {
 
 
     @Override
-    public MinskTransStop getStopById(String id) {
-        return getAllStops().stream().filter(s -> s.getIdWithLocations().containsKey(id)).findFirst().get();
+    public MinskTransStop getStopById(Long id) {
+        return getAllStops().stream().filter(s -> s.getIds().contains(id)).findFirst().get();
     }
 
     @Override

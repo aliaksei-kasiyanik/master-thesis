@@ -2,61 +2,69 @@ package com.akasiyanik.trip.timetable;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
+import org.springframework.data.mongodb.core.index.CompoundIndexes;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author akasiyanik
  *         5/10/17
  */
+@CompoundIndexes({
+        @CompoundIndex(name = "number1_rev1", def = "{'number' : 1, 'reverse': 1}")
+})
 public class MinskTransRoute {
 
-    private String routeNumber;
+    @Id
+    private String id;
 
-    private String routeName;
+    private String number;
+
+    private String name;
 
     private boolean reverse = false;
 
-    private Map<String, String> stops;
+    private List<Long> stopIds;
 
     private List<List<String>> threads;
 
-    public MinskTransRoute(String routeNumber, boolean reverse) {
-        this.routeNumber = routeNumber;
+    public MinskTransRoute(String number, boolean reverse) {
+        this.number = number;
         this.reverse = reverse;
     }
 
-    public String getRouteNumber() {
-        return routeNumber;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public boolean isReverse() {
         return reverse;
     }
 
-    public String getRouteName() {
-        return routeName;
-    }
-
-    public void setRouteName(String routeName) {
-        this.routeName = routeName;
-    }
-
-    public void setRouteNumber(String routeNumber) {
-        this.routeNumber = routeNumber;
-    }
-
     public void setReverse(boolean reverse) {
         this.reverse = reverse;
     }
 
-    public Map<String, String> getStops() {
-        return stops;
+    public List<Long> getStopIds() {
+        return stopIds;
     }
 
-    public void setStops(Map<String, String> stops) {
-        this.stops = stops;
+    public void setStopIds(List<Long> stopIds) {
+        this.stopIds = stopIds;
     }
 
     public List<List<String>> getThreads() {
@@ -77,14 +85,14 @@ public class MinskTransRoute {
 
         return new EqualsBuilder()
                 .append(reverse, that.reverse)
-                .append(routeNumber, that.routeNumber)
+                .append(number, that.number)
                 .isEquals();
     }
 
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
-                .append(routeNumber)
+                .append(number)
                 .append(reverse)
                 .toHashCode();
     }

@@ -1,7 +1,6 @@
 package com.akasiyanik.trip.timetable.html;
 
 import com.akasiyanik.trip.timetable.MinskTransRoute;
-import com.akasiyanik.trip.timetable.MinskTransStop;
 import com.akasiyanik.trip.utils.IOUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -36,39 +35,40 @@ public class HtmlTimetableParser {
 
         String routeNameAB = doc.select("div div div span").get(0).html();
         MinskTransRoute routeAB = new MinskTransRoute(routeNumber, false);
-        routeAB.setRouteName(routeNameAB);
+        routeAB.setName(routeNameAB);
 
         Element ABElements = doc.select("div div div table tbody").get(0);
         List<List<String>> ABThreads = getThreads(ABElements);
-        Map<String, String> ABStops = getStops(ABElements);
-        routeAB.setStops(ABStops);
+        List<Long>  ABStopsIds = getStops(ABElements);
+        routeAB.setStopIds(ABStopsIds);
         routeAB.setThreads(ABThreads);
 
 //        Reverse Route (B -> A)
 
         String routeNameBA = doc.select("div div div span").get(1).html();
         MinskTransRoute routeBA = new MinskTransRoute(routeNumber, true);
-        routeBA.setRouteName(routeNameBA);
+        routeBA.setName(routeNameBA);
 
         Element BAElements = doc.select("div div div table tbody").get(1);
         List<List<String>> BAThreads = getThreads(BAElements);
-        Map<String, String> BAStops = getStops(BAElements);
-        routeBA.setStops(BAStops);
+        List<Long> BAStopsIds = getStops(BAElements);
+        routeBA.setStopIds(BAStopsIds);
         routeBA.setThreads(BAThreads);
 
 
         return Arrays.asList(routeAB, routeBA);
     }
 
-    private Map<String, String> getStops(Element routeElements) {
+    private List<Long> getStops(Element routeElements) {
         Elements stopElements = routeElements.select("tr:gt(0) td:eq(1) a");
-        Map<String, String> stops = new HashMap<>(stopElements.size());
+//        Map<String, String> stops = new HashMap<>(stopElements.size());
+        List<Long> ids = new ArrayList<>();
         for (Element e : stopElements) {
             String id = e.attr("href").split(";")[2];
-            String name = e.html();
-            stops.put(id, name);
+//            String name = e.html();
+            ids.add(Long.valueOf(id.trim()));
         }
-        return stops;
+        return ids;
     }
 
     private List<List<String>> getThreads(Element routeElements) {

@@ -7,7 +7,7 @@ package com.akasiyanik.trip.timetable;
 public enum MinskTransRouteEnum {
 
     BUS_1("1", Type.BUS, "http://www.minsktrans.by/city/#minsk/bus;193309;15846;time"),
-    BUS_2c("2c", Type.BUS, "http://www.minsktrans.by/city/#minsk/bus;192950;68811;time"),
+    BUS_2c("2c", Type.BUS, "http://www.minsktrans.by/city/#minsk/bus;198526;68811;time"),
     BUS_64("64", Type.BUS, "http://www.minsktrans.by/city/#minsk/bus;185800;14386;time"),
     ;
 
