@@ -17,6 +17,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.EnumSet;
 import java.util.List;
 
 /**
@@ -50,7 +51,24 @@ public class DataLoader implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
 //        loadTimetables(true);
 //        loadBusStops(false);
-        checkStopsAndRoutes();
+//        loadTimetables(EnumSet.of(MinskTransRouteEnum.BUS_100));
+//        checkStopsAndRoutes();
+    }
+
+    public void loadTimetables(EnumSet<MinskTransRouteEnum> routeEnums) {
+        for (MinskTransRouteEnum routeEnum : routeEnums) {
+            if (!timetableRepository.exist(routeEnum)) {
+                logger.info("Route loading is started: {} {} ", routeEnum.getType(), routeEnum.getNumber());
+
+                String html = timetableDownloader.download(routeEnum);
+                List<MinskTransRoute> routes = timetableParser.parseFromString(html, routeEnum);
+
+                mongoRouteRepository.saveAll(routes);
+
+//                timetableRepository.save(routeEnum, routes);
+                logger.info("Route loading has been finished: {} {} ", routeEnum.getType(), routeEnum.getNumber());
+            }
+        }
     }
 
 

@@ -8,6 +8,7 @@ public enum MinskTransRouteEnum {
 
     BUS_1("1", Type.BUS, "http://www.minsktrans.by/city/#minsk/bus;193309;15846;time"),
     BUS_64("64", Type.BUS, "http://www.minsktrans.by/city/#minsk/bus;185800;14386;time"),
+    BUS_100("100", Type.BUS, "http://www.minsktrans.by/city/#minsk/bus;193049;15014;time"),
     TRAM_6("6", Type.TRAM, "http://www.minsktrans.by/city/#minsk/tram;196020;15360;time"),
     ;
 
