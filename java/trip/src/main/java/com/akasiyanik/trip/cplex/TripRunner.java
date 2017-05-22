@@ -35,10 +35,10 @@ public class TripRunner {
     }
 
     private static InputParameters getFakeInputParameters() {
-        Long departurePoint = 1L;
+        String departurePoint = "a";
         LocalTime depatureTime = TimeUtils.minutesToTime(1);
 
-        Long arrivalPoint = 9L;
+        String arrivalPoint = "k";
         LocalTime arrivalTime = TimeUtils.minutesToTime(35);
 //        LocalTime depatureTime =  LocalTime.of(9, 0);
 //        LocalTime arrivalTime = LocalTime.of(11, 0);

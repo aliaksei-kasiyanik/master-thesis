@@ -14,10 +14,10 @@ import java.util.Set;
 public class InputParameters {
 
     // i*
-    private final Long departurePointId;
+    private final String departurePointId;
 
     // j*
-    private final Long arrivalPointId;
+    private final String arrivalPointId;
 
     // s*
     private final LocalTime departureTime;
@@ -35,8 +35,8 @@ public class InputParameters {
     // ranked criteria and relative deviations
     private final List<Pair<RouteCriteria, Double>> criteria;
 
-    public InputParameters(Long departurePointId,
-                           Long arrivalPointId,
+    public InputParameters(String departurePointId,
+                           String arrivalPointId,
                            LocalTime departureTime,
                            LocalTime arrivalTime,
                            Set<Mode> modes,
@@ -51,11 +51,11 @@ public class InputParameters {
         this.departurePointId = departurePointId;
     }
 
-    public Long getDeparturePointId() {
+    public String getDeparturePointId() {
         return departurePointId;
     }
 
-    public Long getArrivalPointId() {
+    public String getArrivalPointId() {
         return arrivalPointId;
     }
 

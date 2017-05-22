@@ -201,7 +201,7 @@ public final class CplexUtil {
         }
     }
 
-    public static void addAtMostOneVisitArcForLocationConstraint(IloCplex model, IloIntVar[] x, Map<Long, List<Integer>> visitingArcs) throws IloException {
+    public static void addAtMostOneVisitArcForLocationConstraint(IloCplex model, IloIntVar[] x, Map<String, List<Integer>> visitingArcs) throws IloException {
         for (List<Integer> arcsPerLocation : visitingArcs.values()) {
             if (arcsPerLocation.size() > 1) {
                 IloNumVar[] arcsVariables = arcsPerLocation

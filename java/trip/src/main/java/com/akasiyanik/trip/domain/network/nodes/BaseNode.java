@@ -10,23 +10,23 @@ import java.time.LocalTime;
  */
 public class BaseNode {
 
-    private final Long id;
+    private final String id;
 
     private final int time;
 
     private GeoPoint geoLocation;
 
-    public BaseNode(Long id, LocalTime time) {
+    public BaseNode(String id, LocalTime time) {
         this.id = id;
         this.time = TimeUtils.timeToMinutes(time);
     }
 
-    public BaseNode(Long id, int time) {
+    public BaseNode(String id, int time) {
         this.id = id;
         this.time = time;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 

@@ -70,149 +70,149 @@ public class CplexNetworkBuilder {
 
         return new ArrayList<BaseArc>() {{
             add(new TransportArc(
-                    new BaseNode(places.get("a"), 3),
-                    new BaseNode(places.get("b"), 4), 
+                    new BaseNode("a", 3),
+                    new BaseNode("b", 4),
                     Mode.BUS
             ));
             // center branch
             add(new TransportArc(
-                    new BaseNode(places.get("b"), 4),
-                    new BaseNode(places.get("f"), 6),
+                    new BaseNode("b", 4),
+                    new BaseNode("f", 6),
                     Mode.BUS
             ));
             add(new TransportArc(
-                    new BaseNode(places.get("f"), 6),
-                    new BaseNode(places.get("g"), 10),
+                    new BaseNode("f", 6),
+                    new BaseNode("g", 10),
                     Mode.BUS
             ));
             add(new TransportArc(
-                    new BaseNode(places.get("f"), 6),
-                    new BaseNode(places.get("g"), 10),
+                    new BaseNode("f", 6),
+                    new BaseNode("g", 10),
                     Mode.METRO
             ));
             add(new VisitArc(
-                    new BaseNode(places.get("g"), 10),
-                    new BaseNode(places.get("g"), 15)
+                    new BaseNode("g", 10),
+                    new BaseNode("g", 15)
             ));
             add(new TransportArc(
-                    new BaseNode(places.get("g"), 15),
-                    new BaseNode(places.get("k"), 20),
+                    new BaseNode("g", 15),
+                    new BaseNode("k", 20),
                     Mode.BUS
             ));
             add(new TransportArc(
-                    new BaseNode(places.get("g"), 15),
-                    new BaseNode(places.get("h"), 19),
+                    new BaseNode("g", 15),
+                    new BaseNode("h", 19),
                     Mode.BUS
             ));
             add(new TransportArc(
-                    new BaseNode(places.get("h"), 19),
-                    new BaseNode(places.get("k"), 30),
+                    new BaseNode("h", 19),
+                    new BaseNode("k", 30),
                     Mode.BUS
             ));
             add(new TransportArc(
-                    new BaseNode(places.get("g"), 10),
-                    new BaseNode(places.get("h"), 14),
+                    new BaseNode("g", 10),
+                    new BaseNode("h", 14),
                     Mode.BUS
             ));
             add(new TransportArc(
-                    new BaseNode(places.get("h"), 14),
-                    new BaseNode(places.get("k"), 25),
+                    new BaseNode("h", 14),
+                    new BaseNode("k", 25),
                     Mode.BUS
             ));
 
             //right branch
             add(new TransferArc(
-                    new BaseNode(places.get("f"), 6),
-                    new BaseNode(places.get("f"), 7)
+                    new BaseNode("f", 6),
+                    new BaseNode("f", 7)
             ));
             add(new TransportArc(
-                    new BaseNode(places.get("f"), 7),
-                    new BaseNode(places.get("l"), 8),
+                    new BaseNode("f", 7),
+                    new BaseNode("l", 8),
                     Mode.METRO
             ));
             add(new VisitArc(
-                    new BaseNode(places.get("l"), 8),
-                    new BaseNode(places.get("l"), 10)
+                    new BaseNode("l", 8),
+                    new BaseNode("l", 10)
             ));
             add(new WalkArc(
-                    new BaseNode(places.get("l"), 10),
-                    new BaseNode(places.get("m"), 11)
+                    new BaseNode("l", 10),
+                    new BaseNode("m", 11)
             ));
             add(new VisitArc(
-                    new BaseNode(places.get("m"), 11),
-                    new BaseNode(places.get("m"), 13)
+                    new BaseNode("m", 11),
+                    new BaseNode("m", 13)
             ));
             add(new TransportArc(
-                    new BaseNode(places.get("m"), 13),
-                    new BaseNode(places.get("p"), 19),
+                    new BaseNode("m", 13),
+                    new BaseNode("p", 19),
                     Mode.METRO
             ));
             add(new VisitArc(
-                    new BaseNode(places.get("p"), 19),
-                    new BaseNode(places.get("p"), 21)
+                    new BaseNode("p", 19),
+                    new BaseNode("p", 21)
             ));
             add(new TransportArc(
-                    new BaseNode(places.get("p"), 21),
-                    new BaseNode(places.get("h"), 24),
+                    new BaseNode("p", 21),
+                    new BaseNode("h", 24),
                     Mode.METRO
             ));
             add(new TransferArc(
-                    new BaseNode(places.get("h"), 24),
-                    new BaseNode(places.get("h"), 25)
+                    new BaseNode("h", 24),
+                    new BaseNode("h", 25)
             ));
             add(new TransportArc(
-                    new BaseNode(places.get("h"), 25),
-                    new BaseNode(places.get("k"), 26),
+                    new BaseNode("h", 25),
+                    new BaseNode("k", 26),
                     Mode.BUS
             ));
 
             //left branch
             add(new TransportArc(
-                    new BaseNode(places.get("b"), 4),
-                    new BaseNode(places.get("c"), 5),
+                    new BaseNode("b", 4),
+                    new BaseNode("c", 5),
                     Mode.BUS
             ));
             add(new VisitArc(
-                    new BaseNode(places.get("c"), 5),
-                    new BaseNode(places.get("c"), 10)
+                    new BaseNode("c", 5),
+                    new BaseNode("c", 10)
             ));
             add(new TransportArc(
-                    new BaseNode(places.get("c"), 10),
-                    new BaseNode(places.get("d"), 13),
+                    new BaseNode("c", 10),
+                    new BaseNode("d", 13),
                     Mode.BUS
             ));
             add(new TransportArc(
-                    new BaseNode(places.get("d"), 13),
-                    new BaseNode(places.get("e"), 17),
+                    new BaseNode("d", 13),
+                    new BaseNode("e", 17),
                     Mode.BUS
             ));
             add(new VisitArc(
-                    new BaseNode(places.get("e"), 17),
-                    new BaseNode(places.get("e"), 25)
+                    new BaseNode("e", 17),
+                    new BaseNode("e", 25)
             ));
             add(new TransportArc(
-                    new BaseNode(places.get("e"), 25),
-                    new BaseNode(places.get("k"), 30),
+                    new BaseNode("e", 25),
+                    new BaseNode("k", 30),
                     Mode.BUS
             ));
             add(new TransportArc(
-                    new BaseNode(places.get("c"), 5),
-                    new BaseNode(places.get("d"), 8),
+                    new BaseNode("c", 5),
+                    new BaseNode("d", 8),
                     Mode.BUS
             ));
             add(new TransportArc(
-                    new BaseNode(places.get("d"), 8),
-                    new BaseNode(places.get("e"), 12),
+                    new BaseNode("d", 8),
+                    new BaseNode("e", 12),
                     Mode.BUS
             ));
             add(new TransportArc(
-                    new BaseNode(places.get("e"), 12),
-                    new BaseNode(places.get("k"), 19),
+                    new BaseNode("e", 12),
+                    new BaseNode("k", 19),
                     Mode.BUS
             ));
             add(new TransportArc(
-                    new BaseNode(places.get("e"), 17),
-                    new BaseNode(places.get("k"), 22),
+                    new BaseNode("e", 17),
+                    new BaseNode("k", 22),
                     Mode.BUS
             ));
         }};

@@ -44,7 +44,7 @@ public class ProblemSolver {
 
     private int[] walkingTimeMask;
 
-    private Map<Long, List<Integer>> visitArcsByLocation;
+    private Map<String, List<Integer>> visitArcsByLocation;
 
     private Map<BaseNode, Set<Integer>> outgoingArcs;
 
