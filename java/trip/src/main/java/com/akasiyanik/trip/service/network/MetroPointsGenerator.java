@@ -28,38 +28,38 @@ public class MetroPointsGenerator implements NetworkGenerator<GeoPoint> {
     private static final int TRANSFER_WALK_TIME = 3;
 
     private static List<GeoPoint> firstLine = new ArrayList<GeoPoint>() {{
-        add(new GeoPoint("Uruccha", new ImmutablePair<>(53.9277922, 27.6540609)));
-        add(new GeoPoint("Barysauski trakt", new ImmutablePair<>(123.0, 123.0)));
-        add(new GeoPoint("Ushod", new ImmutablePair<>(123.0, 123.0)));
-        add(new GeoPoint("Maskouskaya", new ImmutablePair<>(123.0, 123.0)));
-        add(new GeoPoint("Park Chaliuskincau", new ImmutablePair<>(123.0, 123.0)));
-        add(new GeoPoint("Akademiya Navuk", new ImmutablePair<>(123.0, 123.0)));
-        add(new GeoPoint("Ploshcha Yacuba Kolasa", new ImmutablePair<>(123.0, 123.0)));
-        add(new GeoPoint("Ploscha Peramogi", new ImmutablePair<>(123.0, 123.0)));
-        add(new GeoPoint("Kastrychnickaya", new ImmutablePair<>(123.0, 123.0)));
-        add(new GeoPoint("Ploscha Lenina", new ImmutablePair<>(123.0, 123.0)));
-        add(new GeoPoint("Instytut Kultury", new ImmutablePair<>(123.0, 123.0)));
-        add(new GeoPoint("Hrushauka", new ImmutablePair<>(123.0, 123.0)));
-        add(new GeoPoint("Michalova", new ImmutablePair<>(123.0, 123.0)));
-        add(new GeoPoint("Piatroushcyna", new ImmutablePair<>(123.0, 123.0)));
-        add(new GeoPoint("Malinauka", new ImmutablePair<>(123.0, 123.0)));
+        add(new GeoPoint("Uruccha", new ImmutablePair<>(53.9453522, 27.687875)));
+        add(new GeoPoint("Barysauski trakt", new ImmutablePair<>(53.9384151, 27.6663905)));
+        add(new GeoPoint("Ushod", new ImmutablePair<>(53.9344677, 27.6512763)));
+        add(new GeoPoint("Maskouskaya", new ImmutablePair<>(53.9279647, 27.6277721)));
+        add(new GeoPoint("Park Chaliuskincau", new ImmutablePair<>(53.923713, 27.6122206)));
+        add(new GeoPoint("Akademiya Navuk", new ImmutablePair<>(53.9221162, 27.6005074)));
+        add(new GeoPoint("Ploshcha Yacuba Kolasa", new ImmutablePair<>(53.9154169, 27.5830033)));
+        add(new GeoPoint("Ploscha Peramogi", new ImmutablePair<>(53.9081446, 27.5754341)));
+        add(new GeoPoint("Kastrychnickaya", new ImmutablePair<>(53.9023155, 27.5630718)));
+        add(new GeoPoint("Ploscha Lenina", new ImmutablePair<>(53.8947453, 27.5482392)));
+        add(new GeoPoint("Instytut Kultury", new ImmutablePair<>(53.8869873, 27.5383392)));
+        add(new GeoPoint("Hrushauka", new ImmutablePair<>(53.886668, 27.5147653)));
+        add(new GeoPoint("Michalova", new ImmutablePair<>(53.8769478, 27.4970841)));
+        add(new GeoPoint("Piatroushcyna", new ImmutablePair<>(53.8640604, 27.4854058)));
+        add(new GeoPoint("Malinauka", new ImmutablePair<>(53.8494508, 27.4749693)));
     }};
 
     private static List<GeoPoint> secondLine = new ArrayList<GeoPoint>() {{
-        add(new GeoPoint("Kamennaya gorka", new ImmutablePair<>(53.9277922, 27.6540609)));
-        add(new GeoPoint("Kuncaushchyna", new ImmutablePair<>(53.9277922, 27.6540609)));
-        add(new GeoPoint("Spartyunaya", new ImmutablePair<>(53.9277922, 27.6540609)));
-        add(new GeoPoint("Pushkinskaya", new ImmutablePair<>(53.9277922, 27.6540609)));
-        add(new GeoPoint("Maladziozhnaya", new ImmutablePair<>(53.9277922, 27.6540609)));
-        add(new GeoPoint("Frunzenskaya", new ImmutablePair<>(53.9277922, 27.6540609)));
-        add(new GeoPoint("Niamiha", new ImmutablePair<>(53.9277922, 27.6540609)));
-        add(new GeoPoint("Kupalauskaya", new ImmutablePair<>(53.9277922, 27.6540609)));
-        add(new GeoPoint("Pershamayskaya", new ImmutablePair<>(53.9277922, 27.6540609)));
-        add(new GeoPoint("Praletarskaya", new ImmutablePair<>(53.9277922, 27.6540609)));
-        add(new GeoPoint("Traktarny zavod", new ImmutablePair<>(53.9277922, 27.6540609)));
-        add(new GeoPoint("Partyzanskaya", new ImmutablePair<>(53.9277922, 27.6540609)));
-        add(new GeoPoint("Autazavodskaya", new ImmutablePair<>(53.9277922, 27.6540609)));
-        add(new GeoPoint("Mahileuskaya", new ImmutablePair<>(53.9277922, 27.6540609)));
+        add(new GeoPoint("Kamennaya gorka", new ImmutablePair<>(53.9068759, 27.4377161)));
+        add(new GeoPoint("Kuncaushchyna", new ImmutablePair<>(53.9065377, 27.4541903)));
+        add(new GeoPoint("Spartyunaya", new ImmutablePair<>(53.9084907, 27.4799502)));
+        add(new GeoPoint("Pushkinskaya", new ImmutablePair<>(53.9091353, 27.4963009)));
+        add(new GeoPoint("Maladziozhnaya", new ImmutablePair<>(53.9063481, 27.5226402)));
+        add(new GeoPoint("Frunzenskaya", new ImmutablePair<>(53.9052831, 27.5391841)));
+        add(new GeoPoint("Niamiha", new ImmutablePair<>(53.9056939, 27.5539577)));
+        add(new GeoPoint("Kupalauskaya", new ImmutablePair<>(53.9013736, 27.5609958)));
+        add(new GeoPoint("Pershamayskaya", new ImmutablePair<>(53.8938444, 27.5705177)));
+        add(new GeoPoint("Praletarskaya", new ImmutablePair<>(53.8896335, 27.5856078)));
+        add(new GeoPoint("Traktarny zavod", new ImmutablePair<>(53.8892289, 27.6149619)));
+        add(new GeoPoint("Partyzanskaya", new ImmutablePair<>(53.8751736, 27.6295424)));
+        add(new GeoPoint("Autazavodskaya", new ImmutablePair<>(53.8699487, 27.6478136)));
+        add(new GeoPoint("Mahileuskaya", new ImmutablePair<>(53.8615945, 27.6745927)));
 
     }};
 
