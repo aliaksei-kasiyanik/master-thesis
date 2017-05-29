@@ -1,6 +1,6 @@
 package com.akasiyanik.trip.service.network;
 
-import com.akasiyanik.trip.domain.network.arcs.BaseArc;
+import com.akasiyanik.trip.domain.InputParameters;
 
 import java.time.LocalTime;
 import java.util.List;
@@ -11,6 +11,6 @@ import java.util.List;
  */
 public interface NetworkGenerator<T> {
 
-    List<BaseArc> generateArcs(LocalTime depTime, LocalTime arrTime);
+    List<T> generateArcs(InputParameters parameters);
 
 }

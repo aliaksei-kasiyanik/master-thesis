@@ -1,5 +1,6 @@
 package com.akasiyanik.trip.service.network;
 
+import com.akasiyanik.trip.domain.InputParameters;
 import com.akasiyanik.trip.domain.Mode;
 import com.akasiyanik.trip.domain.network.ArcFactory;
 import com.akasiyanik.trip.domain.network.arcs.BaseArc;
@@ -8,6 +9,7 @@ import com.akasiyanik.trip.domain.network.nodes.GeoPoint;
 import com.akasiyanik.trip.utils.TimeUtils;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -20,7 +22,8 @@ import java.util.stream.Collectors;
  * @author akasiyanik
  *         5/10/17
  */
-public class MetroPointsGenerator implements NetworkGenerator<GeoPoint> {
+@Service
+public class MetroNetworkGenerator implements NetworkGenerator<BaseArc> {
 
     private static final int METRO_START_TIME = TimeUtils.timeToMinutes(LocalTime.of(5, 0));
 
@@ -63,14 +66,10 @@ public class MetroPointsGenerator implements NetworkGenerator<GeoPoint> {
 
     }};
 
-
-    public static void main(String[] args) {
-        new MetroPointsGenerator().generateArcs(LocalTime.of(11, 0), LocalTime.of(12, 0));
-    }
-
-
     @Override
-    public List<BaseArc> generateArcs(LocalTime departureTime, LocalTime arrivalTime) {
+    public List<BaseArc> generateArcs(InputParameters parameters) {
+        LocalTime departureTime = parameters.getDepartureTime();
+        LocalTime arrivalTime = parameters.getArrivalTime();
 
         List<List<BaseArc>> firstLineArcs1 = generateThreadsForLine(firstLine, Mode.METRO_1, departureTime, arrivalTime);
         List<List<BaseArc>> firstLineArcs2 = generateThreadsForLine(Lists.reverse(firstLine), Mode.METRO_1, departureTime, arrivalTime);

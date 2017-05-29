@@ -18,7 +18,7 @@ import java.util.*;
  * @author akasiyanik
  *         5/22/17
  */
-//@Component
+@Component
 public class SpringRunner implements ApplicationRunner {
 
     @Autowired
@@ -31,17 +31,17 @@ public class SpringRunner implements ApplicationRunner {
     }
 
     private InputParameters getParameters() {
-        String departurePoint = "591f08448227604438e4d9e4";
+        String departurePoint = "Uruccha";
         LocalTime departureTime =  LocalTime.of(9, 0);
 
-        String arrivalPoint = "k";
+        String arrivalPoint = "Partyzanskaya";
         LocalTime arrivalTime = LocalTime.of(11, 0);
 
-        Set<Mode> modes = EnumSet.of(Mode.BUS);
+        Set<Mode> modes = EnumSet.of(Mode.METRO_1, Mode.METRO_2);
         Map<Long, Integer> visitPois = new HashMap<Long, Integer>() {{
-            put(3L, 10);
-            put(7L, 7);
-            put(8L, 12);
+//            put(3L, 10);
+//            put(7L, 7);
+//            put(8L, 12);
         }};
         List<Pair<RouteCriteria, Double>> criteria = new LinkedList<Pair<RouteCriteria, Double>>() {{
 //            add(new ImmutablePair<>(RouteCriteria.MIN_COST, 0.3));

@@ -23,7 +23,7 @@ public class MinskTransTripRunner {
     private NetworkGenerationService networkService;
 
     public void run(InputParameters parameters) {
-        List<BaseArc> arcs = networkService.generateNetwork(parameters.getDepartureTime(), parameters.getArrivalTime());
+        List<BaseArc> arcs = networkService.generateNetwork(parameters);
 
         ProblemSolver solver = new ProblemSolver(arcs, parameters);
         List<BaseArc> result = solver.solve();

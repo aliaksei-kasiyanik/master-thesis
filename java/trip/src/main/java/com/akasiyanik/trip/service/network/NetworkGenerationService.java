@@ -1,7 +1,9 @@
 package com.akasiyanik.trip.service.network;
 
+import com.akasiyanik.trip.domain.InputParameters;
 import com.akasiyanik.trip.domain.network.ArcFactory;
 import com.akasiyanik.trip.domain.network.arcs.BaseArc;
+import com.akasiyanik.trip.domain.network.arcs.DummyStartFinishArc;
 import com.akasiyanik.trip.domain.network.arcs.TransferArc;
 import com.akasiyanik.trip.domain.network.nodes.BaseNode;
 import com.akasiyanik.trip.timetable.MinskTransRoute;
@@ -26,11 +28,12 @@ import java.util.stream.Collectors;
  */
 @Service
 public class NetworkGenerationService {
-//public class NetworkGenerationService implements ApplicationRunner {
 
     private static final EnumSet<MinskTransRouteEnum> testRouteEnums = EnumSet.of(
-            MinskTransRouteEnum.BUS_25,
-            MinskTransRouteEnum.BUS_100
+//            MinskTransRouteEnum.BUS_25,
+//            MinskTransRouteEnum.BUS_100,
+            MinskTransRouteEnum.METRO_1,
+            MinskTransRouteEnum.METRO_2
     );
 
     @Autowired
@@ -39,58 +42,71 @@ public class NetworkGenerationService {
     @Autowired
     private MongoStopRepository stopRepository;
 
+    @Autowired
+    private MetroNetworkGenerator metroNetworkGenerator;
 
-    //    @Override
-    public void run(ApplicationArguments args) throws Exception {
-        LocalTime depTime = LocalTime.of(9, 0);
-        LocalTime arrTime = LocalTime.of(11, 0);
-
-        generateNetwork(depTime, arrTime);
-    }
-
-    public List<BaseArc> generateNetwork(LocalTime depTime, LocalTime arrTime) {
+    @Autowired
+    private DummyArcsGenerator dummyArcsGenerator;
 
 
-        List<MinskTransRoute> routes = getRoutes(testRouteEnums);
-//        routes = filterThreadsByTime(depTime, arrTime, routes);
+    public List<BaseArc> generateNetwork(InputParameters parameters) {
 
-        List<List<BaseArc>> arcsByThread = generateTransportArcs(routes, depTime, arrTime);
+        LocalTime departureTime = parameters.getDepartureTime();
+        LocalTime arrivalTime =  parameters.getArrivalTime();
 
-        List<BaseArc> allTransportArcs = new ArrayList<>();
-        for (List<BaseArc> oneThreadArcs : arcsByThread) {
-            allTransportArcs.addAll(oneThreadArcs);
-        }
+        String departirePoint = parameters.getDeparturePointId();
+        String arrivalPoint = parameters.getArrivalPointId();
 
-        Multimap<String, BaseNode> nodesByGeoPointId = ArrayListMultimap.create();
-        for (BaseArc arc : allTransportArcs) {
-            BaseNode I = arc.getI();
-            BaseNode J = arc.getJ();
-            nodesByGeoPointId.put(I.getId(), I);
-            nodesByGeoPointId.put(J.getId(), J);
-        }
+        List<BaseArc> allArcs = new ArrayList<>();
+
+        allArcs.addAll(metroNetworkGenerator.generateArcs(parameters));
+        allArcs.addAll(dummyArcsGenerator.generateArcs(parameters, allArcs));
+
+        return allArcs;
 
 
-        Set<BaseArc> allTransferArcs = new HashSet<>();
-        for (String nodeId : nodesByGeoPointId.keySet()) {
-            Collection<BaseNode> nodesWithId = nodesByGeoPointId.get(nodeId);
-            if (nodesWithId.size() > 1) {
-                List<BaseNode> sortedNodes = nodesWithId.stream().sorted((BaseNode n1, BaseNode n2) -> n1.getTime() - n2.getTime()).collect(Collectors.toList());
-                for (int i = 0; i < nodesWithId.size(); i++) {
-                    for (int j = i + 1; j < nodesWithId.size(); j++) {
-                        BaseNode I = sortedNodes.get(i);
-                        BaseNode J = sortedNodes.get(j);
-                        if (!I.equals(J)) {
-                            allTransferArcs.add(new TransferArc(I, J));
-                        }
-                    }
-                }
-            }
-        }
 
-        return new ArrayList<BaseArc>() {{
-            addAll(allTransportArcs);
-            addAll(allTransferArcs);
-        }};
+
+//        List<MinskTransRoute> routes = getRoutes(testRouteEnums);
+////        routes = filterThreadsByTime(depTime, arrTime, routes);
+//
+//        List<List<BaseArc>> arcsByThread = generateTransportArcs(routes, depTime, arrTime);
+//
+//        List<BaseArc> allTransportArcs = new ArrayList<>();
+//        for (List<BaseArc> oneThreadArcs : arcsByThread) {
+//            allTransportArcs.addAll(oneThreadArcs);
+//        }
+//
+//        Multimap<String, BaseNode> nodesByGeoPointId = ArrayListMultimap.create();
+//        for (BaseArc arc : allTransportArcs) {
+//            BaseNode I = arc.getI();
+//            BaseNode J = arc.getJ();
+//            nodesByGeoPointId.put(I.getId(), I);
+//            nodesByGeoPointId.put(J.getId(), J);
+//        }
+//
+//
+//        Set<BaseArc> allTransferArcs = new HashSet<>();
+//        for (String nodeId : nodesByGeoPointId.keySet()) {
+//            Collection<BaseNode> nodesWithId = nodesByGeoPointId.get(nodeId);
+//            if (nodesWithId.size() > 1) {
+//                List<BaseNode> sortedNodes = nodesWithId.stream().sorted((BaseNode n1, BaseNode n2) -> n1.getTime() - n2.getTime()).collect(Collectors.toList());
+//                for (int i = 0; i < nodesWithId.size(); i++) {
+//                    for (int j = i + 1; j < nodesWithId.size(); j++) {
+//                        BaseNode I = sortedNodes.get(i);
+//                        BaseNode J = sortedNodes.get(j);
+//                        if (!I.equals(J)) {
+//                            allTransferArcs.add(new TransferArc(I, J));
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//
+//        return new ArrayList<BaseArc>() {{
+//            addAll(allTransportArcs);
+//            addAll(allTransferArcs);
+//        }};
 
 
     }
