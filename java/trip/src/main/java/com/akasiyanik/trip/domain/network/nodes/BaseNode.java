@@ -26,6 +26,12 @@ public class BaseNode {
         this.time = time;
     }
 
+    public BaseNode(String id, int time, GeoPoint geoLocation) {
+        this.id = id;
+        this.time = time;
+        this.geoLocation = geoLocation;
+    }
+
     public String getId() {
         return id;
     }

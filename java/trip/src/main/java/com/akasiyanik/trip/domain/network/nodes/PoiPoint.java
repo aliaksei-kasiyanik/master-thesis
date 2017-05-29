@@ -8,8 +8,8 @@ import org.apache.commons.lang3.tuple.Pair;
  */
 public class PoiPoint extends GeoPoint {
 
-    public PoiPoint(Long id, Pair<Double, Double> latLng) {
-        super(id, latLng);
+    public PoiPoint(String name, Pair<Double, Double> latLng) {
+        super(name, latLng);
     }
 
 }

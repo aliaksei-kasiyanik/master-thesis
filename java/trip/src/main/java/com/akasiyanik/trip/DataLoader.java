@@ -51,7 +51,7 @@ public class DataLoader implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
 //        loadTimetables(true);
 //        loadBusStops(false);
-//        loadTimetables(EnumSet.of(MinskTransRouteEnum.BUS_100));
+        loadTimetables(EnumSet.of(MinskTransRouteEnum.TRAM_5, MinskTransRouteEnum.TRAM_11));
 //        checkStopsAndRoutes();
     }
 

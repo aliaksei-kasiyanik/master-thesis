@@ -8,19 +8,13 @@ import org.apache.commons.lang3.tuple.Pair;
  */
 public class GeoPoint {
 
-    private Long id;
+    private String name;
 
     private Pair<Double, Double> latLng;
 
-    private String name;
-
-    public GeoPoint(Long id, Pair<Double, Double> latLng) {
-        this.id = id;
+    public GeoPoint(String name, Pair<Double, Double> latLng) {
+        this.name = name;
         this.latLng = latLng;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public Pair<Double, Double> getLatLng() {

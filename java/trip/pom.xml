@@ -72,6 +72,13 @@
             <version>3.0</version>
         </dependency>
 
+        <!-- Guava Utils -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>21.0</version>
+        </dependency>
+
         <!--JUnit-->
         <dependency>
             <groupId>junit</groupId>

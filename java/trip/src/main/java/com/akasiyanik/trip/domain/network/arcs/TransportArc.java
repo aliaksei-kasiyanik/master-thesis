@@ -12,7 +12,7 @@ public class TransportArc extends BaseArc {
     public TransportArc(BaseNode i, BaseNode j, Mode mode) {
         super(i, j, mode);
         if (!Mode.TRANSPORT.contains(mode)) {
-            throw new RuntimeException("j node time can't be after i node time");
+            throw new RuntimeException("It isn't TRANSPORT mode");
         }
     }
 }
