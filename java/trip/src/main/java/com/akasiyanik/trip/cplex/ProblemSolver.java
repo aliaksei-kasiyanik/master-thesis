@@ -194,7 +194,7 @@ public class ProblemSolver {
                     result = new ArrayList<>();
                     double[] values = model.getValues(x);
                     for (int j = 0; j < x.length; ++j) {
-                        logger.debug("Variable " + j + ": Value = " + values[j]);
+//                        logger.debug("Variable " + j + ": Value = " + values[j]);
                         if (values[j] == 1) {
                             result.add(arcs.get(j));
                         }

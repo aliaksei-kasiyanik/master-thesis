@@ -1,9 +1,8 @@
-package com.akasiyanik.trip.cplex;
+package com.akasiyanik.trip;
 
 import com.akasiyanik.trip.domain.InputParameters;
 import com.akasiyanik.trip.domain.Mode;
 import com.akasiyanik.trip.domain.RouteCriteria;
-import com.akasiyanik.trip.utils.TimeUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +36,12 @@ public class SpringRunner implements ApplicationRunner {
         String arrivalPoint = "Partyzanskaya";
         LocalTime arrivalTime = LocalTime.of(11, 0);
 
-        Set<Mode> modes = EnumSet.of(Mode.METRO_1, Mode.METRO_2);
+        Set<Mode> modes = EnumSet.of(
+                Mode.METRO_1_S,
+                Mode.METRO_2_S,
+                Mode.METRO_1_B,
+                Mode.METRO_2_B
+                );
         Map<Long, Integer> visitPois = new HashMap<Long, Integer>() {{
 //            put(3L, 10);
 //            put(7L, 7);
@@ -46,11 +50,11 @@ public class SpringRunner implements ApplicationRunner {
         List<Pair<RouteCriteria, Double>> criteria = new LinkedList<Pair<RouteCriteria, Double>>() {{
 //            add(new ImmutablePair<>(RouteCriteria.MIN_COST, 0.3));
 //            add(new ImmutablePair<>(RouteCriteria.MIN_CO2, 0.3));
-//            add(new ImmutablePair<>(RouteCriteria.MIN_TIME, 0.2));
+            add(new ImmutablePair<>(RouteCriteria.MIN_TIME, 0.2));
 //            add(new ImmutablePair<>(RouteCriteria.MAX_POI, 0.1));
 //            add(new ImmutablePair<>(RouteCriteria.MIN_CHANGES, 0.1));
 //            add(new ImmutablePair<>(RouteCriteria.MIN_TIME_TRANSFER, 0.1));
-            add(new ImmutablePair<>(RouteCriteria.MIN_TIME_WALKING, 0.1));
+//            add(new ImmutablePair<>(RouteCriteria.MIN_TIME_WALKING, 0.1));
         }};
 
         return new InputParameters(

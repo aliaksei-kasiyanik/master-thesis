@@ -17,8 +17,10 @@ public enum MinskTransRouteEnum {
     TRAM_11("11", Type.TRAM, Mode.TRAM_11, "http://www.minsktrans.by/city/#minsk/tram;196026;16191;time"),
 
 
-    METRO_1("1", Type.METRO, Mode.METRO_1, null),
-    METRO_2("2", Type.METRO, Mode.METRO_2, null),
+    METRO_1_S("1", Type.METRO, Mode.METRO_1_S, null),
+    METRO_1_B("1", Type.METRO, Mode.METRO_1_B, null),
+    METRO_2_S("2", Type.METRO, Mode.METRO_2_S, null),
+    METRO_2_B("2", Type.METRO, Mode.METRO_2_B, null),
 
     ;
 

@@ -18,8 +18,10 @@ public enum Mode {
     TROLLEYBUS(55, 0),
     TRAM(55, 0),
     METRO(60, 0),
-    METRO_1(60, 0),
-    METRO_2(60, 0),
+    METRO_1_S(60, 0),
+    METRO_1_B(60, 0),
+    METRO_2_S(60, 0),
+    METRO_2_B(60, 0),
 
     BUS_1(55, 8),
     BUS_25(55, 8),
@@ -31,7 +33,7 @@ public enum Mode {
     TRAM_11(55, 0),
     ;
 
-    public static final EnumSet<Mode> TRANSPORT = EnumSet.of(BUS, METRO, METRO_1, METRO_2, TROLLEYBUS, TRAM,
+    public static final EnumSet<Mode> TRANSPORT = EnumSet.of(BUS, METRO, METRO_1_S, METRO_1_B, METRO_2_S, METRO_2_B, TROLLEYBUS, TRAM,
             BUS_1, BUS_25, BUS_64, BUS_100, TRAM_5, TRAM_6, TRAM_11);
     public static final EnumSet<Mode> CO2_TRANSPORT = EnumSet.of(BUS);
 

@@ -29,12 +29,10 @@ import java.util.stream.Collectors;
 @Service
 public class NetworkGenerationService {
 
-    private static final EnumSet<MinskTransRouteEnum> testRouteEnums = EnumSet.of(
-//            MinskTransRouteEnum.BUS_25,
-//            MinskTransRouteEnum.BUS_100,
-            MinskTransRouteEnum.METRO_1,
-            MinskTransRouteEnum.METRO_2
-    );
+//    private static final EnumSet<MinskTransRouteEnum> testRouteEnums = EnumSet.of(
+////            MinskTransRouteEnum.BUS_25,
+////            MinskTransRouteEnum.BUS_100,
+//    );
 
     @Autowired
     private MongoRouteRepository routeRepository;

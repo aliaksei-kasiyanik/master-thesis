@@ -71,11 +71,11 @@ public class MetroNetworkGenerator implements NetworkGenerator<BaseArc> {
         LocalTime departureTime = parameters.getDepartureTime();
         LocalTime arrivalTime = parameters.getArrivalTime();
 
-        List<List<BaseArc>> firstLineArcs1 = generateThreadsForLine(firstLine, Mode.METRO_1, departureTime, arrivalTime);
-        List<List<BaseArc>> firstLineArcs2 = generateThreadsForLine(Lists.reverse(firstLine), Mode.METRO_1, departureTime, arrivalTime);
+        List<List<BaseArc>> firstLineArcs1 = generateThreadsForLine(firstLine, Mode.METRO_1_S, departureTime, arrivalTime);
+        List<List<BaseArc>> firstLineArcs2 = generateThreadsForLine(Lists.reverse(firstLine), Mode.METRO_1_B, departureTime, arrivalTime);
 
-        List<List<BaseArc>> secondLineArcs1 = generateThreadsForLine(secondLine, Mode.METRO_2, departureTime, arrivalTime);
-        List<List<BaseArc>> secondLineArcs2 = generateThreadsForLine(Lists.reverse(secondLine), Mode.METRO_2, departureTime, arrivalTime);
+        List<List<BaseArc>> secondLineArcs1 = generateThreadsForLine(secondLine, Mode.METRO_2_S, departureTime, arrivalTime);
+        List<List<BaseArc>> secondLineArcs2 = generateThreadsForLine(Lists.reverse(secondLine), Mode.METRO_2_B, departureTime, arrivalTime);
 
         Set<BaseNode> kastrNodes = getNodesById(firstLineArcs1, "Kastrychnickaya");
         kastrNodes.addAll(getNodesById(firstLineArcs2, "Kastrychnickaya"));

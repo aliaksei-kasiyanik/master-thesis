@@ -1,8 +1,10 @@
-package com.akasiyanik.trip.cplex;
+package com.akasiyanik.trip;
 
+import com.akasiyanik.trip.cplex.ProblemSolver;
 import com.akasiyanik.trip.domain.InputParameters;
 import com.akasiyanik.trip.domain.network.arcs.BaseArc;
 import com.akasiyanik.trip.service.network.NetworkGenerationService;
+import com.akasiyanik.trip.service.network.RoutePrinter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class MinskTransTripRunner {
     @Autowired
     private NetworkGenerationService networkService;
 
+    @Autowired
+    private RoutePrinter printer;
+
     public void run(InputParameters parameters) {
         List<BaseArc> arcs = networkService.generateNetwork(parameters);
 
@@ -29,6 +34,7 @@ public class MinskTransTripRunner {
         List<BaseArc> result = solver.solve();
 
         logger.info("{}", result);
+        printer.print(result);
     }
 
 }
