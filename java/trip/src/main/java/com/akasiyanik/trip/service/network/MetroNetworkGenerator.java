@@ -27,8 +27,8 @@ public class MetroNetworkGenerator implements NetworkGenerator<BaseArc> {
 
     private static final int METRO_START_TIME = TimeUtils.timeToMinutes(LocalTime.of(5, 0));
 
-    private static final int STATION_PERIOD = 5;
-    private static final int TRANSFER_WALK_TIME = 3;
+    private static final int STATION_PERIOD = 4;
+    private static final int TRANSFER_WALK_TIME = 2;
 
     private static List<GeoPoint> firstLine = new ArrayList<GeoPoint>() {{
         add(new GeoPoint("Uruccha", new ImmutablePair<>(53.9453522, 27.687875)));

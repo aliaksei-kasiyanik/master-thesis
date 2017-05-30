@@ -2,7 +2,6 @@ package com.akasiyanik.trip.service.network;
 
 import com.akasiyanik.trip.domain.InputParameters;
 
-import java.time.LocalTime;
 import java.util.List;
 
 /**

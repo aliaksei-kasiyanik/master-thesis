@@ -31,9 +31,9 @@ public class SpringRunner implements ApplicationRunner {
 
     private InputParameters getParameters() {
         String departurePoint = "Uruccha";
-        LocalTime departureTime =  LocalTime.of(9, 0);
+        LocalTime departureTime =  LocalTime.of(8, 58);
 
-        String arrivalPoint = "Partyzanskaya";
+        String arrivalPoint = "Kuncaushchyna";
         LocalTime arrivalTime = LocalTime.of(11, 0);
 
         Set<Mode> modes = EnumSet.of(
