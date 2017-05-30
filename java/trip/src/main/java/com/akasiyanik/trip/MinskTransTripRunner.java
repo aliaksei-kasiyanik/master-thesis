@@ -4,7 +4,7 @@ import com.akasiyanik.trip.cplex.ProblemSolver;
 import com.akasiyanik.trip.domain.InputParameters;
 import com.akasiyanik.trip.domain.network.arcs.BaseArc;
 import com.akasiyanik.trip.service.network.NetworkGenerationService;
-import com.akasiyanik.trip.service.network.RoutePrinter;
+import com.akasiyanik.trip.service.RoutePrinter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

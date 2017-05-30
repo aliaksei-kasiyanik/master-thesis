@@ -1,7 +1,7 @@
 package com.akasiyanik.trip.timetable.repository;
 
+import com.akasiyanik.trip.domain.Type;
 import com.akasiyanik.trip.timetable.MinskTransRoute;
-import com.akasiyanik.trip.timetable.MinskTransRouteEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -34,7 +34,7 @@ public class MongoRouteRepository {
         return mongoTemplate.findAll(MinskTransRoute.class, collectionName);
     }
 
-    public List<MinskTransRoute> findByTypeAndNumber(MinskTransRouteEnum.Type type, String number) {
+    public List<MinskTransRoute> findByTypeAndNumber(Type type, String number) {
         Query query = new Query();
         query.addCriteria(Criteria.where("number").is(number).and("type").is(type));
         return mongoTemplate.find(query, MinskTransRoute.class, collectionName);

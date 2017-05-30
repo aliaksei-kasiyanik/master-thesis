@@ -84,7 +84,7 @@ public final class CplexUtil {
         int index = 0;
         for (BaseArc arc : allArcs) {
             Mode mode = arc.getMode();
-            if (Mode.TRANSPORT.contains(mode)) {
+            if (mode.isTransport()) {
 
                 // in
                 BaseNode arcJ = arc.getJ();
@@ -111,7 +111,7 @@ public final class CplexUtil {
         int index = 0;
         for (BaseArc arc : allArcs) {
             Mode mode = arc.getMode();
-            if (Mode.TRANSPORT.contains(mode)) {
+            if (mode.isTransport()) {
 
                 // out
                 BaseNode arcI = arc.getI();

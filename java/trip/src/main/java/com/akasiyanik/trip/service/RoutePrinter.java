@@ -1,4 +1,4 @@
-package com.akasiyanik.trip.service.network;
+package com.akasiyanik.trip.service;
 
 import com.akasiyanik.trip.domain.network.arcs.BaseArc;
 import org.slf4j.Logger;

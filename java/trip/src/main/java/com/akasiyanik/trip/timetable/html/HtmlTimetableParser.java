@@ -37,7 +37,7 @@ public class HtmlTimetableParser {
 //        Direct Route (A -> B)
 
         String routeNameAB = doc.select("div div div span").get(0).html();
-        MinskTransRoute routeAB = new MinskTransRoute(routeNumber, false, routeEnum.getType());
+        MinskTransRoute routeAB = new MinskTransRoute(routeNumber, false, routeEnum.getType(), routeEnum.getModes().get(0));
         routeAB.setName(routeNameAB);
 
         Element ABElements = doc.select("div div div table tbody").get(0);
@@ -49,7 +49,7 @@ public class HtmlTimetableParser {
 //        Reverse Route (B -> A)
 
         String routeNameBA = doc.select("div div div span").get(1).html();
-        MinskTransRoute routeBA = new MinskTransRoute(routeNumber, true, routeEnum.getType());
+        MinskTransRoute routeBA = new MinskTransRoute(routeNumber, true, routeEnum.getType(), routeEnum.getModes().get(1));
         routeBA.setName(routeNameBA);
 
         Element BAElements = doc.select("div div div table tbody").get(1);

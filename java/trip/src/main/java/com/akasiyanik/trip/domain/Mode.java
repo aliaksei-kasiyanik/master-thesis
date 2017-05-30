@@ -1,6 +1,6 @@
 package com.akasiyanik.trip.domain;
 
-import java.util.EnumSet;
+import static com.akasiyanik.trip.domain.Type.*;
 
 /**
  * @author akasiyanik
@@ -14,57 +14,56 @@ public enum Mode {
 
     WALK,
 
-    BUS(55, 8), // 0.8 mg/km
-    TROLLEYBUS(55, 0),
-    TRAM(55, 0),
-    METRO(60, 0),
-    METRO_1_S(60, 0),
-    METRO_1_B(60, 0),
-    METRO_2_S(60, 0),
-    METRO_2_B(60, 0),
+    METRO_1_S(METRO),
+    METRO_1_B(METRO),
+    METRO_2_S(METRO),
+    METRO_2_B(METRO),
 
-    BUS_1(55, 8),
-    BUS_25(55, 8),
-    BUS_64(55, 8),
-    BUS_100(55, 8),
+    BUS_1_S(BUS),
+    BUS_1_B(BUS),
+    BUS_25_S(BUS),
+    BUS_25_B(BUS),
+    BUS_64_S(BUS),
+    BUS_64_B(BUS),
+    BUS_100_S(BUS),
+    BUS_100_B(BUS),
 
-    TRAM_5(55, 0),
-    TRAM_6(55, 0),
-    TRAM_11(55, 0),
+    TRAM_5_S(TRAM),
+    TRAM_5_B(TRAM),
+    TRAM_6_S(TRAM),
+    TRAM_6_B(TRAM),
+    TRAM_11_S(TRAM),
+    TRAM_11_B(TRAM),
     ;
 
-    public static final EnumSet<Mode> TRANSPORT = EnumSet.of(BUS, METRO, METRO_1_S, METRO_1_B, METRO_2_S, METRO_2_B, TROLLEYBUS, TRAM,
-            BUS_1, BUS_25, BUS_64, BUS_100, TRAM_5, TRAM_6, TRAM_11);
-    public static final EnumSet<Mode> CO2_TRANSPORT = EnumSet.of(BUS);
-
-    private int cost;
-
-    private int co2;
+    private Type type;
 
     Mode() {
-        this.cost = 0;
-        this.co2 = 0;
+        this.type = FAKE;
     }
 
-    Mode(int cost, int co2) {
-        this.cost = cost;
-        this.co2 = co2;
+    Mode(Type type) {
+        this.type = type;
+    }
+
+    public Type getType() {
+        return type;
     }
 
     public int getCost() {
-        return cost;
+        return type.getCost();
     }
 
     public int getCo2() {
-        return co2;
+        return type.getCo2();
     }
 
     public boolean isTransport() {
-        return TRANSPORT.contains(this);
+        return !this.type.equals(FAKE);
     }
 
     public boolean isCO2Transport() {
-        return CO2_TRANSPORT.contains(this);
+        return this.type.equals(BUS);
     }
 
 

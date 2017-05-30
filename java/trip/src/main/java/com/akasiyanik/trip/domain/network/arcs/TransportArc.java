@@ -11,7 +11,7 @@ public class TransportArc extends BaseArc {
 
     public TransportArc(BaseNode i, BaseNode j, Mode mode) {
         super(i, j, mode);
-        if (!Mode.TRANSPORT.contains(mode)) {
+        if (!mode.isTransport()) {
             throw new RuntimeException("It isn't TRANSPORT mode");
         }
     }

@@ -72,23 +72,23 @@ public class CplexNetworkBuilder {
             add(new TransportArc(
                     new BaseNode("a", 3),
                     new BaseNode("b", 4),
-                    Mode.BUS
+                    Mode.BUS_1_B
             ));
             // center branch
             add(new TransportArc(
                     new BaseNode("b", 4),
                     new BaseNode("f", 6),
-                    Mode.BUS
+                    Mode.BUS_1_B
             ));
             add(new TransportArc(
                     new BaseNode("f", 6),
                     new BaseNode("g", 10),
-                    Mode.BUS
+                    Mode.BUS_1_B
             ));
             add(new TransportArc(
                     new BaseNode("f", 6),
                     new BaseNode("g", 10),
-                    Mode.METRO
+                    Mode.METRO_1_S
             ));
             add(new VisitArc(
                     new BaseNode("g", 10),
@@ -97,27 +97,27 @@ public class CplexNetworkBuilder {
             add(new TransportArc(
                     new BaseNode("g", 15),
                     new BaseNode("k", 20),
-                    Mode.BUS
+                    Mode.BUS_1_B
             ));
             add(new TransportArc(
                     new BaseNode("g", 15),
                     new BaseNode("h", 19),
-                    Mode.BUS
+                    Mode.BUS_1_B
             ));
             add(new TransportArc(
                     new BaseNode("h", 19),
                     new BaseNode("k", 30),
-                    Mode.BUS
+                    Mode.BUS_1_B
             ));
             add(new TransportArc(
                     new BaseNode("g", 10),
                     new BaseNode("h", 14),
-                    Mode.BUS
+                    Mode.BUS_1_B
             ));
             add(new TransportArc(
                     new BaseNode("h", 14),
                     new BaseNode("k", 25),
-                    Mode.BUS
+                    Mode.BUS_1_B
             ));
 
             //right branch
@@ -128,7 +128,7 @@ public class CplexNetworkBuilder {
             add(new TransportArc(
                     new BaseNode("f", 7),
                     new BaseNode("l", 8),
-                    Mode.METRO
+                    Mode.METRO_1_S
             ));
             add(new VisitArc(
                     new BaseNode("l", 8),
@@ -145,7 +145,7 @@ public class CplexNetworkBuilder {
             add(new TransportArc(
                     new BaseNode("m", 13),
                     new BaseNode("p", 19),
-                    Mode.METRO
+                    Mode.METRO_1_S
             ));
             add(new VisitArc(
                     new BaseNode("p", 19),
@@ -154,7 +154,7 @@ public class CplexNetworkBuilder {
             add(new TransportArc(
                     new BaseNode("p", 21),
                     new BaseNode("h", 24),
-                    Mode.METRO
+                    Mode.METRO_1_S
             ));
             add(new TransferArc(
                     new BaseNode("h", 24),
@@ -163,14 +163,14 @@ public class CplexNetworkBuilder {
             add(new TransportArc(
                     new BaseNode("h", 25),
                     new BaseNode("k", 26),
-                    Mode.BUS
+                    Mode.BUS_1_B
             ));
 
             //left branch
             add(new TransportArc(
                     new BaseNode("b", 4),
                     new BaseNode("c", 5),
-                    Mode.BUS
+                    Mode.BUS_1_B
             ));
             add(new VisitArc(
                     new BaseNode("c", 5),
@@ -179,12 +179,12 @@ public class CplexNetworkBuilder {
             add(new TransportArc(
                     new BaseNode("c", 10),
                     new BaseNode("d", 13),
-                    Mode.BUS
+                    Mode.BUS_1_B
             ));
             add(new TransportArc(
                     new BaseNode("d", 13),
                     new BaseNode("e", 17),
-                    Mode.BUS
+                    Mode.BUS_1_B
             ));
             add(new VisitArc(
                     new BaseNode("e", 17),
@@ -193,27 +193,27 @@ public class CplexNetworkBuilder {
             add(new TransportArc(
                     new BaseNode("e", 25),
                     new BaseNode("k", 30),
-                    Mode.BUS
+                    Mode.BUS_1_B
             ));
             add(new TransportArc(
                     new BaseNode("c", 5),
                     new BaseNode("d", 8),
-                    Mode.BUS
+                    Mode.BUS_1_B
             ));
             add(new TransportArc(
                     new BaseNode("d", 8),
                     new BaseNode("e", 12),
-                    Mode.BUS
+                    Mode.BUS_1_B
             ));
             add(new TransportArc(
                     new BaseNode("e", 12),
                     new BaseNode("k", 19),
-                    Mode.BUS
+                    Mode.BUS_1_B
             ));
             add(new TransportArc(
                     new BaseNode("e", 17),
                     new BaseNode("k", 22),
-                    Mode.BUS
+                    Mode.BUS_1_B
             ));
         }};
     }

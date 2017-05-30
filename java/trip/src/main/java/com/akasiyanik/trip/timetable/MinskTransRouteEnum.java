@@ -1,6 +1,11 @@
 package com.akasiyanik.trip.timetable;
 
 import com.akasiyanik.trip.domain.Mode;
+import com.akasiyanik.trip.domain.Type;
+
+import java.util.Arrays;
+import java.util.EnumSet;
+import java.util.List;
 
 /**
  * @author akasiyanik
@@ -8,28 +13,19 @@ import com.akasiyanik.trip.domain.Mode;
  */
 public enum MinskTransRouteEnum {
 
-    BUS_1("1", Type.BUS, Mode.BUS_1, "http://www.minsktrans.by/city/#minsk/bus;193309;15846;time"),
-    BUS_25("25", Type.BUS, Mode.BUS_25, "http://www.minsktrans.by/city/#minsk/bus;198746;14490;time"),
-    BUS_64("64", Type.BUS, Mode.BUS_64, "http://www.minsktrans.by/city/#minsk/bus;185800;14386;time"),
-    BUS_100("100", Type.BUS, Mode.BUS_100, "http://www.minsktrans.by/city/#minsk/bus;193049;15014;time"),
-    TRAM_5("5", Type.TRAM, Mode.TRAM_5, "http://www.minsktrans.by/city/#minsk/tram;190425;15183;time"),
-    TRAM_6("6", Type.TRAM, Mode.TRAM_6, "http://www.minsktrans.by/city/#minsk/tram;196020;15360;time"),
-    TRAM_11("11", Type.TRAM, Mode.TRAM_11, "http://www.minsktrans.by/city/#minsk/tram;196026;16191;time"),
+    BUS_1("1", Type.BUS, Arrays.asList(Mode.BUS_1_S, Mode.BUS_1_B), "http://www.minsktrans.by/city/#minsk/bus;193309;15846;time"),
+    BUS_25("25", Type.BUS, Arrays.asList(Mode.BUS_25_S, Mode.BUS_25_B), "http://www.minsktrans.by/city/#minsk/bus;198746;14490;time"),
+    BUS_64("64", Type.BUS, Arrays.asList(Mode.BUS_64_S, Mode.BUS_64_B), "http://www.minsktrans.by/city/#minsk/bus;185800;14386;time"),
+    BUS_100("100", Type.BUS, Arrays.asList(Mode.BUS_100_S, Mode.BUS_100_B), "http://www.minsktrans.by/city/#minsk/bus;193049;15014;time"),
+    TRAM_5("5", Type.TRAM, Arrays.asList(Mode.TRAM_5_S, Mode.TRAM_5_B), "http://www.minsktrans.by/city/#minsk/tram;190425;15183;time"),
+    TRAM_6("6", Type.TRAM, Arrays.asList(Mode.TRAM_6_S, Mode.TRAM_6_B), "http://www.minsktrans.by/city/#minsk/tram;196020;15360;time"),
+    TRAM_11("11", Type.TRAM, Arrays.asList(Mode.TRAM_11_S, Mode.TRAM_11_B), "http://www.minsktrans.by/city/#minsk/tram;196026;16191;time"),
 
 
-    METRO_1_S("1", Type.METRO, Mode.METRO_1_S, null),
-    METRO_1_B("1", Type.METRO, Mode.METRO_1_B, null),
-    METRO_2_S("2", Type.METRO, Mode.METRO_2_S, null),
-    METRO_2_B("2", Type.METRO, Mode.METRO_2_B, null),
+    METRO_1("1", Type.METRO, Arrays.asList(Mode.METRO_1_S, Mode.METRO_1_B), null),
+    METRO_2("2", Type.METRO, Arrays.asList(Mode.METRO_2_S, Mode.METRO_2_B), null),
 
     ;
-
-    public enum Type {
-        BUS,
-        TRAM,
-        METRO,
-        TROLLEYBUS,
-    };
 
     private String number;
 
@@ -37,13 +33,13 @@ public enum MinskTransRouteEnum {
 
     private String parseUrl;
 
-    private Mode mode;
+    private List<Mode> modes;
 
-    MinskTransRouteEnum(String number, Type type, Mode mode, String parseUrl) {
+    MinskTransRouteEnum(String number, Type type, List<Mode> modes, String parseUrl) {
         this.number = number;
         this.type = type;
-        this.mode = mode;
         this.parseUrl = parseUrl;
+        this.modes = modes;
     }
 
     public String getNumber() {
@@ -58,16 +54,7 @@ public enum MinskTransRouteEnum {
         return parseUrl;
     }
 
-    public Mode getMode() {
-        return mode;
-    }
-
-    public static MinskTransRouteEnum getRouteEnumByRoute(MinskTransRoute route) {
-        for (MinskTransRouteEnum routeEnum : MinskTransRouteEnum.values()) {
-            if (routeEnum.getNumber().equals(route.getNumber()) && routeEnum.getType().equals(route.getType())) {
-                return routeEnum;
-            }
-        }
-        throw new RuntimeException("Can't match RouteEnum");
+    public List<Mode> getModes() {
+        return modes;
     }
 }

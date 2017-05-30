@@ -1,5 +1,7 @@
 package com.akasiyanik.trip.timetable;
 
+import com.akasiyanik.trip.domain.Mode;
+import com.akasiyanik.trip.domain.Type;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.springframework.data.annotation.Id;
@@ -15,7 +17,9 @@ public class MinskTransRoute {
     @Id
     private String id;
 
-    private MinskTransRouteEnum.Type type;
+    private Mode mode;
+
+    private Type type;
 
     private String number;
 
@@ -30,10 +34,19 @@ public class MinskTransRoute {
     public MinskTransRoute() {
     }
 
-    public MinskTransRoute(String number, boolean reverse, MinskTransRouteEnum.Type type) {
+    public MinskTransRoute(String number, boolean reverse, Type type, Mode mode) {
         this.number = number;
         this.reverse = reverse;
         this.type = type;
+        this.mode = mode;
+    }
+
+    public Mode getMode() {
+        return mode;
+    }
+
+    public void setMode(Mode mode) {
+        this.mode = mode;
     }
 
     public String getId() {
@@ -44,11 +57,11 @@ public class MinskTransRoute {
         this.id = id;
     }
 
-    public MinskTransRouteEnum.Type getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(MinskTransRouteEnum.Type type) {
+    public void setType(Type type) {
         this.type = type;
     }
 

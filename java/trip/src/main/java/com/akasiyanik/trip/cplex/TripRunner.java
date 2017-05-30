@@ -42,7 +42,7 @@ public class TripRunner {
         LocalTime arrivalTime = TimeUtils.minutesToTime(35);
 //        LocalTime depatureTime =  LocalTime.of(9, 0);
 //        LocalTime arrivalTime = LocalTime.of(11, 0);
-        Set<Mode> modes = EnumSet.of(Mode.BUS);
+        Set<Mode> modes = EnumSet.of(Mode.BUS_1_B);
         Map<Long, Integer> visitPois = new HashMap<Long, Integer>() {{
             put(3L, 10);
             put(7L, 7);
