@@ -27,7 +27,7 @@ public class MinskTransRoute {
 
     private boolean reverse = false;
 
-    private List<Long> stopIds;
+    private List<String> stopIds;
 
     private List<List<Integer>> threads;
 
@@ -89,11 +89,11 @@ public class MinskTransRoute {
         this.reverse = reverse;
     }
 
-    public List<Long> getStopIds() {
+    public List<String> getStopIds() {
         return stopIds;
     }
 
-    public void setStopIds(List<Long> stopIds) {
+    public void setStopIds(List<String> stopIds) {
         this.stopIds = stopIds;
     }
 

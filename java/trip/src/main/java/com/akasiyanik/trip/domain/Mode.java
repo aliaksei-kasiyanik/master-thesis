@@ -21,6 +21,8 @@ public enum Mode {
 
     BUS_1_S(BUS),
     BUS_1_B(BUS),
+    BUS_19_S(BUS),
+    BUS_19_B(BUS),
     BUS_25_S(BUS),
     BUS_25_B(BUS),
     BUS_64_S(BUS),

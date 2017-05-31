@@ -8,7 +8,7 @@ import com.akasiyanik.trip.domain.network.arcs.TransferArc;
 import com.akasiyanik.trip.domain.network.nodes.BaseNode;
 import com.akasiyanik.trip.timetable.MinskTransRoute;
 import com.akasiyanik.trip.timetable.MinskTransRouteEnum;
-import com.akasiyanik.trip.timetable.MinskTransStop;
+import com.akasiyanik.trip.timetable.TransportStop;
 import com.akasiyanik.trip.timetable.repository.MongoRouteRepository;
 import com.akasiyanik.trip.timetable.repository.MongoStopRepository;
 import com.akasiyanik.trip.utils.TimeUtils;
@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalTime;
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -29,9 +30,9 @@ import java.util.stream.Collectors;
 public class MinskTransNetworkGenerator implements NetworkGenerator<BaseArc> {
 
     private static final EnumSet<MinskTransRouteEnum> testRouteEnums = EnumSet.of(
-            MinskTransRouteEnum.BUS_25,
-            MinskTransRouteEnum.BUS_100
-    );
+            MinskTransRouteEnum.BUS_19,
+            MinskTransRouteEnum.BUS_25
+            );
 
     @Autowired
     private MongoRouteRepository routeRepository;
@@ -93,8 +94,10 @@ public class MinskTransNetworkGenerator implements NetworkGenerator<BaseArc> {
 
         Multimap<Mode, List<BaseArc>> result =  ArrayListMultimap.create();
         for (MinskTransRoute route : routes) {
-            List<Long> stopsIds = route.getStopIds();
-            Map<Long, MinskTransStop> stops = stopRepository.getStopsByMinorIds(stopsIds);
+            List<String> stopsIds = route.getStopIds();
+            List<TransportStop> stops = stopRepository.findByIds(stopsIds);
+            Map<String, TransportStop> stopByIds = stops.stream().collect(Collectors.toMap(TransportStop::getId, Function.identity()));
+
 
             for (List<Integer> thread : route.getThreads()) {
                 if (thread.get(0) > finishTime || thread.get(thread.size() - 1) < startTime) {
@@ -106,11 +109,11 @@ public class MinskTransNetworkGenerator implements NetworkGenerator<BaseArc> {
                     int nextTime = thread.get(i + 1);
                     if (time >= startTime && nextTime <= finishTime) {
 
-                        Long startStopId = stopsIds.get(i);
-                        Long finishStopId = stopsIds.get(i + 1);
+                        String startStopId = stopsIds.get(i);
+                        String finishStopId = stopsIds.get(i + 1);
 
-                        MinskTransStop startStop = stops.get(startStopId);
-                        MinskTransStop finishStop = stops.get(finishStopId);
+                        TransportStop startStop = stopByIds.get(startStopId);
+                        TransportStop finishStop = stopByIds.get(finishStopId);
 
                         threadArcs.add(ArcFactory.getArc(route.getMode(), startStop.getId(), time, finishStop.getId(), nextTime));
                     }

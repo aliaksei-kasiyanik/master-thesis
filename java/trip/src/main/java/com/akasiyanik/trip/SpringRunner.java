@@ -17,7 +17,7 @@ import java.util.*;
  * @author akasiyanik
  *         5/22/17
  */
-@Component
+//@Component
 public class SpringRunner implements ApplicationRunner {
 
     @Autowired
