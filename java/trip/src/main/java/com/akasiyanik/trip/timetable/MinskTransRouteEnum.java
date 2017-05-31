@@ -21,6 +21,7 @@ public enum MinskTransRouteEnum {
     TRAM_6("6", Type.TRAM, Arrays.asList(Mode.TRAM_6_S, Mode.TRAM_6_B), "http://www.minsktrans.by/city/#minsk/tram;196020;15360;time"),
     TRAM_11("11", Type.TRAM, Arrays.asList(Mode.TRAM_11_S, Mode.TRAM_11_B), "http://www.minsktrans.by/city/#minsk/tram;196026;16191;time"),
 
+    TROL_11("22", Type.TROLLEYBUS, Arrays.asList(Mode.TROL_22_S, Mode.TROL_22_B), "http://www.minsktrans.by/city/#minsk/trol;189232;15734;time"),
 
     METRO_1("1", Type.METRO, Arrays.asList(Mode.METRO_1_S, Mode.METRO_1_B), null),
     METRO_2("2", Type.METRO, Arrays.asList(Mode.METRO_2_S, Mode.METRO_2_B), null),

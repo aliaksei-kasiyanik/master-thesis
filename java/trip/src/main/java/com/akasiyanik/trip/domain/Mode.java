@@ -36,6 +36,9 @@ public enum Mode {
     TRAM_6_B(TRAM),
     TRAM_11_S(TRAM),
     TRAM_11_B(TRAM),
+
+    TROL_22_S(TROLLEYBUS),
+    TROL_22_B(TROLLEYBUS),
     ;
 
     private Type type;

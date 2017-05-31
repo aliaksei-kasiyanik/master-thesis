@@ -30,11 +30,11 @@ public class SpringRunner implements ApplicationRunner {
     }
 
     private InputParameters getParameters() {
-        String departurePoint = "592ece9db929d5e7b04ff9b3"; // kulman
+        String departurePoint = "592ece9db929d5e7b04ff9bd"; // uralskaya
         LocalTime departureTime =  LocalTime.of(8, 58);
 
-        String arrivalPoint = "592ed040b929d5e8d569c52c";// ds urucie 2
-        LocalTime arrivalTime = LocalTime.of(9, 44);
+        String arrivalPoint = "592ef61cb929d5fc5c451647";// ds urucie 2
+        LocalTime arrivalTime = LocalTime.of(11, 0);
 
         Set<Mode> modes = EnumSet.of(
                 Mode.BUS_25_S,

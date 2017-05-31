@@ -14,7 +14,6 @@ import com.akasiyanik.trip.timetable.repository.MongoStopRepository;
 import com.akasiyanik.trip.utils.TimeUtils;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
-import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +30,9 @@ import java.util.stream.Collectors;
 public class MinskTransNetworkGenerator implements NetworkGenerator<BaseArc> {
 
     private static final EnumSet<MinskTransRouteEnum> testRouteEnums = EnumSet.of(
-            MinskTransRouteEnum.BUS_25
+            MinskTransRouteEnum.BUS_25,
+            MinskTransRouteEnum.BUS_19,
+            MinskTransRouteEnum.TROL_11
     );
 
     @Autowired
@@ -106,6 +107,7 @@ public class MinskTransNetworkGenerator implements NetworkGenerator<BaseArc> {
 //                }
 //            }
 //        }
+//        add case for first node
 
         return new ArrayList<BaseArc>() {{
             addAll(allTransportArcs);
