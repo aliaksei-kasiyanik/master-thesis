@@ -1,8 +1,10 @@
 package com.akasiyanik.trip.service;
 
 import com.akasiyanik.trip.domain.network.arcs.BaseArc;
+import com.akasiyanik.trip.timetable.repository.MongoStopRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -24,17 +26,20 @@ public class RoutePrinter {
 
     private static final String RESULT_DIR = "result-routes";
 
+    @Autowired
+    private MongoStopRepository stopRepository;
+
 
     public void print(List<BaseArc> route) {
 
         Path filePath = Paths.get(RESULT_DIR, LocalDateTime.now().toString() + ".txt");
 
-        List<String> lines = route.stream().map(arc -> String.format("%20s %30s %2d:%2d %30s %2d:%2d",
+        List<String> lines = route.stream().map(arc -> String.format("%20s %40s %2d:%2d %40s %2d:%2d",
                 arc.getMode(),
-                arc.getI().getId(),
+                stopRepository.findById(arc.getI().getId()).getName(),
                 arc.getI().getLocalTime().getHour(),
                 arc.getI().getLocalTime().getMinute(),
-                arc.getJ().getId(),
+                stopRepository.findById(arc.getJ().getId()).getName(),
                 arc.getJ().getLocalTime().getHour(),
                 arc.getJ().getLocalTime().getMinute()
         )).collect(Collectors.toList());

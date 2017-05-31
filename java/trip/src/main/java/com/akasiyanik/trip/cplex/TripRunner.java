@@ -39,7 +39,7 @@ public class TripRunner {
         LocalTime depatureTime = TimeUtils.minutesToTime(1);
 
         String arrivalPoint = "k";
-        LocalTime arrivalTime = TimeUtils.minutesToTime(35);
+        LocalTime arrivalTime = TimeUtils.minutesToTime(50);
 //        LocalTime depatureTime =  LocalTime.of(9, 0);
 //        LocalTime arrivalTime = LocalTime.of(11, 0);
         Set<Mode> modes = EnumSet.of(Mode.BUS_1_B);
@@ -51,11 +51,11 @@ public class TripRunner {
         List<Pair<RouteCriteria, Double>> criteria = new LinkedList<Pair<RouteCriteria, Double>>() {{
 //            add(new ImmutablePair<>(RouteCriteria.MIN_COST, 0.3));
 //            add(new ImmutablePair<>(RouteCriteria.MIN_CO2, 0.3));
-//            add(new ImmutablePair<>(RouteCriteria.MIN_TIME, 0.2));
+            add(new ImmutablePair<>(RouteCriteria.MIN_TIME, 0.2));
 //            add(new ImmutablePair<>(RouteCriteria.MAX_POI, 0.1));
 //            add(new ImmutablePair<>(RouteCriteria.MIN_CHANGES, 0.1));
 //            add(new ImmutablePair<>(RouteCriteria.MIN_TIME_TRANSFER, 0.1));
-            add(new ImmutablePair<>(RouteCriteria.MIN_TIME_WALKING, 0.1));
+//            add(new ImmutablePair<>(RouteCriteria.MIN_TIME_WALKING, 0.1));
         }};
 
         return new InputParameters(

@@ -38,7 +38,7 @@ public class NetworkGenerationService {
 
 //        allArcs.addAll(metroNetworkGenerator.generateArcs(parameters));
         allArcs.addAll(minskTransNetworkGenerator.generateArcs(parameters));
-//        allArcs.addAll(dummyArcsGenerator.generateArcs(parameters, allArcs));
+        allArcs.addAll(dummyArcsGenerator.generateArcs(parameters, allArcs));
 
         return allArcs;
     }

@@ -42,19 +42,18 @@ public class BaseArc {
         return j.getTime() - i.getTime();
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
 
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof BaseArc)) return false;
 
-        BaseArc baseArc = (BaseArc) o;
+        BaseArc arc = (BaseArc) o;
 
         return new EqualsBuilder()
-                .append(i, baseArc.i)
-                .append(j, baseArc.j)
-                .append(mode, baseArc.mode)
+                .append(i, arc.i)
+                .append(j, arc.j)
+                .append(mode, arc.mode)
                 .isEquals();
     }
 

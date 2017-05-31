@@ -9,7 +9,6 @@ import com.akasiyanik.trip.timetable.html.HtmlTimetableDownloader;
 import com.akasiyanik.trip.timetable.html.HtmlTimetableParser;
 import com.akasiyanik.trip.timetable.repository.MongoMinskTransStopRepository;
 import com.akasiyanik.trip.timetable.repository.MongoRouteRepository;
-import com.akasiyanik.trip.timetable.repository.TimetableRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +33,6 @@ public class DataLoader implements ApplicationRunner {
 
     @Autowired
     private HtmlTimetableParser timetableParser;
-
-    @Autowired
-    private TimetableRepository timetableRepository;
 
     @Autowired
     private MinskTransBusStopParser busStopParser;

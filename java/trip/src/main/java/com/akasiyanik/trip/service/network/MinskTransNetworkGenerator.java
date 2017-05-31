@@ -14,6 +14,7 @@ import com.akasiyanik.trip.timetable.repository.MongoStopRepository;
 import com.akasiyanik.trip.utils.TimeUtils;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,9 +31,8 @@ import java.util.stream.Collectors;
 public class MinskTransNetworkGenerator implements NetworkGenerator<BaseArc> {
 
     private static final EnumSet<MinskTransRouteEnum> testRouteEnums = EnumSet.of(
-            MinskTransRouteEnum.BUS_19,
             MinskTransRouteEnum.BUS_25
-            );
+    );
 
     @Autowired
     private MongoRouteRepository routeRepository;
@@ -81,6 +81,32 @@ public class MinskTransNetworkGenerator implements NetworkGenerator<BaseArc> {
             }
         }
 
+//        Multimap<String, BaseNode> inNodesById = ArrayListMultimap.create();
+//        Multimap<String, BaseNode> outNodesById = ArrayListMultimap.create();
+//        for (BaseArc arc : allTransportArcs) {
+//            BaseNode I = arc.getI();
+//            BaseNode J = arc.getJ();
+//            outNodesById.put(I.getId(), I);
+//            inNodesById.put(J.getId(), J);
+//        }
+//
+//        Set<BaseArc> allTransferArcs = new HashSet<>();
+//        for (String inNodeId : inNodesById.keySet()) {
+//            Collection<BaseNode> outNodes = outNodesById.get(inNodeId);
+//            Collection<BaseNode> inNodes = inNodesById.get(inNodeId);
+//            if (CollectionUtils.isNotEmpty(outNodes) && CollectionUtils.isNotEmpty(inNodes) && outNodes.size() > 1 && inNodes.size() > 1) {
+//                List<BaseNode> sortedInNodes = inNodes.stream().sorted((BaseNode n1, BaseNode n2) -> n1.getTime() - n2.getTime()).collect(Collectors.toList());
+//                List<BaseNode> sortedOutNodes = outNodes.stream().sorted((BaseNode n1, BaseNode n2) -> n1.getTime() - n2.getTime()).collect(Collectors.toList());
+//                for (BaseNode J : sortedInNodes) {
+//                    for (BaseNode I : sortedOutNodes) {
+//                        if (J.getTime() < I.getTime()) {
+//                            allTransferArcs.add(new TransferArc(J, I));
+//                        }
+//                    }
+//                }
+//            }
+//        }
+
         return new ArrayList<BaseArc>() {{
             addAll(allTransportArcs);
             addAll(allTransferArcs);
@@ -92,7 +118,7 @@ public class MinskTransNetworkGenerator implements NetworkGenerator<BaseArc> {
         int startTime = TimeUtils.timeToMinutes(departureTime);
         int finishTime = TimeUtils.timeToMinutes(arrivalTime);
 
-        Multimap<Mode, List<BaseArc>> result =  ArrayListMultimap.create();
+        Multimap<Mode, List<BaseArc>> result = ArrayListMultimap.create();
         for (MinskTransRoute route : routes) {
             List<String> stopsIds = route.getStopIds();
             List<TransportStop> stops = stopRepository.findByIds(stopsIds);

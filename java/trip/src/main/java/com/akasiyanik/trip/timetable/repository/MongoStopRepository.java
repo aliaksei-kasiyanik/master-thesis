@@ -42,13 +42,13 @@ public class MongoStopRepository {
 
     public List<TransportStop> findByIds(List<String> ids) {
         Query query = new Query();
-        query.addCriteria(Criteria.where("_ids").in(ids));
+        query.addCriteria(Criteria.where("_id").in(ids));
         return mongoTemplate.find(query, TransportStop.class, collectionName);
     }
 
     public TransportStop findById(String id) {
         Query query = new Query();
-        query.addCriteria(Criteria.where("_ids").is(id));
+        query.addCriteria(Criteria.where("_id").is(id));
         return mongoTemplate.findOne(query, TransportStop.class, collectionName);
     }
 

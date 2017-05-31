@@ -73,8 +73,8 @@ public final class CplexUtil {
                 }
                 indexesJ.add(index);
 
-                index++;
             }
+            index++;
         }
         return result;
     }

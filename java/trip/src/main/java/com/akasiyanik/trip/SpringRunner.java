@@ -17,7 +17,7 @@ import java.util.*;
  * @author akasiyanik
  *         5/22/17
  */
-//@Component
+@Component
 public class SpringRunner implements ApplicationRunner {
 
     @Autowired
@@ -30,17 +30,15 @@ public class SpringRunner implements ApplicationRunner {
     }
 
     private InputParameters getParameters() {
-        String departurePoint = "Uruccha";
+        String departurePoint = "592ece9db929d5e7b04ff9b3"; // kulman
         LocalTime departureTime =  LocalTime.of(8, 58);
 
-        String arrivalPoint = "Kuncaushchyna";
-        LocalTime arrivalTime = LocalTime.of(11, 0);
+        String arrivalPoint = "592ed040b929d5e8d569c52c";// ds urucie 2
+        LocalTime arrivalTime = LocalTime.of(9, 44);
 
         Set<Mode> modes = EnumSet.of(
-                Mode.METRO_1_S,
-                Mode.METRO_2_S,
-                Mode.METRO_1_B,
-                Mode.METRO_2_B
+                Mode.BUS_25_S,
+                Mode.BUS_25_B
                 );
         Map<Long, Integer> visitPois = new HashMap<Long, Integer>() {{
 //            put(3L, 10);
@@ -50,8 +48,8 @@ public class SpringRunner implements ApplicationRunner {
         List<Pair<RouteCriteria, Double>> criteria = new LinkedList<Pair<RouteCriteria, Double>>() {{
 //            add(new ImmutablePair<>(RouteCriteria.MIN_COST, 0.3));
 //            add(new ImmutablePair<>(RouteCriteria.MIN_CO2, 0.3));
-            add(new ImmutablePair<>(RouteCriteria.MIN_TIME, 0.2));
 //            add(new ImmutablePair<>(RouteCriteria.MAX_POI, 0.1));
+            add(new ImmutablePair<>(RouteCriteria.MIN_TIME, 0.2));
 //            add(new ImmutablePair<>(RouteCriteria.MIN_CHANGES, 0.1));
 //            add(new ImmutablePair<>(RouteCriteria.MIN_TIME_TRANSFER, 0.1));
 //            add(new ImmutablePair<>(RouteCriteria.MIN_TIME_WALKING, 0.1));
