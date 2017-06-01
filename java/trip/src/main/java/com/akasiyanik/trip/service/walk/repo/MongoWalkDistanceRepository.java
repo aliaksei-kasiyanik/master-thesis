@@ -7,6 +7,8 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @author akasiyanik
  *         6/1/17
@@ -21,6 +23,10 @@ public class MongoWalkDistanceRepository {
 
     public void save(WalkDistance distance) {
         mongoTemplate.save(distance, collectionName);
+    }
+
+    public List<WalkDistance> findAll() {
+        return mongoTemplate.findAll(WalkDistance.class, collectionName);
     }
 
     public boolean existDistance(String stopId1, String stopId2) {
