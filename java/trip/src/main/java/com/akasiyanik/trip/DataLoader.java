@@ -1,5 +1,7 @@
 package com.akasiyanik.trip;
 
+import com.akasiyanik.trip.service.walk.WalkDistanceLoader;
+import com.akasiyanik.trip.service.walk.repo.MongoWalkDistanceRepository;
 import com.akasiyanik.trip.timetable.MinskTransBusStopParser;
 import com.akasiyanik.trip.timetable.MinskTransRoute;
 import com.akasiyanik.trip.timetable.MinskTransRouteEnum;
@@ -43,10 +45,14 @@ public class DataLoader implements ApplicationRunner {
     @Autowired
     private MongoMinskTransStopRepository mongoMinskTransStopRepository;
 
+    @Autowired
+    private WalkDistanceLoader distanceLoader;
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
 //        loadBusStops(false);
 //        loadTimetables(EnumSet.of(MinskTransRouteEnum.TROL_11));
+//        distanceLoader.load();
     }
 
     public void loadTimetables(EnumSet<MinskTransRouteEnum> routeEnums) {

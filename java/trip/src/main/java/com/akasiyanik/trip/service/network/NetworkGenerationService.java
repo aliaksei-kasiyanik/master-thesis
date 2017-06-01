@@ -2,8 +2,7 @@ package com.akasiyanik.trip.service.network;
 
 import com.akasiyanik.trip.domain.InputParameters;
 import com.akasiyanik.trip.domain.network.arcs.BaseArc;
-import com.akasiyanik.trip.service.walk.OpenRouteServiceClient;
-import org.apache.commons.lang3.tuple.ImmutablePair;
+import com.akasiyanik.trip.service.walk.OpenRouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +26,7 @@ public class NetworkGenerationService {
     private DummyArcsGenerator dummyArcsGenerator;
 
     @Autowired
-    private OpenRouteServiceClient openRouteServiceClient;
+    private OpenRouteService openRouteService;
 
 
     public List<BaseArc> generateNetwork(InputParameters parameters) {

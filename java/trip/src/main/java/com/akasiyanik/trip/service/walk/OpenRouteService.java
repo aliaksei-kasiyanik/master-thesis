@@ -15,11 +15,14 @@ import java.util.Map;
  *         5/30/17
  */
 @Component
-public class OpenRouteServiceClient {
+public class OpenRouteService {
 
-    private static final Logger logger = LoggerFactory.getLogger(OpenRouteServiceClient.class);
+    private static final Logger logger = LoggerFactory.getLogger(OpenRouteService.class);
 
     private static final String API_KEY = "58d904a497c67e00015b45fc7e616a91eaaf442f671a9491c1e099db";
+
+//    google directions api key AIzaSyDZKCYb0786rxtt8H1w8pcOrtWRsdEAHh0
+//    google distance matrix api key AIzaSyDADd4q7w-2FmN7yibodYIEBp_srxFfiuw
 
     private static final String URI = "https://api.openrouteservice.org/directions?coordinates={lon1},{lat1}|{lon2},{lat2}&profile=foot-walking&preference=fastest&units=m&language=en&geometry=true&geometry_format=geojson&geometry_simplify=false&instructions=false&instructions_format=text&elevation=false&api_key={api_key}";
 
