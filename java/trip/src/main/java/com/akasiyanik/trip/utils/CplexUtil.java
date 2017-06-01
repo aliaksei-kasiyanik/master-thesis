@@ -100,8 +100,8 @@ public final class CplexUtil {
                 }
                 indexesJ.add(index);
 
-                index++;
             }
+            index++;
         }
         return result;
     }
@@ -126,9 +126,9 @@ public final class CplexUtil {
                     indexesByModes.put(mode, indexesI);
                 }
                 indexesI.add(index);
-                index++;
 
             }
+            index++;
         }
         return result;
     }

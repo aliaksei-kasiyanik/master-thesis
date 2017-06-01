@@ -33,7 +33,7 @@ public class SpringRunner implements ApplicationRunner {
         String departurePoint = "592ece9db929d5e7b04ff9bd"; // uralskaya
         LocalTime departureTime =  LocalTime.of(8, 58);
 
-        String arrivalPoint = "592ef61cb929d5fc5c451647";// ds urucie 2
+        String arrivalPoint = "592ef61cb929d5fc5c451647";// Кропоткина
         LocalTime arrivalTime = LocalTime.of(11, 0);
 
         Set<Mode> modes = EnumSet.of(
@@ -46,10 +46,10 @@ public class SpringRunner implements ApplicationRunner {
 //            put(8L, 12);
         }};
         List<Pair<RouteCriteria, Double>> criteria = new LinkedList<Pair<RouteCriteria, Double>>() {{
-//            add(new ImmutablePair<>(RouteCriteria.MIN_COST, 0.3));
+//            add(new ImmutablePair<>(RouteCriteria.MIN_COST, 0.1));
 //            add(new ImmutablePair<>(RouteCriteria.MIN_CO2, 0.3));
 //            add(new ImmutablePair<>(RouteCriteria.MAX_POI, 0.1));
-            add(new ImmutablePair<>(RouteCriteria.MIN_TIME, 0.2));
+            add(new ImmutablePair<>(RouteCriteria.MIN_TIME, 0.1));
 //            add(new ImmutablePair<>(RouteCriteria.MIN_CHANGES, 0.1));
 //            add(new ImmutablePair<>(RouteCriteria.MIN_TIME_TRANSFER, 0.1));
 //            add(new ImmutablePair<>(RouteCriteria.MIN_TIME_WALKING, 0.1));

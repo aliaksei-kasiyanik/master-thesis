@@ -67,13 +67,47 @@ public class WalkingArcsGenerator {
         Set<BaseArc> transferArcs = new HashSet<>();
 
         Multimap<String, BaseNode> nodesByEnd = TreeMultimap.create(Ordering.natural(), (BaseNode n1, BaseNode n2) -> n1.getTime() - n2.getTime());
-        transportArcs.stream().filter(a -> a.getMode().isTransport()).map(BaseArc::getJ).forEach(n -> nodesByEnd.put(n.getId(), n));
+        transportArcs.stream().filter(a -> {
+            Mode mode = a.getMode();
+            return mode.isTransport() || mode.equals(Mode.DUMMY_START_FINISH);
+        }).map(BaseArc::getJ).forEach(n -> nodesByEnd.put(n.getId(), n));
 
         Multimap<String, BaseNode> nodesByStart = TreeMultimap.create(Ordering.natural(), (BaseNode n1, BaseNode n2) -> n1.getTime() - n2.getTime());
-        transportArcs.stream().filter(a -> a.getMode().isTransport()).map(BaseArc::getI).forEach(n -> nodesByStart.put(n.getId(), n));
+        transportArcs.stream().filter(a -> {
+            Mode mode = a.getMode();
+            return mode.isTransport() || mode.equals(Mode.DUMMY_START_FINISH);
+        }).map(BaseArc::getI).forEach(n -> nodesByStart.put(n.getId(), n));
 
-        int walkingArcsPrevSize = 0;
-        int trasferArcsPrevSize = 0;
+//        BaseNode startNode = nodesByStart.get(firstNodeId).iterator().next();
+//
+//        for (BaseNode startNode : nodesByStart.get(firstNodeId)) {
+//            if (startNode.getTime() <= departureTime) {
+//
+//            }
+//        }
+
+        BaseNode depNode = new BaseNode(firstNodeId, departureTime);
+        Collection<WalkDistance> distForDepNode = walkMap.get(firstNodeId);
+        for (WalkDistance firstDist : distForDepNode) {
+            int endTime = departureTime + firstDist.getMinutes().intValue();
+            if (endTime <= arrivalTime) {
+                BaseNode newNode = new BaseNode(firstDist.getSecondNodeId(), endTime);
+                walkingArcs.add(new BaseArc(depNode, newNode, Mode.WALK));
+                nodesByEnd.put(firstDist.getSecondNodeId(), newNode);
+
+                Collection<BaseNode> startNodes = nodesByStart.get(newNode.getId());
+                for (BaseNode startNode : startNodes) {
+                    if (startNode.getTime() > newNode.getTime()) {
+                        transferArcs.add(new BaseArc(newNode, startNode, Mode.TRANSFER));
+//                        break;
+                    }
+                }
+            }
+        }
+
+
+        int walkingArcsPrevSize;
+        int trasferArcsPrevSize;
         do {
             walkingArcsPrevSize = walkingArcs.size();
             trasferArcsPrevSize = transferArcs.size();
@@ -98,7 +132,7 @@ public class WalkingArcsGenerator {
                                 for (BaseNode startNode : startNodes) {
                                     if (startNode.getTime() > newNode.getTime()) {
                                         transferArcs.add(new BaseArc(newNode, startNode, Mode.TRANSFER));
-                                        break;
+//                                        break;
                                     }
                                 }
                                 //add Transfer Arc
@@ -114,6 +148,9 @@ public class WalkingArcsGenerator {
         } while (walkingArcsPrevSize != walkingArcs.size() || trasferArcsPrevSize != transferArcs.size());
 
 
+
+
+//        walkingArcs.stream().filter(a -> a.getI().equals(startNode)).collect(Collectors.toList())
 
 //        Map<String, List<BaseNode>> nodesByStart = transportArcs.stream().map(BaseArc::getI).collect(Collectors.groupingBy(BaseNode::getId));
 //        Map<String, List<BaseNode>> nodesByFinish = transportArcs.stream().map(BaseArc::getJ).collect(Collectors.groupingBy(BaseNode::getId));

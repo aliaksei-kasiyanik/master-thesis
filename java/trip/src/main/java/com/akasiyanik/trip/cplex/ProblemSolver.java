@@ -303,6 +303,7 @@ public class ProblemSolver {
         if (maxPoiFunction == null) {
             maxPoiFunction = model.scalProd(visitArcsMask, x);
         }
+//        visitArcsMask = null;
         return maxPoiFunction;
     }
 
