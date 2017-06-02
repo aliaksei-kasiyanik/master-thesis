@@ -11,5 +11,8 @@ public class WalkArc extends BaseArc {
 
     public WalkArc(BaseNode i, BaseNode j) {
         super(i, j, Mode.WALK);
+        if (i.getId().equals(j.getId())) {
+            throw new RuntimeException("can't walk to the same node");
+        }
     }
 }

@@ -30,7 +30,7 @@ public class SpringRunner implements ApplicationRunner {
     }
 
     private InputParameters getParameters() {
-        String departurePoint = "592ece9db929d5e7b04ff9bd"; // uralskaya
+        String departurePoint = "59317e620cc7842d442760af"; // uralskaya
         LocalTime departureTime =  LocalTime.of(8, 58);
 
         String arrivalPoint = "592ef61cb929d5fc5c451647";// Кропоткина

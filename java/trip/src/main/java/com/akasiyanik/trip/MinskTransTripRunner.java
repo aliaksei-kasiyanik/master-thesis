@@ -31,7 +31,7 @@ public class MinskTransTripRunner {
         List<BaseArc> arcs = networkService.generateNetwork(parameters);
 
         ProblemSolver solver = new ProblemSolver(arcs, parameters);
-        List<BaseArc> result = solver.solve();
+        List<List<BaseArc>> result = solver.solve();
 
         logger.info("{}", result);
         printer.print(result);

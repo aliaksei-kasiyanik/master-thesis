@@ -1,11 +1,14 @@
 package com.akasiyanik.trip.cplex;
 
 import com.akasiyanik.trip.domain.InputParameters;
-import com.akasiyanik.trip.domain.RouteCriteria;
 import com.akasiyanik.trip.domain.Mode;
+import com.akasiyanik.trip.domain.RouteCriteria;
 import com.akasiyanik.trip.domain.network.arcs.BaseArc;
 import com.akasiyanik.trip.domain.network.nodes.BaseNode;
-import ilog.concert.*;
+import ilog.concert.IloException;
+import ilog.concert.IloIntExpr;
+import ilog.concert.IloIntVar;
+import ilog.concert.IloObjective;
 import ilog.cplex.IloCplex;
 import org.apache.commons.lang3.tuple.Pair;
 import org.slf4j.Logger;
@@ -133,7 +136,7 @@ public class ProblemSolver {
         IntStream
                 .range(0, arcs.size())
                 .filter(i -> arcs.get(i).getMode().isCO2Transport())
-                .forEach(i ->  {
+                .forEach(i -> {
                     BaseArc arc = arcs.get(i);
                     co2Mask[i] = arc.getMode().getCo2() * arc.getTime();
                 });
@@ -159,7 +162,7 @@ public class ProblemSolver {
     }
 
 
-    public List<BaseArc> solve() {
+    public List<List<BaseArc>> solve() {
 
         try {
             model = new IloCplex();
@@ -167,7 +170,7 @@ public class ProblemSolver {
 
             addMandatoryConstraints();
 
-            List<BaseArc> result = null;
+            List<List<BaseArc>> result = new ArrayList<>();
             List<Pair<RouteCriteria, Double>> criteria = parameters.getCriteria();
 
             double objectiveValue = 0.0;
@@ -180,7 +183,7 @@ public class ProblemSolver {
                 }
                 addObjectiveFunction(criteria.get(i).getLeft());
 
-                model.exportModel("trip" + i + ".lp");
+//                model.exportModel("trip" + i + ".lp");
 
                 logger.info("CPLEX problem solving...");
 
@@ -190,17 +193,15 @@ public class ProblemSolver {
                     logger.info("CPLEX Solution status = " + model.getStatus());
                     objectiveValue = model.getObjValue();
                     logger.info("Solution value  = " + objectiveValue);
-
-                    result = new ArrayList<>();
+                    List<BaseArc> solution = new ArrayList<>();
                     double[] values = model.getValues(x);
                     for (int j = 0; j < x.length; ++j) {
-//                        logger.debug("Variable " + j + ": Value = " + values[j]);
                         if (values[j] == 1) {
-                            result.add(arcs.get(j));
+                            solution.add(arcs.get(j));
                         }
                     }
-                    Collections.sort(result, (a1, a2) -> a1.getI().getTime() - a2.getI().getTime());
-
+                    Collections.sort(solution, (a1, a2) -> a1.getI().getTime() - a2.getI().getTime());
+                    result.add(solution);
                 } else {
                     logger.warn("CPLEX Solution status = " + model.getStatus());
                 }
@@ -240,7 +241,7 @@ public class ProblemSolver {
     }
 
 
-    private void addConstraintFromPreviousProblem(RouteCriteria criteria, double coeff,  double prevObjectiveResult) throws IloException {
+    private void addConstraintFromPreviousProblem(RouteCriteria criteria, double coeff, double prevObjectiveResult) throws IloException {
 
         switch (criteria) {
             case MAX_POI: {
@@ -348,7 +349,6 @@ public class ProblemSolver {
         }
         return minTimeWalkingFunction;
     }
-
 
 
 }

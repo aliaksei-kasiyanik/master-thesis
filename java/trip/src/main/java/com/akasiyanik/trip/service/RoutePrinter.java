@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,22 +30,27 @@ public class RoutePrinter {
     @Autowired
     private MongoStopRepository stopRepository;
 
-
-    public void print(List<BaseArc> route) {
+    public void print(List<List<BaseArc>> routes) {
 
         Path filePath = Paths.get(RESULT_DIR, LocalDateTime.now().toString() + ".txt");
 
-        List<String> lines = route.stream().map(arc -> String.format("%20s %40s %2d:%2d %40s %2d:%2d",
-                arc.getMode(),
-                stopRepository.findById(arc.getI().getId()).getName(),
-                arc.getI().getLocalTime().getHour(),
-                arc.getI().getLocalTime().getMinute(),
-                stopRepository.findById(arc.getJ().getId()).getName(),
-                arc.getJ().getLocalTime().getHour(),
-                arc.getJ().getLocalTime().getMinute()
-        )).collect(Collectors.toList());
-
-
+        List<String> lines = new ArrayList<>();
+        int i = 1;
+        for (List<BaseArc> route : routes) {
+            lines.add("SOLUTION " + i);
+            lines.addAll(
+                    route.stream().map(arc -> String.format("%20s %40s %2d:%2d %40s %2d:%2d",
+                            arc.getMode(),
+                            stopRepository.findById(arc.getI().getId()).getName(),
+                            arc.getI().getLocalTime().getHour(),
+                            arc.getI().getLocalTime().getMinute(),
+                            stopRepository.findById(arc.getJ().getId()).getName(),
+                            arc.getJ().getLocalTime().getHour(),
+                            arc.getJ().getLocalTime().getMinute()
+                    )).collect(Collectors.toList())
+            );
+            i++;
+        }
         try {
             Files.write(filePath, lines);
         } catch (IOException e) {

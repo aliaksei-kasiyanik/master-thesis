@@ -29,7 +29,7 @@ public class TripRunner {
         List<BaseArc> arcs = new CplexNetworkBuilder(parameters).build();
 
         ProblemSolver solver = new ProblemSolver(arcs, parameters);
-        List<BaseArc> result = solver.solve();
+        List<List<BaseArc>> result = solver.solve();
 
         logger.info("{}", result);
     }

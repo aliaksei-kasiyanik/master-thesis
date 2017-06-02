@@ -19,8 +19,8 @@ public class NetworkGenerationService {
     @Autowired
     private MinskTransNetworkGenerator minskTransNetworkGenerator;
 
-    @Autowired
-    private MetroNetworkGenerator metroNetworkGenerator;
+//    @Autowired
+//    private MetroNetworkGenerator metroNetworkGenerator;
 
     @Autowired
     private DummyArcsGenerator dummyArcsGenerator;
@@ -32,10 +32,7 @@ public class NetworkGenerationService {
 
     public List<BaseArc> generateNetwork(InputParameters parameters) {
 
-//        openRouteServiceClient.getWalkingRoute(new ImmutablePair<>(53.93286, 27.691619), new ImmutablePair<>(53.926644, 27.682736));
-
         List<BaseArc> allArcs = new ArrayList<>();
-
 //        allArcs.addAll(metroNetworkGenerator.generateArcs(parameters));
         List<BaseArc> transportArcs = minskTransNetworkGenerator.generateArcs(parameters);
         allArcs.addAll(transportArcs);

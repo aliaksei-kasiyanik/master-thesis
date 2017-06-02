@@ -2,6 +2,7 @@ package com.akasiyanik.trip.service.network;
 
 import com.akasiyanik.trip.domain.InputParameters;
 import com.akasiyanik.trip.domain.Mode;
+import com.akasiyanik.trip.domain.Type;
 import com.akasiyanik.trip.domain.network.ArcFactory;
 import com.akasiyanik.trip.domain.network.arcs.BaseArc;
 import com.akasiyanik.trip.domain.network.arcs.TransferArc;
@@ -30,9 +31,11 @@ import java.util.stream.Collectors;
 public class MinskTransNetworkGenerator implements NetworkGenerator<BaseArc> {
 
     private static final EnumSet<MinskTransRouteEnum> testRouteEnums = EnumSet.of(
-            MinskTransRouteEnum.BUS_25,
-            MinskTransRouteEnum.BUS_19,
-            MinskTransRouteEnum.TROL_11
+//            MinskTransRouteEnum.BUS_25,
+//            MinskTransRouteEnum.BUS_19,
+//            MinskTransRouteEnum.TROL_11,
+            MinskTransRouteEnum.METRO_1,
+            MinskTransRouteEnum.METRO_2
     );
 
     @Autowired
@@ -55,9 +58,10 @@ public class MinskTransNetworkGenerator implements NetworkGenerator<BaseArc> {
 
         List<BaseArc> allTransportArcs = new ArrayList<>();
         arcsByThread.values().forEach(allTransportArcs::addAll);
+        List<BaseArc> groundTransportArcs = allTransportArcs.stream().filter(a -> !a.getMode().getType().equals(Type.METRO)).collect(Collectors.toList());
 
         Multimap<String, BaseNode> nodesByGeoPointId = ArrayListMultimap.create();
-        for (BaseArc arc : allTransportArcs) {
+        for (BaseArc arc : groundTransportArcs) {
             BaseNode I = arc.getI();
             BaseNode J = arc.getJ();
             nodesByGeoPointId.put(I.getId(), I);

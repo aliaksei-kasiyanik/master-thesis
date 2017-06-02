@@ -48,13 +48,15 @@ public class GoogleDistanceService {
 
             logger.info(result);
 
-            Long minutes = element.getAsJsonObject("duration").get("value").getAsLong() / 60;
-            Long meters = element.getAsJsonObject("distance").get("value").getAsLong();
+            if (element.get("status").getAsString().equals("OK")) {
+                Long minutes = element.getAsJsonObject("duration").get("value").getAsLong() / 60;
+                Long meters = element.getAsJsonObject("distance").get("value").getAsLong();
 
-            walkDistance = new WalkDistance();
-            walkDistance.setNodesIds(Arrays.asList(stop1.getId(), stop2.getId()));
-            walkDistance.setMinutes(minutes);
-            walkDistance.setMeters(meters);
+                walkDistance = new WalkDistance();
+                walkDistance.setNodesIds(Arrays.asList(stop1.getId(), stop2.getId()));
+                walkDistance.setMinutes(minutes);
+                walkDistance.setMeters(meters);
+            }
         }
         return walkDistance;
     }
