@@ -10,6 +10,7 @@ import ilog.concert.IloIntVar;
 import ilog.concert.IloNumExpr;
 import ilog.concert.IloNumVar;
 import ilog.cplex.IloCplex;
+import org.apache.commons.collections.CollectionUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -284,29 +285,66 @@ public final class CplexUtil {
         }
     }
 
-//    public static void addForbidCycleWalking(IloCplex model, IloIntVar[] x, List<BaseArc> allArcs) throws IloException {
-//
-//        List<BaseArc> walkArcs = allArcs.stream().filter(a -> a.getMode().equals(Mode.WALK)).collect(Collectors.toList());
-//        Multimap<BaseNode, BaseArc> outArcs = ArrayListMultimap.create();
-//        Multimap<BaseNode, BaseArc> inArcs = ArrayListMultimap.create();
-//        walkArcs.forEach(a -> {
-//            outArcs.put(a.getI(), a);
-//            inArcs.put(a.getJ(), a);
-//        });
-//
-//        Set<BaseNode> nodes = new HashSet<>();
-//        nodes.addAll(outArcs.keySet());
-//        nodes.addAll(inArcs.keySet());
-//
-//        for (BaseNode node : nodes) {
-//            Collection<BaseArc> in = inArcs.get(node);
-//            for (BaseArc)
-//            Collection<BaseArc> out = outArcs.get(node);
-//        }
-//
-//
-//
-//
-//    }
+    public static void addForbidTransferBeforeWalk(IloCplex model, IloIntVar[] x, List<BaseArc> allArcs) throws IloException {
+
+        Map<BaseNode, Set<Integer>> walkArcs = getIncomingTransferArcsByNodes(allArcs);
+        Map<BaseNode, Set<Integer>> transferArcs = getOutcomingWalkArcsByNodes(allArcs);
+
+        for (BaseNode node : walkArcs.keySet()) {
+
+            Set<Integer> out = transferArcs.get(node);
+            Set<Integer> in = walkArcs.get(node);
+            if (in != null && out != null) {
+
+                Set<Integer> allArcsIndexes = new HashSet<>();
+                allArcsIndexes.addAll(out);
+                allArcsIndexes.addAll(in);
+
+                IloNumVar[] arcsVariables = allArcsIndexes
+                            .stream()
+                            .map(ind -> x[ind])
+                            .toArray(IloNumVar[]::new);
+                model.addLe(model.sum(arcsVariables), 1.0);
+            }
+        }
+    }
+
+    public static Map<BaseNode, Set<Integer>> getIncomingTransferArcsByNodes(List<BaseArc> arcs) {
+        Map<BaseNode, Set<Integer>> incomingArcs = new HashMap<>();
+        int index = 0;
+        for (BaseArc arc : arcs) {
+            if (arc.getMode().equals(Mode.TRANSFER)) {
+                // in
+                BaseNode arcJ = arc.getJ();
+                Set<Integer> indexesIn = incomingArcs.get(arcJ);
+                if (indexesIn == null) {
+                    indexesIn = new HashSet<>();
+                    incomingArcs.put(arcJ, indexesIn);
+                }
+                indexesIn.add(index);
+            }
+            index++;
+        }
+        return incomingArcs;
+    }
+
+    public static Map<BaseNode, Set<Integer>> getOutcomingWalkArcsByNodes(List<BaseArc> arcs) {
+        Map<BaseNode, Set<Integer>> outcomingArcs = new HashMap<>();
+        int index = 0;
+        for (BaseArc arc : arcs) {
+            if (arc.getMode().equals(Mode.WALK)) {
+                // in
+                BaseNode arcI = arc.getI();
+                Set<Integer> indexesOut = outcomingArcs.get(arcI);
+                if (indexesOut == null) {
+                    indexesOut = new HashSet<>();
+                    outcomingArcs.put(arcI, indexesOut);
+                }
+                indexesOut.add(index);
+            }
+            index++;
+        }
+        return outcomingArcs;
+    }
 
 }
