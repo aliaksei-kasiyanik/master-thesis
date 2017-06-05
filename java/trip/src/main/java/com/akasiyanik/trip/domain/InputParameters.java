@@ -27,7 +27,7 @@ public class InputParameters {
 
     // keys - set I - desirable POIs
     // values - visiting durations
-    private final Map<Long, Integer> visitPoi;
+    private final Map<String, Integer> visitPoi;
 
     // eligible transport nodes
     private final Set<Mode> modes;
@@ -40,7 +40,7 @@ public class InputParameters {
                            LocalTime departureTime,
                            LocalTime arrivalTime,
                            Set<Mode> modes,
-                           Map<Long, Integer> visitPoi,
+                           Map<String, Integer> visitPoi,
                            List<Pair<RouteCriteria, Double>> criteria) {
         this.criteria = criteria;
         this.modes = modes;
@@ -67,7 +67,7 @@ public class InputParameters {
         return arrivalTime;
     }
 
-    public Map<Long, Integer> getVisitPoi() {
+    public Map<String, Integer> getVisitPoi() {
         return visitPoi;
     }
 

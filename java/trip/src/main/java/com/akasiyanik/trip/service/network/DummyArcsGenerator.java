@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @Component
 public class DummyArcsGenerator {
 
-    public List<DummyStartFinishArc> generateArcs(InputParameters parameters, List<BaseArc> allArcs) {
+    public List<DummyStartFinishArc> generateArcs(InputParameters parameters, Set<BaseArc> allArcs) {
         BaseNode startI = new BaseNode(parameters.getDeparturePointId(), parameters.getDepartureTime());
         BaseNode finishJ = new BaseNode(parameters.getArrivalPointId(), parameters.getArrivalTime());
 

@@ -4,6 +4,7 @@ import com.akasiyanik.trip.domain.InputParameters;
 import com.akasiyanik.trip.domain.Mode;
 import com.akasiyanik.trip.domain.network.arcs.BaseArc;
 import com.akasiyanik.trip.domain.network.arcs.TransferArc;
+import com.akasiyanik.trip.domain.network.arcs.VisitArc;
 import com.akasiyanik.trip.domain.network.arcs.WalkArc;
 import com.akasiyanik.trip.domain.network.nodes.BaseNode;
 import com.akasiyanik.trip.service.walk.WalkDistance;
@@ -31,7 +32,10 @@ public class WalkingArcsGenerator {
     @Autowired
     private MongoWalkDistanceRepository walkDistanceRepo;
 
-    public List<BaseArc> generateArcs(InputParameters parameters, List<BaseArc> transportArcs) {
+    public List<BaseArc> generateArcs(InputParameters parameters, Set<BaseArc> allArcs) {
+
+        Map<String, Integer> visitPoiDuration = parameters.getVisitPoi();
+        Set<String> visitPoiIds = parameters.getVisitPoi().keySet();
 
         String firstNodeId = parameters.getDeparturePointId();
         int departureTime = TimeUtils.timeToMinutes(parameters.getDepartureTime());
@@ -61,13 +65,14 @@ public class WalkingArcsGenerator {
 //        walkMap.get(firstNodeId).stream();
 
         Set<BaseArc> walkingArcs = new HashSet<>();
+        Set<BaseArc> visitArcs = new HashSet<>();
         Set<BaseArc> transferArcs = new HashSet<>();
 
         Multimap<String, BaseNode> nodesByEnd = TreeMultimap.create(Ordering.natural(), (BaseNode n1, BaseNode n2) -> n1.getTime() - n2.getTime());
-        transportArcs.stream().filter(a -> a.getMode().isTransport()).map(BaseArc::getJ).forEach(n -> nodesByEnd.put(n.getId(), n));
+        allArcs.stream().filter(a -> a.getMode().isTransport() || a.getMode().equals(Mode.VISIT)).map(BaseArc::getJ).forEach(n -> nodesByEnd.put(n.getId(), n));
 
         Multimap<String, BaseNode> nodesByStart = TreeMultimap.create(Ordering.natural(), (BaseNode n1, BaseNode n2) -> n1.getTime() - n2.getTime());
-        transportArcs.stream().filter(a -> a.getMode().isTransport()).map(BaseArc::getI).forEach(n -> nodesByStart.put(n.getId(), n));
+        allArcs.stream().filter(a -> a.getMode().isTransport() || a.getMode().equals(Mode.VISIT)).map(BaseArc::getI).forEach(n -> nodesByStart.put(n.getId(), n));
 
 
         BaseNode depNode = new BaseNode(firstNodeId, departureTime);
@@ -104,8 +109,9 @@ public class WalkingArcsGenerator {
 
                             BaseNode newNode = new BaseNode(dist.getSecondNodeId(), endTime);
                             newNodes.add(newNode);
-                            walkingArcs.add(new WalkArc(node, newNode));
+//                            nodesByStart.put(node.getId(), node);
 
+                            walkingArcs.add(new WalkArc(node, newNode));
 
                             Collection<BaseNode> startNodes = nodesByStart.get(newNode.getId());
                             for (BaseNode startNode : startNodes) {
@@ -114,7 +120,22 @@ public class WalkingArcsGenerator {
 //                                        break;
                                 }
                             }
-                            //add Transfer Arc
+
+                            if (visitPoiIds.contains(newNode.getId())) {
+                                BaseNode visitEnd = new BaseNode(newNode.getId(), newNode.getTime() + visitPoiDuration.get(newNode.getId()));
+                                visitArcs.add(new VisitArc(newNode, visitEnd));
+                                newNodes.add(visitEnd);
+
+                                for (BaseNode startNode : startNodes) {
+                                    if (startNode.getTime() > visitEnd.getTime()) {
+                                        transferArcs.add(new TransferArc(visitEnd, startNode));
+//                                        break;
+                                    }
+                                }
+
+                            }
+
+
                         }
                     }
                 }

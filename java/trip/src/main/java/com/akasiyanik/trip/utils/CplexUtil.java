@@ -3,6 +3,8 @@ package com.akasiyanik.trip.utils;
 import com.akasiyanik.trip.domain.Mode;
 import com.akasiyanik.trip.domain.network.arcs.BaseArc;
 import com.akasiyanik.trip.domain.network.nodes.BaseNode;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
 import ilog.concert.IloException;
 import ilog.concert.IloIntVar;
 import ilog.concert.IloNumExpr;
@@ -10,6 +12,7 @@ import ilog.concert.IloNumVar;
 import ilog.cplex.IloCplex;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author akasiyanik
@@ -280,4 +283,30 @@ public final class CplexUtil {
             }
         }
     }
+
+//    public static void addForbidCycleWalking(IloCplex model, IloIntVar[] x, List<BaseArc> allArcs) throws IloException {
+//
+//        List<BaseArc> walkArcs = allArcs.stream().filter(a -> a.getMode().equals(Mode.WALK)).collect(Collectors.toList());
+//        Multimap<BaseNode, BaseArc> outArcs = ArrayListMultimap.create();
+//        Multimap<BaseNode, BaseArc> inArcs = ArrayListMultimap.create();
+//        walkArcs.forEach(a -> {
+//            outArcs.put(a.getI(), a);
+//            inArcs.put(a.getJ(), a);
+//        });
+//
+//        Set<BaseNode> nodes = new HashSet<>();
+//        nodes.addAll(outArcs.keySet());
+//        nodes.addAll(inArcs.keySet());
+//
+//        for (BaseNode node : nodes) {
+//            Collection<BaseArc> in = inArcs.get(node);
+//            for (BaseArc)
+//            Collection<BaseArc> out = outArcs.get(node);
+//        }
+//
+//
+//
+//
+//    }
+
 }

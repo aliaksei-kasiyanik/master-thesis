@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author akasiyanik
@@ -19,27 +21,25 @@ public class NetworkGenerationService {
     @Autowired
     private MinskTransNetworkGenerator minskTransNetworkGenerator;
 
-//    @Autowired
-//    private MetroNetworkGenerator metroNetworkGenerator;
-
     @Autowired
     private DummyArcsGenerator dummyArcsGenerator;
 
     @Autowired
     private WalkingArcsGenerator walkingArcsGenerator;
 
-
+    @Autowired
+    private VisitArcsGenerator visitArcsGenerator;
 
     public List<BaseArc> generateNetwork(InputParameters parameters) {
 
-        List<BaseArc> allArcs = new ArrayList<>();
-//        allArcs.addAll(metroNetworkGenerator.generateArcs(parameters));
-        List<BaseArc> transportArcs = minskTransNetworkGenerator.generateArcs(parameters);
-        allArcs.addAll(transportArcs);
-        allArcs.addAll(walkingArcsGenerator.generateArcs(parameters, transportArcs));
+        Set<BaseArc> allArcs = new HashSet<>();
+
+        allArcs.addAll(minskTransNetworkGenerator.generateArcs(parameters));
+        allArcs.addAll(visitArcsGenerator.generateArcs(parameters, allArcs));
+        allArcs.addAll(walkingArcsGenerator.generateArcs(parameters, allArcs));
         allArcs.addAll(dummyArcsGenerator.generateArcs(parameters, allArcs));
 
-        return allArcs;
+        return new ArrayList<>(allArcs);
     }
 
 }

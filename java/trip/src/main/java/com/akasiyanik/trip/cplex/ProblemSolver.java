@@ -229,6 +229,8 @@ public class ProblemSolver {
 
         //constraint(9)
         addRequiredTransferBetweenTransportModesConstraint(model, x, arcs);
+
+//        addForbidCycleWalking(model, x, arcs);
     }
 
 

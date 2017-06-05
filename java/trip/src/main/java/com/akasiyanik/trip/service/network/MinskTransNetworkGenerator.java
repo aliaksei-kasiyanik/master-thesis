@@ -52,7 +52,6 @@ public class MinskTransNetworkGenerator implements NetworkGenerator<BaseArc> {
 
 
         List<MinskTransRoute> routes = getRoutes(testRouteEnums);
-//        routes = filterThreadsByTime(depTime, arrTime, routes);
 
         Multimap<Mode, List<BaseArc>> arcsByThread = generateTransportArcs(routes, departureTime, arrivalTime);
 
