@@ -49,10 +49,10 @@ public class SpringRunner implements ApplicationRunner {
 //            add(new ImmutablePair<>(RouteCriteria.MIN_COST, 0.1));
 //            add(new ImmutablePair<>(RouteCriteria.MIN_CO2, 0.3));
 //            add(new ImmutablePair<>(RouteCriteria.MAX_POI, 0.1));
-            add(new ImmutablePair<>(RouteCriteria.MIN_TIME, 0.1));
+            add(new ImmutablePair<>(RouteCriteria.MIN_TIME, 0.0));
 //            add(new ImmutablePair<>(RouteCriteria.MIN_CHANGES, 0.1));
 //            add(new ImmutablePair<>(RouteCriteria.MIN_TIME_TRANSFER, 0.1));
-//            add(new ImmutablePair<>(RouteCriteria.MIN_TIME_WALKING, 0.1));
+            add(new ImmutablePair<>(RouteCriteria.MIN_TIME_WALKING, 0.0));
         }};
 
         return new InputParameters(

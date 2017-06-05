@@ -31,9 +31,9 @@ import java.util.stream.Collectors;
 public class MinskTransNetworkGenerator implements NetworkGenerator<BaseArc> {
 
     private static final EnumSet<MinskTransRouteEnum> testRouteEnums = EnumSet.of(
-//            MinskTransRouteEnum.BUS_25,
-//            MinskTransRouteEnum.BUS_19,
-//            MinskTransRouteEnum.TROL_11,
+            MinskTransRouteEnum.BUS_25,
+            MinskTransRouteEnum.BUS_19,
+            MinskTransRouteEnum.TROL_11,
             MinskTransRouteEnum.METRO_1,
             MinskTransRouteEnum.METRO_2
     );

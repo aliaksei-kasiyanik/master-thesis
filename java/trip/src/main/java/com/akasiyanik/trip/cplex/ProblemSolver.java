@@ -119,7 +119,7 @@ public class ProblemSolver {
         minTimeMask = new int[arcs.size()];
         finishArcs.forEach(i -> {
             BaseArc arc = arcs.get(i);
-            if (arc.getMode() == Mode.DUMMY_START_FINISH) {
+            if (arc.getMode().equals(Mode.DUMMY_START_FINISH)) {
                 minTimeMask[i] = arc.getI().getTime();
             } else {
                 minTimeMask[i] = arc.getJ().getTime();
@@ -155,9 +155,7 @@ public class ProblemSolver {
         IntStream
                 .range(0, arcs.size())
                 .filter(i -> arcs.get(i).getMode().equals(Mode.WALK))
-                .forEach(i -> {
-                    walkingTimeMask[i] = arcs.get(i).getTime();
-                });
+                .forEach(i -> walkingTimeMask[i] = arcs.get(i).getTime());
 
     }
 
