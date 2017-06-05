@@ -53,12 +53,6 @@ public class ProblemSolver {
 
     private Map<BaseNode, Set<Integer>> incomingArcs;
 
-    private Map<BaseNode, Set<Integer>> outInTransferArcs;
-
-    private Map<BaseNode, Map<Mode, Set<Integer>>> inTransportArcsByNode;
-
-    private Map<BaseNode, Map<Mode, Set<Integer>>> outTransportArcsByNode;
-
     private BaseNode startI;
 
     private BaseNode finishJ;
@@ -98,11 +92,6 @@ public class ProblemSolver {
 
         outgoingArcs = getOutgoingArcsByNodes(arcs);
         incomingArcs = getIncomingArcsByNodes(arcs);
-
-        outInTransferArcs = getInOutTransferArcsByNodes(arcs);
-
-        inTransportArcsByNode = getInTransportArcsByNodes(arcs);
-        outTransportArcsByNode = getOutTransportArcsByNodes(arcs);
 
         startArcs = outgoingArcs.remove(startI);
         finishArcs = incomingArcs.remove(finishJ);
@@ -220,22 +209,26 @@ public class ProblemSolver {
         //constraints (1) - (2)
         addOnlyInOutArcConstraint(model, x, startArcs);
         addOnlyInOutArcConstraint(model, x, finishArcs);
+        startArcs = null;
+        finishArcs = null;
 
         // constraint (5)
         addEqualInOutForIntermediateNodesConstraint(model, x, outgoingArcs, incomingArcs);
+        incomingArcs = null;
 
         //constraint(6)
-        addAtMostOneTransferArcForNodeConstraint(model, x, outInTransferArcs);
+        addAtMostOneTransferArcForNodeConstraint(model, x, arcs);
 
         //constraint (7)
         addAtMostOneVisitArcForLocationConstraint(model, x, visitArcsByLocation);
+        visitArcsByLocation = null;
 
         //constraint (8)
         addStartOnlyInSpecifiedLocationConstraint(model, x, outgoingArcs, startI);
+        outgoingArcs = null;
 
         //constraint(9)
-        addRequiredTransferBetweenTransportModesConstraint(model, x, inTransportArcsByNode, outTransportArcsByNode);
-
+        addRequiredTransferBetweenTransportModesConstraint(model, x, arcs);
     }
 
 

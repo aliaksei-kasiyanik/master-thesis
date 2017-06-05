@@ -133,7 +133,10 @@ public final class CplexUtil {
         return result;
     }
 
-    public static void addRequiredTransferBetweenTransportModesConstraint(IloCplex model, IloIntVar[] x, Map<BaseNode, Map<Mode, Set<Integer>>> inTransportArcs, Map<BaseNode, Map<Mode, Set<Integer>>> outTransportArcs) throws IloException {
+    public static void addRequiredTransferBetweenTransportModesConstraint(IloCplex model, IloIntVar[] x, List<BaseArc> allArcs) throws IloException {
+        Map<BaseNode, Map<Mode, Set<Integer>>> inTransportArcs = getInTransportArcsByNodes(allArcs);
+        Map<BaseNode, Map<Mode, Set<Integer>>> outTransportArcs = getOutTransportArcsByNodes(allArcs);
+
         Set<BaseNode> nodes = new HashSet<>();
         nodes.addAll(inTransportArcs.keySet());
         nodes.addAll(outTransportArcs.keySet());
@@ -209,7 +212,8 @@ public final class CplexUtil {
         }
     }
 
-    public static void addAtMostOneTransferArcForNodeConstraint(IloCplex model, IloIntVar[] x, Map<BaseNode, Set<Integer>> transferArcsByNode) throws IloException {
+    public static void addAtMostOneTransferArcForNodeConstraint(IloCplex model, IloIntVar[] x, List<BaseArc> allArcs) throws IloException {
+        Map<BaseNode, Set<Integer>> transferArcsByNode = getInOutTransferArcsByNodes(allArcs);
         for (Set<Integer> transferArcs : transferArcsByNode.values()) {
             if (transferArcs.size() > 1) {
                 IloNumVar[] arcsVariables = transferArcs
