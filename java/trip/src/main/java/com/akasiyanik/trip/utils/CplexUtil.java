@@ -171,8 +171,10 @@ public final class CplexUtil {
 
                     for (Mode outMode : outModes) {
                         if (!inMode.equals(outMode)) {
-                           model.addLe(model.sum(inArcsSum, outArcsSums.get(outMode)), 1.0);
+                            model.addLe(model.sum(inArcsSum, outArcsSums.get(outMode)), 1.0);
                         }
+//                        in case all transport nodes created
+//                        model.addLe(model.sum(inArcsSum, outArcsSums.get(outMode)), 1.0);
                     }
 
                 }
@@ -180,12 +182,6 @@ public final class CplexUtil {
             }
 
         }
-
-
-
-
-
-
     }
 
     public static void addStartOnlyInSpecifiedLocationConstraint(IloCplex model, IloIntVar[] x, Map<BaseNode, Set<Integer>> outgoingArcs, BaseNode startI) throws IloException {

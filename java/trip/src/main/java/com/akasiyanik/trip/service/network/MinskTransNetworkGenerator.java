@@ -75,7 +75,7 @@ public class MinskTransNetworkGenerator implements NetworkGenerator<BaseArc> {
             if (nodesWithId.size() > 1) {
                 List<BaseNode> sortedNodes = nodesWithId.stream().sorted((BaseNode n1, BaseNode n2) -> n1.getTime() - n2.getTime()).collect(Collectors.toList());
                 for (int i = 0; i < nodesWithId.size(); i++) {
-                    for (int j = i + 1; j < nodesWithId.size(); j++) {
+                    for (int j = i; j < nodesWithId.size(); j++) {
                         BaseNode I = sortedNodes.get(i);
                         BaseNode J = sortedNodes.get(j);
                         if (!I.equals(J)) {
@@ -158,6 +158,52 @@ public class MinskTransNetworkGenerator implements NetworkGenerator<BaseArc> {
         }
         return result;
     }
+
+//    private Multimap<Mode, List<BaseArc>> generateTransportArcs(List<MinskTransRoute> routes, LocalTime departureTime, LocalTime arrivalTime) {
+//        int startTime = TimeUtils.timeToMinutes(departureTime);
+//        int finishTime = TimeUtils.timeToMinutes(arrivalTime);
+//
+//        Multimap<Mode, List<BaseArc>> result = ArrayListMultimap.create();
+//        for (MinskTransRoute route : routes) {
+//            List<String> stopsIds = route.getStopIds();
+//            List<TransportStop> stops = stopRepository.findByIds(stopsIds);
+//            Map<String, TransportStop> stopByIds = stops.stream().collect(Collectors.toMap(TransportStop::getId, Function.identity()));
+//
+//
+//            for (List<Integer> thread : route.getThreads()) {
+//                if (thread.get(0) > finishTime || thread.get(thread.size() - 1) < startTime) {
+//                    continue;
+//                }
+//                List<BaseArc> threadArcs = new ArrayList<>();
+//                for (int i = 0; i < thread.size() - 1; i++) {
+//                    int time = thread.get(i);
+//
+//                    if (time >= startTime) {
+//
+//                        String startStopId = stopsIds.get(i);
+//                        TransportStop startStop = stopByIds.get(startStopId);
+//
+//                        for (int j = i + 1; j < thread.size(); j++) {
+//                            int nextTime = thread.get(j);
+//
+//                            if (nextTime <= finishTime) {
+//
+//                                String finishStopId = stopsIds.get(j);
+//                                TransportStop finishStop = stopByIds.get(finishStopId);
+//
+//                                threadArcs.add(ArcFactory.getArc(route.getMode(), startStop.getId(), time, finishStop.getId(), nextTime));
+//                            }
+//                        }
+//                    }
+//                }
+//
+//                if (!threadArcs.isEmpty()) {
+//                    result.put(route.getMode(), threadArcs);
+//                }
+//            }
+//        }
+//        return result;
+//    }
 
     private List<MinskTransRoute> getRoutes(EnumSet<MinskTransRouteEnum> routeEnums) {
         List<MinskTransRoute> result = new ArrayList<>();
