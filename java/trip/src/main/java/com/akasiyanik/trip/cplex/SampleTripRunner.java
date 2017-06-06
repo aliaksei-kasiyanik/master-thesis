@@ -1,8 +1,10 @@
 package com.akasiyanik.trip.cplex;
 
+import com.akasiyanik.trip.cplex.solution.RouteSolution;
 import com.akasiyanik.trip.domain.InputParameters;
 import com.akasiyanik.trip.domain.Mode;
 import com.akasiyanik.trip.domain.RouteCriteria;
+import com.akasiyanik.trip.domain.Type;
 import com.akasiyanik.trip.domain.network.arcs.BaseArc;
 import com.akasiyanik.trip.utils.TimeUtils;
 import org.apache.commons.lang3.tuple.ImmutablePair;
@@ -29,7 +31,7 @@ public class SampleTripRunner {
         List<BaseArc> arcs = new CplexNetworkBuilder(parameters).build();
 
         ProblemSolver solver = new ProblemSolver(arcs, parameters);
-        List<List<BaseArc>> result = solver.solve();
+        RouteSolution result = solver.solve();
 
         logger.info("{}", result);
     }
@@ -42,7 +44,7 @@ public class SampleTripRunner {
         LocalTime arrivalTime = TimeUtils.minutesToTime(50);
 //        LocalTime depatureTime =  LocalTime.of(9, 0);
 //        LocalTime arrivalTime = LocalTime.of(11, 0);
-        Set<Mode> modes = EnumSet.of(Mode.BUS_1_B);
+        Set<Type> modes = EnumSet.of(Type.BUS);
         Map<String, Integer> visitPois = new HashMap<String, Integer>() {{
             put("3", 10);
             put("7", 7);

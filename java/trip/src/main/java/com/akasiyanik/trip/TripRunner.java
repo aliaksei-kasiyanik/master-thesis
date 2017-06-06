@@ -1,9 +1,11 @@
 package com.akasiyanik.trip;
 
 import com.akasiyanik.trip.cplex.ProblemSolver;
+import com.akasiyanik.trip.cplex.solution.RouteSolution;
 import com.akasiyanik.trip.domain.InputParameters;
 import com.akasiyanik.trip.domain.Mode;
 import com.akasiyanik.trip.domain.RouteCriteria;
+import com.akasiyanik.trip.domain.Type;
 import com.akasiyanik.trip.domain.network.arcs.BaseArc;
 import com.akasiyanik.trip.service.RoutePrinter;
 import com.akasiyanik.trip.service.network.NetworkGenerationService;
@@ -41,7 +43,7 @@ public class TripRunner implements ApplicationRunner {
         List<BaseArc> arcs = networkService.generateNetwork(parameters);
 
         ProblemSolver solver = new ProblemSolver(arcs, parameters);
-        List<List<BaseArc>> result = solver.solve();
+        RouteSolution result = solver.solve();
 
         logger.debug("{}", result);
         printer.print(result);
@@ -54,9 +56,12 @@ public class TripRunner implements ApplicationRunner {
         String arrivalPoint = "592ef61cb929d5fc5c451647";// Кропоткина
         LocalTime arrivalTime = LocalTime.of(11, 0);
 
-        Set<Mode> modes = EnumSet.of(
-                Mode.BUS_25_S,
-                Mode.BUS_25_B
+        Set<Type> modes = EnumSet.of(
+                Type.WALK,
+                Type.BUS,
+                Type.METRO,
+                Type.TRAM,
+                Type.TROLLEYBUS
                 );
         Map<String, Integer> visitPois = new HashMap<String, Integer>() {{
             put("59317e620cc7842d442760a9", 10);

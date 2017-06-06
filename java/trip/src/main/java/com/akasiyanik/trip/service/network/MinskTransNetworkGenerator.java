@@ -33,7 +33,7 @@ public class MinskTransNetworkGenerator implements NetworkGenerator<BaseArc> {
     private static final EnumSet<MinskTransRouteEnum> testRouteEnums = EnumSet.of(
             MinskTransRouteEnum.BUS_25,
             MinskTransRouteEnum.BUS_19,
-            MinskTransRouteEnum.TROL_11,
+            MinskTransRouteEnum.TROL_22,
             MinskTransRouteEnum.METRO_1,
             MinskTransRouteEnum.METRO_2
     );
@@ -51,7 +51,7 @@ public class MinskTransNetworkGenerator implements NetworkGenerator<BaseArc> {
         LocalTime arrivalTime = parameters.getArrivalTime();
 
 
-        List<MinskTransRoute> routes = getRoutes(testRouteEnums);
+        List<MinskTransRoute> routes = getRoutes(parameters.getModes());
 
         Multimap<Mode, List<BaseArc>> arcsByThread = generateTransportArcs(routes, departureTime, arrivalTime);
 
@@ -204,12 +204,8 @@ public class MinskTransNetworkGenerator implements NetworkGenerator<BaseArc> {
         return result;
     }
 
-    private List<MinskTransRoute> getRoutes(EnumSet<MinskTransRouteEnum> routeEnums) {
-        List<MinskTransRoute> result = new ArrayList<>();
-        for (MinskTransRouteEnum routeEnum : routeEnums) {
-            result.addAll(routeRepository.findByTypeAndNumber(routeEnum.getType(), routeEnum.getNumber()));
-        }
-        return result;
+    private List<MinskTransRoute> getRoutes(Set<Type> modes) {
+        return routeRepository.findByTypes(modes);
     }
 
     private List<MinskTransRoute> filterThreadsByTime(LocalTime departureTime, LocalTime arrivalTime, List<MinskTransRoute> routes) {

@@ -1,5 +1,7 @@
 package com.akasiyanik.trip.cplex;
 
+import com.akasiyanik.trip.cplex.solution.ProblemSolution;
+import com.akasiyanik.trip.cplex.solution.RouteSolution;
 import com.akasiyanik.trip.domain.InputParameters;
 import com.akasiyanik.trip.domain.Mode;
 import com.akasiyanik.trip.domain.RouteCriteria;
@@ -10,6 +12,7 @@ import ilog.concert.IloIntExpr;
 import ilog.concert.IloIntVar;
 import ilog.concert.IloObjective;
 import ilog.cplex.IloCplex;
+import org.apache.commons.lang3.time.StopWatch;
 import org.apache.commons.lang3.tuple.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -149,7 +152,7 @@ public class ProblemSolver {
     }
 
 
-    public List<List<BaseArc>> solve() {
+    public RouteSolution solve() {
 
         try {
             model = new IloCplex();
@@ -157,16 +160,21 @@ public class ProblemSolver {
 
             addMandatoryConstraints();
 
-            List<List<BaseArc>> result = new ArrayList<>();
             List<Pair<RouteCriteria, Double>> criteria = parameters.getCriteria();
 
             double objectiveValue = 0.0;
+
+            double[] values = null;
+
+            RouteSolution routeSolution = new RouteSolution();
+            routeSolution.setArcsCount(arcs.size());
 
             for (int i = 0; i < criteria.size(); i++) {
 
                 if (i > 0) {
                     Pair<RouteCriteria, Double> prevCriteria = criteria.get(i - 1);
                     addConstraintFromPreviousProblem(prevCriteria.getLeft(), prevCriteria.getRight(), objectiveValue);
+                    model.addMIPStart(x, values);
                 }
                 addObjectiveFunction(criteria.get(i).getLeft());
 
@@ -174,27 +182,38 @@ public class ProblemSolver {
 
                 logger.info("CPLEX problem solving...");
 
+                StopWatch watch = new StopWatch();
+                watch.start();
                 boolean isSolved = model.solve();
+                watch.stop();
 
                 if (isSolved) {
                     logger.info("CPLEX Solution status = " + model.getStatus());
                     objectiveValue = model.getObjValue();
                     logger.info("Solution value  = " + objectiveValue);
-                    List<BaseArc> solution = new ArrayList<>();
-                    double[] values = model.getValues(x);
+                    List<BaseArc> route = new ArrayList<>();
+                    values = model.getValues(x);
                     for (int j = 0; j < x.length; ++j) {
                         if (values[j] == 1) {
-                            solution.add(arcs.get(j));
+                            route.add(arcs.get(j));
                         }
                     }
-                    Collections.sort(solution, (a1, a2) -> a1.getI().getTime() - a2.getI().getTime());
-                    result.add(solution);
+                    Collections.sort(route, (a1, a2) -> a1.getI().getTime() - a2.getI().getTime());
+                    ProblemSolution solution = new ProblemSolution();
+                    solution.setCriteria(criteria.get(i).getLeft());
+                    solution.setEpsilon(criteria.get(i).getRight());
+                    solution.setObjectiveValue(objectiveValue);
+                    solution.setTime(watch.getTime());
+                    solution.setRoute(route);
+                    solution.setConstraintsCount(model.getNrows());
+
+                    routeSolution.getSolutions().add(solution);
                 } else {
                     logger.warn("CPLEX Solution status = " + model.getStatus());
                 }
             }
 
-            return result;
+            return routeSolution;
         } catch (IloException e) {
             throw new RuntimeException(e);
         }

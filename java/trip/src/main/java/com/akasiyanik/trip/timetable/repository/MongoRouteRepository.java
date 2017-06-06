@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author akasiyanik
@@ -50,6 +51,12 @@ public class MongoRouteRepository {
     public List<MinskTransRoute> findByTypeAndNumber(Type type, String number) {
         Query query = new Query();
         query.addCriteria(Criteria.where("number").is(number).and("type").is(type));
+        return mongoTemplate.find(query, MinskTransRoute.class, collectionName);
+    }
+
+    public List<MinskTransRoute> findByTypes(Set<Type> types) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("type").in(types));
         return mongoTemplate.find(query, MinskTransRoute.class, collectionName);
     }
 

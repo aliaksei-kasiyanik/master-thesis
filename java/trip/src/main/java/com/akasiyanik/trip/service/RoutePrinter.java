@@ -1,5 +1,7 @@
 package com.akasiyanik.trip.service;
 
+import com.akasiyanik.trip.cplex.solution.ProblemSolution;
+import com.akasiyanik.trip.cplex.solution.RouteSolution;
 import com.akasiyanik.trip.domain.network.arcs.BaseArc;
 import com.akasiyanik.trip.timetable.repository.MongoStopRepository;
 import org.slf4j.Logger;
@@ -30,16 +32,24 @@ public class RoutePrinter {
     @Autowired
     private MongoStopRepository stopRepository;
 
-    public void print(List<List<BaseArc>> routes) {
+    public void print(RouteSolution routeSolution) {
 
         Path filePath = Paths.get(RESULT_DIR, LocalDateTime.now().toString() + ".txt");
 
         List<String> lines = new ArrayList<>();
+        lines.add("RESULTS\n");
+        lines.add("Network Size (Arcs count): " + routeSolution.getArcsCount());
+        lines.add("Total Time: " + (routeSolution.getTotalTime() / 1000.0) + "\n");
+
         int i = 1;
-        for (List<BaseArc> route : routes) {
+        for (ProblemSolution problemSolution : routeSolution.getSolutions()) {
             lines.add("SOLUTION " + i);
+            lines.add("Criteria: " + problemSolution.getCriteria() + " | Epsilon: " + problemSolution.getEpsilon());
+            lines.add("Constraints Count: " + problemSolution.getConstraintsCount());
+            lines.add("Objective Value: " + problemSolution.getObjectiveValue());
+            lines.add("Solution Time (sec): "+ (problemSolution.getTime() / 1000.0));
             lines.addAll(
-                    route.stream().map(arc -> String.format("%20s %40s %2d:%2d %40s %2d:%2d",
+                    problemSolution.getRoute().stream().map(arc -> String.format("%20s %40s %2d:%2d %40s %2d:%2d",
                             arc.getMode(),
                             stopRepository.findById(arc.getI().getId()).getName(),
                             arc.getI().getLocalTime().getHour(),
@@ -49,6 +59,7 @@ public class RoutePrinter {
                             arc.getJ().getLocalTime().getMinute()
                     )).collect(Collectors.toList())
             );
+            lines.add("\n");
             i++;
         }
         try {

@@ -8,6 +8,8 @@ public enum Type {
 
     FAKE,
 
+    WALK,
+
     BUS(55, 8), // 0.8 mg/km
     TRAM(55, 0),
     METRO(60, 0),

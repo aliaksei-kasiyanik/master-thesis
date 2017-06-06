@@ -1,6 +1,7 @@
 package com.akasiyanik.trip.service.network;
 
 import com.akasiyanik.trip.domain.InputParameters;
+import com.akasiyanik.trip.domain.Type;
 import com.akasiyanik.trip.domain.network.arcs.BaseArc;
 import com.akasiyanik.trip.service.walk.OpenRouteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,9 @@ public class NetworkGenerationService {
 
         allArcs.addAll(minskTransNetworkGenerator.generateArcs(parameters));
         allArcs.addAll(visitArcsGenerator.generateArcs(parameters, allArcs));
-        allArcs.addAll(walkingArcsGenerator.generateArcs(parameters, allArcs));
+        if (parameters.getModes().contains(Type.WALK)) {
+            allArcs.addAll(walkingArcsGenerator.generateArcs(parameters, allArcs));
+        }
         allArcs.addAll(dummyArcsGenerator.generateArcs(parameters, allArcs));
 
         return new ArrayList<>(allArcs);

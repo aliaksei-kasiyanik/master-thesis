@@ -30,7 +30,7 @@ public class InputParameters {
     private final Map<String, Integer> visitPoi;
 
     // eligible transport nodes
-    private final Set<Mode> modes;
+    private final Set<Type> modes;
 
     // ranked criteria and relative deviations
     private final List<Pair<RouteCriteria, Double>> criteria;
@@ -39,7 +39,7 @@ public class InputParameters {
                            String arrivalPointId,
                            LocalTime departureTime,
                            LocalTime arrivalTime,
-                           Set<Mode> modes,
+                           Set<Type> modes,
                            Map<String, Integer> visitPoi,
                            List<Pair<RouteCriteria, Double>> criteria) {
         this.criteria = criteria;
@@ -71,7 +71,7 @@ public class InputParameters {
         return visitPoi;
     }
 
-    public Set<Mode> getModes() {
+    public Set<Type> getModes() {
         return modes;
     }
 
