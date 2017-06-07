@@ -156,6 +156,7 @@ public class ProblemSolver {
 
         try {
             model = new IloCplex();
+//            model.setParam(IloCplex.IntParam.ParallelMode, IloCplex.ParallelMode.Opportunistic);
             x = model.boolVarArray(arcs.size());
 
             addMandatoryConstraints();

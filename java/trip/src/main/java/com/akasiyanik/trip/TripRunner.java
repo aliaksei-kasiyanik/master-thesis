@@ -50,7 +50,7 @@ public class TripRunner implements ApplicationRunner {
     }
 
     private InputParameters getParameters() {
-        String departurePoint = "59317e620cc7842d442760af"; // uralskaya
+        String departurePoint = "59317e620cc7842d442760af"; // Mahileuskaya
         LocalTime departureTime =  LocalTime.of(8, 58);
 
         String arrivalPoint = "592ef61cb929d5fc5c451647";// Кропоткина
@@ -65,17 +65,15 @@ public class TripRunner implements ApplicationRunner {
                 );
         Map<String, Integer> visitPois = new HashMap<String, Integer>() {{
             put("59317e620cc7842d442760a9", 10);
-//            put(7L, 7);
-//            put(8L, 12);
         }};
         List<Pair<RouteCriteria, Double>> criteria = new LinkedList<Pair<RouteCriteria, Double>>() {{
-//            add(new ImmutablePair<>(RouteCriteria.MIN_CO2, 0.3));
             add(new ImmutablePair<>(RouteCriteria.MAX_POI, 0.0));
-            add(new ImmutablePair<>(RouteCriteria.MIN_TIME, 0.0));
-//            add(new ImmutablePair<>(RouteCriteria.MIN_CHANGES, 0.1));
-            add(new ImmutablePair<>(RouteCriteria.MIN_TIME_WALKING, 0.0));
-            add(new ImmutablePair<>(RouteCriteria.MIN_TIME_TRANSFER, 0.0));
-            add(new ImmutablePair<>(RouteCriteria.MIN_COST, 0.0));
+            add(new ImmutablePair<>(RouteCriteria.MIN_TIME, 0.1));
+            add(new ImmutablePair<>(RouteCriteria.MIN_TIME_WALKING, 0.1));
+            add(new ImmutablePair<>(RouteCriteria.MIN_TIME_TRANSFER, 0.1));
+            add(new ImmutablePair<>(RouteCriteria.MIN_COST, 0.3));
+            add(new ImmutablePair<>(RouteCriteria.MIN_CHANGES, 0.3));
+            add(new ImmutablePair<>(RouteCriteria.MIN_CO2, 0.3));
         }};
 
         return new InputParameters(
