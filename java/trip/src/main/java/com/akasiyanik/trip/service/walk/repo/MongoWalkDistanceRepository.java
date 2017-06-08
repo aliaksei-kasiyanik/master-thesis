@@ -32,7 +32,7 @@ public class MongoWalkDistanceRepository {
     public List<WalkDistance> findByDistance(Long meters) {
         Query query = new Query();
         query.addCriteria(Criteria.where("meters").lte(meters));
-        return mongoTemplate.findAll(WalkDistance.class, collectionName);
+        return mongoTemplate.find(query, WalkDistance.class, collectionName);
     }
 
     public boolean existDistance(String stopId1, String stopId2) {

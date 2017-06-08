@@ -18,7 +18,7 @@ public class BaseArc {
     private final Mode mode;
 
     public BaseArc(BaseNode i, BaseNode j, Mode mode) {
-        if (i.getTime() > j.getTime()) {
+        if (i.getTime() >= j.getTime()) {
             throw new RuntimeException("j node time can't be after i node time");
         }
         this.i = i;

@@ -50,6 +50,9 @@ public class GoogleDistanceService {
 
             if (element.get("status").getAsString().equals("OK")) {
                 Long minutes = element.getAsJsonObject("duration").get("value").getAsLong() / 60;
+                if (minutes == 0) {
+                    minutes = 1L;
+                }
                 Long meters = element.getAsJsonObject("distance").get("value").getAsLong();
 
                 walkDistance = new WalkDistance();

@@ -121,6 +121,9 @@ public class HtmlTimetableParser {
             Long minskTransStopId = Long.valueOf(idString.trim());
 
             MinskTransStop minskTransStop = minskTransStopRepository.getStopByMinorIdAndName(minskTransStopId, name);
+            if (minskTransStop == null) {
+                minskTransStop = minskTransStopRepository.getStopByMinorId(minskTransStopId);
+            }
             int stopInd = 0;
             for (Long mtStopId : minskTransStop.getIds()) {
                 if (mtStopId.equals(minskTransStopId)) {

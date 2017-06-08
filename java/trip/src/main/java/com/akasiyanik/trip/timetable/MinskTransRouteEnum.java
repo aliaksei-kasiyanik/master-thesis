@@ -17,7 +17,7 @@ public enum MinskTransRouteEnum {
     BUS_25("25", Type.BUS, Arrays.asList(Mode.BUS_25_S, Mode.BUS_25_B), "http://www.minsktrans.by/city/#minsk/bus;198746;14490;time"),
     BUS_64("64", Type.BUS, Arrays.asList(Mode.BUS_64_S, Mode.BUS_64_B), "http://www.minsktrans.by/city/#minsk/bus;185800;14386;time"),
     BUS_100("100", Type.BUS, Arrays.asList(Mode.BUS_100_S, Mode.BUS_100_B), "http://www.minsktrans.by/city/#minsk/bus;193049;15014;time"),
-    TRAM_5("5", Type.TRAM, Arrays.asList(Mode.TRAM_5_S, Mode.TRAM_5_B), "http://www.minsktrans.by/city/#minsk/tram;190425;15183;time"),
+    TRAM_5("5", Type.TRAM, Arrays.asList(Mode.TRAM_5_S, Mode.TRAM_5_B), "http://www.minsktrans.by/city/#minsk/tram;196010;15183;time"),
     TRAM_6("6", Type.TRAM, Arrays.asList(Mode.TRAM_6_S, Mode.TRAM_6_B), "http://www.minsktrans.by/city/#minsk/tram;196020;15360;time"),
     TRAM_11("11", Type.TRAM, Arrays.asList(Mode.TRAM_11_S, Mode.TRAM_11_B), "http://www.minsktrans.by/city/#minsk/tram;196026;16191;time"),
 

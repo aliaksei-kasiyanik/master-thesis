@@ -54,7 +54,7 @@ public class DataLoader implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
 //        loadBusStops(false);
-//        loadTimetables(EnumSet.of(MinskTransRouteEnum.TROL_11));
+//        loadTimetables(EnumSet.of(MinskTransRouteEnum.TRAM_11));
 //        metroLoader.load();
 //        distanceLoader.load();
     }

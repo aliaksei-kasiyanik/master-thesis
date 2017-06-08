@@ -66,4 +66,10 @@ public class MongoMinskTransStopRepository {
         query.addCriteria(Criteria.where("name").is(name));
         return mongoTemplate.findOne(query, MinskTransStop.class, collectionName);
     }
+
+    public MinskTransStop getStopByMinorId(Long id) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("ids").is(id));
+        return mongoTemplate.findOne(query, MinskTransStop.class, collectionName);
+    }
 }

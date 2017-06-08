@@ -7,6 +7,7 @@ import com.akasiyanik.trip.domain.Mode;
 import com.akasiyanik.trip.domain.RouteCriteria;
 import com.akasiyanik.trip.domain.network.arcs.BaseArc;
 import com.akasiyanik.trip.domain.network.nodes.BaseNode;
+import com.akasiyanik.trip.utils.TimeUtils;
 import ilog.concert.IloException;
 import ilog.concert.IloIntExpr;
 import ilog.concert.IloIntVar;
@@ -17,6 +18,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.time.LocalTime;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -156,7 +158,7 @@ public class ProblemSolver {
 
         try {
             model = new IloCplex();
-//            model.setParam(IloCplex.IntParam.ParallelMode, IloCplex.ParallelMode.Opportunistic);
+            model.setParam(IloCplex.IntParam.ParallelMode, IloCplex.ParallelMode.Opportunistic);
             x = model.boolVarArray(arcs.size());
 
             addMandatoryConstraints();
@@ -213,6 +215,7 @@ public class ProblemSolver {
                     logger.warn("CPLEX Solution status = " + model.getStatus());
                 }
             }
+            model.end();
 
             return routeSolution;
         } catch (IloException e) {
@@ -262,10 +265,21 @@ public class ProblemSolver {
                 model.addGe(objectiveExpression, Math.floor(prevObjectiveResult * (1 - coeff)));
                 break;
             }
+            case MIN_TIME: {
+                model.addLe(objectiveExpression, getMinTimeConstraint(prevObjectiveResult, coeff));
+                break;
+            }
             default: {
                 model.addLe(objectiveExpression, Math.ceil(prevObjectiveResult * (1 + coeff)));
             }
         }
+    }
+
+    private double getMinTimeConstraint(double finishTime, double coeff) {
+        int startOfTrip = TimeUtils.timeToMinutes(parameters.getDepartureTime());
+        double tripDuration = finishTime - startOfTrip;
+        double newTripDuration = Math.ceil(tripDuration * (1 + coeff));
+        return startOfTrip + newTripDuration;
     }
 
     private void addObjectiveFunction(RouteCriteria criteria) throws IloException {
