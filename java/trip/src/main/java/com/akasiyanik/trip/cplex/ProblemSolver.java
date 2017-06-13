@@ -18,7 +18,6 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.time.LocalTime;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -71,6 +70,9 @@ public class ProblemSolver {
 
     private IloCplex model;
 
+    double[] initSolution;
+
+    double[] lastSolution;
 
     private IloIntExpr maxPoiFunction;
     private IloIntExpr minTimeFunction;
@@ -87,6 +89,13 @@ public class ProblemSolver {
     public ProblemSolver(List<BaseArc> arcs, InputParameters parameters) {
         this.arcs = new ArrayList<>(arcs);
         this.parameters = parameters;
+        build();
+    }
+
+    public ProblemSolver(List<BaseArc> arcs, InputParameters parameters, double[] initSolution) {
+        this.arcs = new ArrayList<>(arcs);
+        this.parameters = parameters;
+        this.initSolution = initSolution;
         build();
     }
 
@@ -158,16 +167,26 @@ public class ProblemSolver {
 
         try {
             model = new IloCplex();
+            model.setParam(IloCplex.Param.Emphasis.MIP, IloCplex.MIPEmphasis.Optimality);
             model.setParam(IloCplex.IntParam.ParallelMode, IloCplex.ParallelMode.Opportunistic);
+            model.setParam(IloCplex.IntParam.Threads, 4);
+            model.setParam(IloCplex.Param.MIP.Strategy.NodeSelect, IloCplex.NodeSelect.DFS);
+            model.setParam(IloCplex.Param.MIP.Strategy.Search, IloCplex.MIPSearch.Dynamic);
             x = model.boolVarArray(arcs.size());
 
             addMandatoryConstraints();
+
+            if (initSolution != null) {
+                model.addMIPStart(x, initSolution);
+            }
 
             List<Pair<RouteCriteria, Double>> criteria = parameters.getCriteria();
 
             double objectiveValue = 0.0;
 
             double[] values = null;
+
+            int MIPStartsNum = 0;
 
             RouteSolution routeSolution = new RouteSolution();
             routeSolution.setArcsCount(arcs.size());
@@ -177,6 +196,7 @@ public class ProblemSolver {
                 if (i > 0) {
                     Pair<RouteCriteria, Double> prevCriteria = criteria.get(i - 1);
                     addConstraintFromPreviousProblem(prevCriteria.getLeft(), prevCriteria.getRight(), objectiveValue);
+//                    model.deleteMIPStarts(0, MIPStartsNum);
                     model.addMIPStart(x, values);
                 }
                 addObjectiveFunction(criteria.get(i).getLeft());
@@ -193,9 +213,13 @@ public class ProblemSolver {
                 if (isSolved) {
                     logger.info("CPLEX Solution status = " + model.getStatus());
                     objectiveValue = model.getObjValue();
+                    MIPStartsNum = model.getNMIPStarts();
                     logger.info("Solution value  = " + objectiveValue);
                     List<BaseArc> route = new ArrayList<>();
+
                     values = model.getValues(x);
+                    lastSolution = values;
+
                     for (int j = 0; j < x.length; ++j) {
                         if (values[j] == 1) {
                             route.add(arcs.get(j));
@@ -291,6 +315,7 @@ public class ProblemSolver {
             case MAX_POI: {
                 objectiveExpression = getMaxPoiFunction();
                 objectiveFunction = model.addMaximize(objectiveExpression);
+                model.addLe(objectiveExpression, parameters.getVisitPoi().size());
                 break;
             }
             case MIN_TIME: {
@@ -378,5 +403,7 @@ public class ProblemSolver {
         return minTimeWalkingFunction;
     }
 
-
+    public double[] getLastSolution() {
+        return lastSolution;
+    }
 }

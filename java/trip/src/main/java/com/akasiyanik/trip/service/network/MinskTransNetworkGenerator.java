@@ -2,6 +2,7 @@ package com.akasiyanik.trip.service.network;
 
 import com.akasiyanik.trip.domain.InputParameters;
 import com.akasiyanik.trip.domain.Mode;
+import com.akasiyanik.trip.domain.RouteCriteria;
 import com.akasiyanik.trip.domain.Type;
 import com.akasiyanik.trip.domain.network.ArcFactory;
 import com.akasiyanik.trip.domain.network.arcs.BaseArc;
@@ -15,6 +16,7 @@ import com.akasiyanik.trip.timetable.repository.MongoStopRepository;
 import com.akasiyanik.trip.utils.TimeUtils;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
+import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,14 +31,6 @@ import java.util.stream.Collectors;
  */
 @Service
 public class MinskTransNetworkGenerator implements NetworkGenerator<BaseArc> {
-
-    private static final EnumSet<MinskTransRouteEnum> testRouteEnums = EnumSet.of(
-            MinskTransRouteEnum.BUS_25,
-            MinskTransRouteEnum.BUS_19,
-            MinskTransRouteEnum.TROL_22,
-            MinskTransRouteEnum.METRO_1,
-            MinskTransRouteEnum.METRO_2
-    );
 
     @Autowired
     private MongoRouteRepository routeRepository;
@@ -53,7 +47,12 @@ public class MinskTransNetworkGenerator implements NetworkGenerator<BaseArc> {
 
         List<MinskTransRoute> routes = getRoutes(parameters.getModes());
 
-        Multimap<Mode, List<BaseArc>> arcsByThread = generateTransportArcs(routes, departureTime, arrivalTime);
+        Multimap<Mode, List<BaseArc>> arcsByThread;
+//        if (isContainsMinCost(parameters)) {
+            arcsByThread = generateTransportArcs(routes, departureTime, arrivalTime);
+//        } else {
+//            arcsByThread = generateTransportArcsWithoutTransitiveArcs(routes, departureTime, arrivalTime);
+//        }
 
         List<BaseArc> allTransportArcs = new ArrayList<>();
         arcsByThread.values().forEach(allTransportArcs::addAll);
@@ -119,44 +118,44 @@ public class MinskTransNetworkGenerator implements NetworkGenerator<BaseArc> {
     }
 
 
-//    private Multimap<Mode, List<BaseArc>> generateTransportArcs(List<MinskTransRoute> routes, LocalTime departureTime, LocalTime arrivalTime) {
-//        int startTime = TimeUtils.timeToMinutes(departureTime);
-//        int finishTime = TimeUtils.timeToMinutes(arrivalTime);
-//
-//        Multimap<Mode, List<BaseArc>> result = ArrayListMultimap.create();
-//        for (MinskTransRoute route : routes) {
-//            List<String> stopsIds = route.getStopIds();
-//            List<TransportStop> stops = stopRepository.findByIds(stopsIds);
-//            Map<String, TransportStop> stopByIds = stops.stream().collect(Collectors.toMap(TransportStop::getId, Function.identity()));
-//
-//
-//            for (List<Integer> thread : route.getThreads()) {
-//                if (thread.get(0) > finishTime || thread.get(thread.size() - 1) < startTime) {
-//                    continue;
-//                }
-//                List<BaseArc> threadArcs = new ArrayList<>();
-//                for (int i = 0; i < thread.size() - 1; i++) {
-//                    int time = thread.get(i);
-//                    int nextTime = thread.get(i + 1);
-//                    if (time >= startTime && nextTime <= finishTime) {
-//
-//                        String startStopId = stopsIds.get(i);
-//                        String finishStopId = stopsIds.get(i + 1);
-//
-//                        TransportStop startStop = stopByIds.get(startStopId);
-//                        TransportStop finishStop = stopByIds.get(finishStopId);
-//
-//                        threadArcs.add(ArcFactory.getArc(route.getMode(), startStop.getId(), time, finishStop.getId(), nextTime));
-//                    }
-//                }
-//
-//                if (!threadArcs.isEmpty()) {
-//                    result.put(route.getMode(), threadArcs);
-//                }
-//            }
-//        }
-//        return result;
-//    }
+    private Multimap<Mode, List<BaseArc>> generateTransportArcsWithoutTransitiveArcs(List<MinskTransRoute> routes, LocalTime departureTime, LocalTime arrivalTime) {
+        int startTime = TimeUtils.timeToMinutes(departureTime);
+        int finishTime = TimeUtils.timeToMinutes(arrivalTime);
+
+        Multimap<Mode, List<BaseArc>> result = ArrayListMultimap.create();
+        for (MinskTransRoute route : routes) {
+            List<String> stopsIds = route.getStopIds();
+            List<TransportStop> stops = stopRepository.findByIds(stopsIds);
+            Map<String, TransportStop> stopByIds = stops.stream().collect(Collectors.toMap(TransportStop::getId, Function.identity()));
+
+
+            for (List<Integer> thread : route.getThreads()) {
+                if (thread.get(0) > finishTime || thread.get(thread.size() - 1) < startTime) {
+                    continue;
+                }
+                List<BaseArc> threadArcs = new ArrayList<>();
+                for (int i = 0; i < thread.size() - 1; i++) {
+                    int time = thread.get(i);
+                    int nextTime = thread.get(i + 1);
+                    if (time >= startTime && nextTime <= finishTime) {
+
+                        String startStopId = stopsIds.get(i);
+                        String finishStopId = stopsIds.get(i + 1);
+
+                        TransportStop startStop = stopByIds.get(startStopId);
+                        TransportStop finishStop = stopByIds.get(finishStopId);
+
+                        threadArcs.add(ArcFactory.getArc(route.getMode(), startStop.getId(), time, finishStop.getId(), nextTime));
+                    }
+                }
+
+                if (!threadArcs.isEmpty()) {
+                    result.put(route.getMode(), threadArcs);
+                }
+            }
+        }
+        return result;
+    }
 
     private Multimap<Mode, List<BaseArc>> generateTransportArcs(List<MinskTransRoute> routes, LocalTime departureTime, LocalTime arrivalTime) {
         int startTime = TimeUtils.timeToMinutes(departureTime);
@@ -232,5 +231,10 @@ public class MinskTransNetworkGenerator implements NetworkGenerator<BaseArc> {
             route.setThreads(filteredThreads);
         }
         return routes;
+    }
+
+    private boolean isContainsMinCost(InputParameters parameters) {
+        List<Pair<RouteCriteria, Double>> criterias = parameters.getCriteria();
+        return criterias.stream().anyMatch(p -> p.getKey().equals(RouteCriteria.MIN_COST));
     }
 }

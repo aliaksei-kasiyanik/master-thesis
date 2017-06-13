@@ -33,7 +33,7 @@ public class InputParameters {
     private final Set<Type> modes;
 
     // ranked criteria and relative deviations
-    private final List<Pair<RouteCriteria, Double>> criteria;
+    private List<Pair<RouteCriteria, Double>> criteria;
 
     public InputParameters(String departurePointId,
                            String arrivalPointId,
@@ -77,5 +77,9 @@ public class InputParameters {
 
     public List<Pair<RouteCriteria, Double>> getCriteria() {
         return criteria;
+    }
+
+    public void setCriteria(List<Pair<RouteCriteria, Double>> criteria) {
+        this.criteria = criteria;
     }
 }

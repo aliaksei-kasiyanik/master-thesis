@@ -3,7 +3,6 @@ package com.akasiyanik.trip;
 import com.akasiyanik.trip.cplex.ProblemSolver;
 import com.akasiyanik.trip.cplex.solution.RouteSolution;
 import com.akasiyanik.trip.domain.InputParameters;
-import com.akasiyanik.trip.domain.Mode;
 import com.akasiyanik.trip.domain.RouteCriteria;
 import com.akasiyanik.trip.domain.Type;
 import com.akasiyanik.trip.domain.network.arcs.BaseArc;
@@ -42,6 +41,14 @@ public class TripRunner implements ApplicationRunner {
 
         List<BaseArc> arcs = networkService.generateNetwork(parameters);
 
+//        parameters.setCriteria(Arrays.asList(new ImmutablePair<>(RouteCriteria.MIN_TIME, 0.0)));
+
+//        ProblemSolver solver = new ProblemSolver(arcs, parameters);
+//        solver.solve();
+//
+//        double[] initSolution = solver.getLastSolution();
+//        parameters = getParameters();
+//        solver = new ProblemSolver(arcs, parameters, initSolution);
         ProblemSolver solver = new ProblemSolver(arcs, parameters);
         RouteSolution result = solver.solve();
 
@@ -65,15 +72,16 @@ public class TripRunner implements ApplicationRunner {
                 );
         Map<String, Integer> visitPois = new HashMap<String, Integer>() {{
             put("59317e620cc7842d442760a9", 10);
+            put("5939349e89d07f2674224778", 10);
         }};
         List<Pair<RouteCriteria, Double>> criteria = new LinkedList<Pair<RouteCriteria, Double>>() {{
             add(new ImmutablePair<>(RouteCriteria.MAX_POI, 0.0));
-            add(new ImmutablePair<>(RouteCriteria.MIN_TIME, 0.1));
-            add(new ImmutablePair<>(RouteCriteria.MIN_TIME_WALKING, 0.1));
-            add(new ImmutablePair<>(RouteCriteria.MIN_TIME_TRANSFER, 0.1));
-            add(new ImmutablePair<>(RouteCriteria.MIN_COST, 0.3));
-            add(new ImmutablePair<>(RouteCriteria.MIN_CHANGES, 0.3));
-            add(new ImmutablePair<>(RouteCriteria.MIN_CO2, 0.3));
+            add(new ImmutablePair<>(RouteCriteria.MIN_TIME, 0.0));
+            add(new ImmutablePair<>(RouteCriteria.MIN_TIME_WALKING, 0.0));
+            add(new ImmutablePair<>(RouteCriteria.MIN_TIME_TRANSFER, 0.0));
+            add(new ImmutablePair<>(RouteCriteria.MIN_COST, 0.0));
+            add(new ImmutablePair<>(RouteCriteria.MIN_CHANGES, 0.0));
+            add(new ImmutablePair<>(RouteCriteria.MIN_CO2, 0.0));
         }};
 
         return new InputParameters(
