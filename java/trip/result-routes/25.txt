@@ -1,0 +1,141 @@
+RESULTS
+
+Network Size (Arcs count): 102342
+Total Time: 30.449
+
+SOLUTION 1
+Criteria: MIN_CHANGES | Epsilon: 0.0
+Constraints Count: 24076
+Objective Value: 0.0
+Solution Time (sec): 12.051
+  DUMMY_START_FINISH                           ДС Зелёный Луг  8:58                           ДС Зелёный Луг  9: 4
+           TRAM_11_S                           ДС Зелёный Луг  9: 4                      Магазин Электроника  9: 8
+           TRAM_11_S                      Магазин Электроника  9: 8                            Волгоградская  9:11
+           TRAM_11_S                            Волгоградская  9:11                               Дорошевича  9:21
+           TRAM_11_S                               Дорошевича  9:21                             пл. Я.Коласа  9:22
+                WALK                             пл. Я.Коласа  9:22                   Ploshcha Yacuba Kolasa  9:23
+                WALK                   Ploshcha Yacuba Kolasa  9:23               ст.м. Площадь Якуба Коласа  9:25
+                WALK               ст.м. Площадь Якуба Коласа  9:25                             пл. Я.Коласа  9:26
+           TRAM_11_S                             пл. Я.Коласа  9:26                              Пугачевская  9:28
+           TRAM_11_S                              Пугачевская  9:28                                  Красная  9:29
+                WALK                                  Красная  9:29                                  Красная  9:30
+                WALK                                  Красная  9:30                                  Красная  9:31
+                WALK                                  Красная  9:31               ст.м. Площадь Якуба Коласа  9:40
+                WALK               ст.м. Площадь Якуба Коласа  9:40                               Дорошевича  9:49
+                WALK                               Дорошевича  9:49                   Ploshcha Yacuba Kolasa  9:57
+                WALK                   Ploshcha Yacuba Kolasa  9:57                            Чернышевского 10:18
+            TRAM_6_B                            Чернышевского 10:18                     просп. Независимости 10:27
+            TRAM_6_B                     просп. Независимости 10:27                    ст.м.Тракторный завод 10:41
+                WALK                    ст.м.Тракторный завод 10:41                          Traktarny zavod 10:42
+                WALK                          Traktarny zavod 10:42                    ст.м.Тракторный завод 10:43
+                WALK                    ст.м.Тракторный завод 10:43                          Traktarny zavod 10:44
+                WALK                          Traktarny zavod 10:44                    ст.м.Тракторный завод 10:45
+                WALK                    ст.м.Тракторный завод 10:45                          Traktarny zavod 10:46
+                WALK                          Traktarny zavod 10:46                                Буденного 10:50
+                WALK                                Буденного 10:50                          Traktarny zavod 10:54
+                WALK                          Traktarny zavod 10:54                    ст.м.Тракторный завод 10:55
+                WALK                    ст.м.Тракторный завод 10:55                          Traktarny zavod 10:56
+           METRO_2_S                          Traktarny zavod 10:56                            Partyzanskaya 11: 0
+
+
+SOLUTION 2
+Criteria: MIN_TIME_TRANSFER | Epsilon: 0.0
+Constraints Count: 24077
+Objective Value: 0.0
+Solution Time (sec): 8.633
+  DUMMY_START_FINISH                           ДС Зелёный Луг  8:58                           ДС Зелёный Луг  9: 4
+           TRAM_11_S                           ДС Зелёный Луг  9: 4                      Магазин Электроника  9: 8
+           TRAM_11_S                      Магазин Электроника  9: 8                            Волгоградская  9:11
+           TRAM_11_S                            Волгоградская  9:11                               Дорошевича  9:21
+           TRAM_11_S                               Дорошевича  9:21                             пл. Я.Коласа  9:22
+                WALK                             пл. Я.Коласа  9:22                   Ploshcha Yacuba Kolasa  9:23
+                WALK                   Ploshcha Yacuba Kolasa  9:23               ст.м. Площадь Якуба Коласа  9:25
+                WALK               ст.м. Площадь Якуба Коласа  9:25                             пл. Я.Коласа  9:26
+           TRAM_11_S                             пл. Я.Коласа  9:26                              Пугачевская  9:28
+           TRAM_11_S                              Пугачевская  9:28                                  Красная  9:29
+                WALK                                  Красная  9:29                                  Красная  9:30
+                WALK                                  Красная  9:30                                  Красная  9:31
+                WALK                                  Красная  9:31               ст.м. Площадь Якуба Коласа  9:40
+                WALK               ст.м. Площадь Якуба Коласа  9:40                               Дорошевича  9:49
+                WALK                               Дорошевича  9:49                   Ploshcha Yacuba Kolasa  9:57
+                WALK                   Ploshcha Yacuba Kolasa  9:57                            Чернышевского 10:18
+            TRAM_6_B                            Чернышевского 10:18                     просп. Независимости 10:27
+            TRAM_6_B                     просп. Независимости 10:27                    ст.м.Тракторный завод 10:41
+                WALK                    ст.м.Тракторный завод 10:41                          Traktarny zavod 10:42
+                WALK                          Traktarny zavod 10:42                    ст.м.Тракторный завод 10:43
+                WALK                    ст.м.Тракторный завод 10:43                          Traktarny zavod 10:44
+                WALK                          Traktarny zavod 10:44                    ст.м.Тракторный завод 10:45
+                WALK                    ст.м.Тракторный завод 10:45                          Traktarny zavod 10:46
+                WALK                          Traktarny zavod 10:46                                Буденного 10:50
+                WALK                                Буденного 10:50                          Traktarny zavod 10:54
+                WALK                          Traktarny zavod 10:54                    ст.м.Тракторный завод 10:55
+                WALK                    ст.м.Тракторный завод 10:55                          Traktarny zavod 10:56
+           METRO_2_S                          Traktarny zavod 10:56                            Partyzanskaya 11: 0
+
+
+SOLUTION 3
+Criteria: MIN_TIME_WALKING | Epsilon: 0.0
+Constraints Count: 24078
+Objective Value: 1.0
+Solution Time (sec): 5.809
+  DUMMY_START_FINISH                           ДС Зелёный Луг  8:58                           ДС Зелёный Луг  9:43
+            TRAM_6_B                           ДС Зелёный Луг  9:43                                    Седых  9:44
+            TRAM_6_B                                    Седых  9:44                             Калиновского  9:46
+            TRAM_6_B                             Калиновского  9:46                    ст.м.Тракторный завод 10:19
+                WALK                    ст.м.Тракторный завод 10:19                          Traktarny zavod 10:20
+           METRO_2_S                          Traktarny zavod 10:20                            Partyzanskaya 10:24
+  DUMMY_START_FINISH                            Partyzanskaya 10:24                            Partyzanskaya 11: 0
+
+
+SOLUTION 4
+Criteria: MAX_POI | Epsilon: 0.0
+Constraints Count: 24080
+Objective Value: 0.0
+Solution Time (sec): 1.117
+  DUMMY_START_FINISH                           ДС Зелёный Луг  8:58                           ДС Зелёный Луг  9:43
+            TRAM_6_B                           ДС Зелёный Луг  9:43                                    Седых  9:44
+            TRAM_6_B                                    Седых  9:44                             Калиновского  9:46
+            TRAM_6_B                             Калиновского  9:46                    ст.м.Тракторный завод 10:19
+                WALK                    ст.м.Тракторный завод 10:19                          Traktarny zavod 10:20
+           METRO_2_S                          Traktarny zavod 10:20                            Partyzanskaya 10:24
+  DUMMY_START_FINISH                            Partyzanskaya 10:24                            Partyzanskaya 11: 0
+
+
+SOLUTION 5
+Criteria: MIN_CO2 | Epsilon: 0.0
+Constraints Count: 24081
+Objective Value: 0.0
+Solution Time (sec): 1.108
+  DUMMY_START_FINISH                           ДС Зелёный Луг  8:58                           ДС Зелёный Луг  9:43
+            TRAM_6_B                           ДС Зелёный Луг  9:43                                    Седых  9:44
+            TRAM_6_B                                    Седых  9:44                             Калиновского  9:46
+            TRAM_6_B                             Калиновского  9:46                    ст.м.Тракторный завод 10:19
+                WALK                    ст.м.Тракторный завод 10:19                          Traktarny zavod 10:20
+           METRO_2_S                          Traktarny zavod 10:20                            Partyzanskaya 10:24
+  DUMMY_START_FINISH                            Partyzanskaya 10:24                            Partyzanskaya 11: 0
+
+
+SOLUTION 6
+Criteria: MIN_COST | Epsilon: 0.0
+Constraints Count: 24082
+Objective Value: 115.0
+Solution Time (sec): 0.971
+  DUMMY_START_FINISH                           ДС Зелёный Луг  8:58                           ДС Зелёный Луг  9:43
+            TRAM_6_B                           ДС Зелёный Луг  9:43                    ст.м.Тракторный завод 10:19
+                WALK                    ст.м.Тракторный завод 10:19                          Traktarny zavod 10:20
+           METRO_2_S                          Traktarny zavod 10:20                            Partyzanskaya 10:24
+  DUMMY_START_FINISH                            Partyzanskaya 10:24                            Partyzanskaya 11: 0
+
+
+SOLUTION 7
+Criteria: MIN_TIME | Epsilon: 0.0
+Constraints Count: 24083
+Objective Value: 356.0
+Solution Time (sec): 0.76
+  DUMMY_START_FINISH                           ДС Зелёный Луг  8:58                           ДС Зелёный Луг  9:15
+            TRAM_6_B                           ДС Зелёный Луг  9:15                    ст.м.Тракторный завод  9:51
+                WALK                    ст.м.Тракторный завод  9:51                          Traktarny zavod  9:52
+           METRO_2_S                          Traktarny zavod  9:52                            Partyzanskaya  9:56
+  DUMMY_START_FINISH                            Partyzanskaya  9:56                            Partyzanskaya 11: 0
+
+

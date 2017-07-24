@@ -1,0 +1,166 @@
+RESULTS
+
+Network Size (Arcs count): 103367
+Total Time: 8.823
+
+SOLUTION 1
+Criteria: MAX_POI | Epsilon: 0.0
+Constraints Count: 25245
+Objective Value: 0.0
+Solution Time (sec): 7.515
+  DUMMY_START_FINISH                             Mahileuskaya  8:58                             Mahileuskaya  9: 0
+           METRO_2_B                             Mahileuskaya  9: 0                          Traktarny zavod  9:12
+                WALK                          Traktarny zavod  9:12                    ст.м.Тракторный завод  9:13
+                WALK                    ст.м.Тракторный завод  9:13                          Traktarny zavod  9:14
+                WALK                          Traktarny zavod  9:14                    ст.м.Тракторный завод  9:15
+                WALK                    ст.м.Тракторный завод  9:15                          Traktarny zavod  9:16
+            TRANSFER                          Traktarny zavod  9:16                          Traktarny zavod  9:20
+           METRO_2_B                          Traktarny zavod  9:20                             Kupalauskaya  9:32
+                WALK                             Kupalauskaya  9:32                           Ploscha Lenina  9:46
+                WALK                           Ploscha Lenina  9:46                             Frunzenskaya 10: 7
+            TRANSFER                             Frunzenskaya 10: 7                             Frunzenskaya 10:24
+           METRO_2_S                             Frunzenskaya 10:24                                  Niamiha 10:28
+                WALK                                  Niamiha 10:28                              Театральная 10:49
+                WALK                              Театральная 10:49                               Кропоткина 10:58
+                WALK                               Кропоткина 10:58                               Кропоткина 10:59
+  DUMMY_START_FINISH                               Кропоткина 10:59                               Кропоткина 11: 0
+
+
+SOLUTION 2
+Criteria: MIN_TIME | Epsilon: 0.4
+Constraints Count: 25246
+Objective Value: 419.0
+Solution Time (sec): 0.178
+  DUMMY_START_FINISH                             Mahileuskaya  8:58                             Mahileuskaya  9: 0
+           METRO_2_B                             Mahileuskaya  9: 0                          Traktarny zavod  9:12
+                WALK                          Traktarny zavod  9:12                    ст.м.Тракторный завод  9:13
+                WALK                    ст.м.Тракторный завод  9:13                          Traktarny zavod  9:14
+                WALK                          Traktarny zavod  9:14                    ст.м.Тракторный завод  9:15
+                WALK                    ст.м.Тракторный завод  9:15                          Traktarny zavod  9:16
+            TRANSFER                          Traktarny zavod  9:16                          Traktarny zavod  9:20
+           METRO_2_B                          Traktarny zavod  9:20                             Kupalauskaya  9:32
+                WALK                             Kupalauskaya  9:32                           Ploscha Lenina  9:46
+                WALK                           Ploscha Lenina  9:46                             Frunzenskaya 10: 7
+            TRANSFER                             Frunzenskaya 10: 7                             Frunzenskaya 10:24
+           METRO_2_S                             Frunzenskaya 10:24                                  Niamiha 10:28
+                WALK                                  Niamiha 10:28                              Театральная 10:49
+                WALK                              Театральная 10:49                               Кропоткина 10:58
+                WALK                               Кропоткина 10:58                               Кропоткина 10:59
+  DUMMY_START_FINISH                               Кропоткина 10:59                               Кропоткина 11: 0
+
+
+SOLUTION 3
+Criteria: MIN_TIME_WALKING | Epsilon: 0.1
+Constraints Count: 25247
+Objective Value: 70.0
+Solution Time (sec): 0.198
+  DUMMY_START_FINISH                             Mahileuskaya  8:58                             Mahileuskaya  9: 0
+           METRO_2_B                             Mahileuskaya  9: 0                          Traktarny zavod  9:12
+                WALK                          Traktarny zavod  9:12                    ст.м.Тракторный завод  9:13
+                WALK                    ст.м.Тракторный завод  9:13                          Traktarny zavod  9:14
+                WALK                          Traktarny zavod  9:14                    ст.м.Тракторный завод  9:15
+                WALK                    ст.м.Тракторный завод  9:15                          Traktarny zavod  9:16
+            TRANSFER                          Traktarny zavod  9:16                          Traktarny zavod  9:20
+           METRO_2_B                          Traktarny zavod  9:20                             Kupalauskaya  9:32
+                WALK                             Kupalauskaya  9:32                           Ploscha Lenina  9:46
+                WALK                           Ploscha Lenina  9:46                             Frunzenskaya 10: 7
+            TRANSFER                             Frunzenskaya 10: 7                             Frunzenskaya 10:24
+           METRO_2_S                             Frunzenskaya 10:24                                  Niamiha 10:28
+                WALK                                  Niamiha 10:28                              Театральная 10:49
+                WALK                              Театральная 10:49                               Кропоткина 10:58
+                WALK                               Кропоткина 10:58                               Кропоткина 10:59
+  DUMMY_START_FINISH                               Кропоткина 10:59                               Кропоткина 11: 0
+
+
+SOLUTION 4
+Criteria: MIN_TIME_TRANSFER | Epsilon: 0.1
+Constraints Count: 25248
+Objective Value: 21.0
+Solution Time (sec): 0.205
+  DUMMY_START_FINISH                             Mahileuskaya  8:58                             Mahileuskaya  9: 0
+           METRO_2_B                             Mahileuskaya  9: 0                          Traktarny zavod  9:12
+                WALK                          Traktarny zavod  9:12                    ст.м.Тракторный завод  9:13
+                WALK                    ст.м.Тракторный завод  9:13                          Traktarny zavod  9:14
+                WALK                          Traktarny zavod  9:14                    ст.м.Тракторный завод  9:15
+                WALK                    ст.м.Тракторный завод  9:15                          Traktarny zavod  9:16
+            TRANSFER                          Traktarny zavod  9:16                          Traktarny zavod  9:20
+           METRO_2_B                          Traktarny zavod  9:20                             Kupalauskaya  9:32
+                WALK                             Kupalauskaya  9:32                           Ploscha Lenina  9:46
+                WALK                           Ploscha Lenina  9:46                             Frunzenskaya 10: 7
+            TRANSFER                             Frunzenskaya 10: 7                             Frunzenskaya 10:24
+           METRO_2_S                             Frunzenskaya 10:24                                  Niamiha 10:28
+                WALK                                  Niamiha 10:28                              Театральная 10:49
+                WALK                              Театральная 10:49                               Кропоткина 10:58
+                WALK                               Кропоткина 10:58                               Кропоткина 10:59
+  DUMMY_START_FINISH                               Кропоткина 10:59                               Кропоткина 11: 0
+
+
+SOLUTION 5
+Criteria: MIN_COST | Epsilon: 0.3
+Constraints Count: 25249
+Objective Value: 180.0
+Solution Time (sec): 0.206
+  DUMMY_START_FINISH                             Mahileuskaya  8:58                             Mahileuskaya  9: 0
+           METRO_2_B                             Mahileuskaya  9: 0                          Traktarny zavod  9:12
+                WALK                          Traktarny zavod  9:12                    ст.м.Тракторный завод  9:13
+                WALK                    ст.м.Тракторный завод  9:13                          Traktarny zavod  9:14
+                WALK                          Traktarny zavod  9:14                    ст.м.Тракторный завод  9:15
+                WALK                    ст.м.Тракторный завод  9:15                          Traktarny zavod  9:16
+            TRANSFER                          Traktarny zavod  9:16                          Traktarny zavod  9:20
+           METRO_2_B                          Traktarny zavod  9:20                             Kupalauskaya  9:32
+                WALK                             Kupalauskaya  9:32                           Ploscha Lenina  9:46
+                WALK                           Ploscha Lenina  9:46                             Frunzenskaya 10: 7
+            TRANSFER                             Frunzenskaya 10: 7                             Frunzenskaya 10:24
+           METRO_2_S                             Frunzenskaya 10:24                                  Niamiha 10:28
+                WALK                                  Niamiha 10:28                              Театральная 10:49
+                WALK                              Театральная 10:49                               Кропоткина 10:58
+                WALK                               Кропоткина 10:58                               Кропоткина 10:59
+  DUMMY_START_FINISH                               Кропоткина 10:59                               Кропоткина 11: 0
+
+
+SOLUTION 6
+Criteria: MIN_CHANGES | Epsilon: 0.3
+Constraints Count: 25250
+Objective Value: 2.0
+Solution Time (sec): 0.299
+  DUMMY_START_FINISH                             Mahileuskaya  8:58                             Mahileuskaya  9: 0
+           METRO_2_B                             Mahileuskaya  9: 0                          Traktarny zavod  9:12
+                WALK                          Traktarny zavod  9:12                    ст.м.Тракторный завод  9:13
+                WALK                    ст.м.Тракторный завод  9:13                          Traktarny zavod  9:14
+                WALK                          Traktarny zavod  9:14                    ст.м.Тракторный завод  9:15
+                WALK                    ст.м.Тракторный завод  9:15                          Traktarny zavod  9:16
+            TRANSFER                          Traktarny zavod  9:16                          Traktarny zavod  9:20
+           METRO_2_B                          Traktarny zavod  9:20                             Kupalauskaya  9:32
+                WALK                             Kupalauskaya  9:32                           Ploscha Lenina  9:46
+                WALK                           Ploscha Lenina  9:46                             Frunzenskaya 10: 7
+            TRANSFER                             Frunzenskaya 10: 7                             Frunzenskaya 10:24
+           METRO_2_S                             Frunzenskaya 10:24                                  Niamiha 10:28
+                WALK                                  Niamiha 10:28                              Театральная 10:49
+                WALK                              Театральная 10:49                               Кропоткина 10:58
+                WALK                               Кропоткина 10:58                               Кропоткина 10:59
+  DUMMY_START_FINISH                               Кропоткина 10:59                               Кропоткина 11: 0
+
+
+SOLUTION 7
+Criteria: MIN_CO2 | Epsilon: 0.3
+Constraints Count: 25251
+Objective Value: 0.0
+Solution Time (sec): 0.222
+  DUMMY_START_FINISH                             Mahileuskaya  8:58                             Mahileuskaya  9: 0
+           METRO_2_B                             Mahileuskaya  9: 0                          Traktarny zavod  9:12
+                WALK                          Traktarny zavod  9:12                    ст.м.Тракторный завод  9:13
+                WALK                    ст.м.Тракторный завод  9:13                          Traktarny zavod  9:14
+                WALK                          Traktarny zavod  9:14                    ст.м.Тракторный завод  9:15
+                WALK                    ст.м.Тракторный завод  9:15                          Traktarny zavod  9:16
+            TRANSFER                          Traktarny zavod  9:16                          Traktarny zavod  9:20
+           METRO_2_B                          Traktarny zavod  9:20                             Kupalauskaya  9:32
+                WALK                             Kupalauskaya  9:32                           Ploscha Lenina  9:46
+                WALK                           Ploscha Lenina  9:46                             Frunzenskaya 10: 7
+            TRANSFER                             Frunzenskaya 10: 7                             Frunzenskaya 10:24
+           METRO_2_S                             Frunzenskaya 10:24                                  Niamiha 10:28
+                WALK                                  Niamiha 10:28                              Театральная 10:49
+                WALK                              Театральная 10:49                               Кропоткина 10:58
+                WALK                               Кропоткина 10:58                               Кропоткина 10:59
+  DUMMY_START_FINISH                               Кропоткина 10:59                               Кропоткина 11: 0
+
+

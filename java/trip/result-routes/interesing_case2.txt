@@ -1,0 +1,24 @@
+SOLUTION 1
+  DUMMY_START_FINISH                             Mahileuskaya  8:58                             Mahileuskaya  9: 0
+           METRO_2_B                             Mahileuskaya  9: 0                             Kupalauskaya  9:24
+                WALK                             Kupalauskaya  9:24                          Kastrychnickaya  9:26
+            TRANSFER                          Kastrychnickaya  9:26                          Kastrychnickaya  9:28
+           METRO_1_B                          Kastrychnickaya  9:28                   Ploshcha Yacuba Kolasa  9:36
+                WALK                   Ploshcha Yacuba Kolasa  9:36               ст.м. Площадь Якуба Коласа  9:38
+                WALK               ст.м. Площадь Якуба Коласа  9:38                               Дом мебели  9:39
+            TRANSFER                               Дом мебели  9:39                               Дом мебели  9:44
+            BUS_25_S                               Дом мебели  9:44                               Кропоткина  9:50
+                WALK                               Кропоткина  9:50                               Кропоткина  9:51
+  DUMMY_START_FINISH                               Кропоткина  9:51                               Кропоткина 11: 0
+SOLUTION 2
+  DUMMY_START_FINISH                             Mahileuskaya  8:58                             Mahileuskaya  9: 0
+           METRO_2_B                             Mahileuskaya  9: 0                             Kupalauskaya  9:24
+                WALK                             Kupalauskaya  9:24                          Kastrychnickaya  9:26
+            TRANSFER                          Kastrychnickaya  9:26                          Kastrychnickaya  9:28
+           METRO_1_B                          Kastrychnickaya  9:28                   Ploshcha Yacuba Kolasa  9:36
+                WALK                   Ploshcha Yacuba Kolasa  9:36               ст.м. Площадь Якуба Коласа  9:38
+                WALK               ст.м. Площадь Якуба Коласа  9:38                               Дом мебели  9:39
+            TRANSFER                               Дом мебели  9:39                               Дом мебели  9:44
+            BUS_25_S                               Дом мебели  9:44                               Кропоткина  9:50
+                WALK                               Кропоткина  9:50                               Кропоткина  9:51
+  DUMMY_START_FINISH                               Кропоткина  9:51                               Кропоткина 11: 0

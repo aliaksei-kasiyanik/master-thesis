@@ -1,0 +1,86 @@
+SOLUTION 1
+  DUMMY_START_FINISH                             Mahileuskaya  8:58                             Mahileuskaya  9: 0
+           METRO_2_B                             Mahileuskaya  9: 0                           Autazavodskaya  9: 4
+           METRO_2_B                           Autazavodskaya  9: 4                            Partyzanskaya  9: 8
+           METRO_2_B                            Partyzanskaya  9: 8                          Traktarny zavod  9:12
+           METRO_2_B                          Traktarny zavod  9:12                             Kupalauskaya  9:24
+                WALK                             Kupalauskaya  9:24                          Kastrychnickaya  9:26
+            TRANSFER                          Kastrychnickaya  9:26                          Kastrychnickaya  9:28
+                WALK                          Kastrychnickaya  9:28                                  Красная  9:51
+                WALK                                  Красная  9:51                             Kupalauskaya 10:16
+               VISIT                             Kupalauskaya 10:16                             Kupalauskaya 10:26
+            TRANSFER                             Kupalauskaya 10:26                             Kupalauskaya 10:28
+                WALK                             Kupalauskaya 10:28                          Kastrychnickaya 10:30
+            TRANSFER                          Kastrychnickaya 10:30                          Kastrychnickaya 10:32
+           METRO_1_B                          Kastrychnickaya 10:32                         Ploscha Peramogi 10:36
+           METRO_1_B                         Ploscha Peramogi 10:36                   Ploshcha Yacuba Kolasa 10:40
+                WALK                   Ploshcha Yacuba Kolasa 10:40               ст.м. Площадь Якуба Коласа 10:42
+                WALK               ст.м. Площадь Якуба Коласа 10:42                               Дом мебели 10:43
+                WALK                               Дом мебели 10:43               ст.м. Площадь Якуба Коласа 10:44
+                WALK               ст.м. Площадь Якуба Коласа 10:44                               Дом мебели 10:45
+                WALK                               Дом мебели 10:45                        Комаровский рынок 10:49
+                WALK                        Комаровский рынок 10:49                        Комаровский рынок 10:50
+           TROL_22_B                        Комаровский рынок 10:50                           Богдановича М. 10:52
+           TROL_22_B                           Богдановича М. 10:52                         бульвар Шевченко 10:55
+            TRANSFER                         бульвар Шевченко 10:55                         бульвар Шевченко 10:56
+           TROL_22_S                         бульвар Шевченко 10:56                               Кропоткина 10:58
+                WALK                               Кропоткина 10:58                               Кропоткина 10:59
+  DUMMY_START_FINISH                               Кропоткина 10:59                               Кропоткина 11: 0
+SOLUTION 2
+  DUMMY_START_FINISH                             Mahileuskaya  8:58                             Mahileuskaya  9: 0
+           METRO_2_B                             Mahileuskaya  9: 0                           Autazavodskaya  9: 4
+           METRO_2_B                           Autazavodskaya  9: 4                            Partyzanskaya  9: 8
+           METRO_2_B                            Partyzanskaya  9: 8                          Traktarny zavod  9:12
+           METRO_2_B                          Traktarny zavod  9:12                             Kupalauskaya  9:24
+               VISIT                             Kupalauskaya  9:24                             Kupalauskaya  9:34
+                WALK                             Kupalauskaya  9:34                          Kastrychnickaya  9:36
+           METRO_1_B                          Kastrychnickaya  9:36                         Ploscha Peramogi  9:40
+           METRO_1_B                         Ploscha Peramogi  9:40                   Ploshcha Yacuba Kolasa  9:44
+                WALK                   Ploshcha Yacuba Kolasa  9:44               ст.м. Площадь Якуба Коласа  9:46
+            TRANSFER               ст.м. Площадь Якуба Коласа  9:46               ст.м. Площадь Якуба Коласа  9:47
+           TROL_22_B               ст.м. Площадь Якуба Коласа  9:47                                  Красная  9:50
+           TROL_22_B                                  Красная  9:50                           Богдановича М.  9:56
+           TROL_22_B                           Богдановича М.  9:56                               Кропоткина  9:58
+  DUMMY_START_FINISH                               Кропоткина  9:58                               Кропоткина 11: 0
+SOLUTION 3
+  DUMMY_START_FINISH                             Mahileuskaya  8:58                             Mahileuskaya  9: 0
+           METRO_2_B                             Mahileuskaya  9: 0                           Autazavodskaya  9: 4
+           METRO_2_B                           Autazavodskaya  9: 4                            Partyzanskaya  9: 8
+           METRO_2_B                            Partyzanskaya  9: 8                          Traktarny zavod  9:12
+           METRO_2_B                          Traktarny zavod  9:12                             Kupalauskaya  9:24
+               VISIT                             Kupalauskaya  9:24                             Kupalauskaya  9:34
+                WALK                             Kupalauskaya  9:34                          Kastrychnickaya  9:36
+           METRO_1_B                          Kastrychnickaya  9:36                         Ploscha Peramogi  9:40
+           METRO_1_B                         Ploscha Peramogi  9:40                   Ploshcha Yacuba Kolasa  9:44
+                WALK                   Ploshcha Yacuba Kolasa  9:44               ст.м. Площадь Якуба Коласа  9:46
+            TRANSFER               ст.м. Площадь Якуба Коласа  9:46               ст.м. Площадь Якуба Коласа  9:47
+           TROL_22_B               ст.м. Площадь Якуба Коласа  9:47                                  Красная  9:50
+           TROL_22_B                                  Красная  9:50                           Богдановича М.  9:56
+           TROL_22_B                           Богдановича М.  9:56                               Кропоткина  9:58
+  DUMMY_START_FINISH                               Кропоткина  9:58                               Кропоткина 11: 0
+SOLUTION 4
+  DUMMY_START_FINISH                             Mahileuskaya  8:58                             Mahileuskaya  9: 0
+           METRO_2_B                             Mahileuskaya  9: 0                           Autazavodskaya  9: 4
+           METRO_2_B                           Autazavodskaya  9: 4                            Partyzanskaya  9: 8
+           METRO_2_B                            Partyzanskaya  9: 8                          Traktarny zavod  9:12
+           METRO_2_B                          Traktarny zavod  9:12                             Kupalauskaya  9:24
+               VISIT                             Kupalauskaya  9:24                             Kupalauskaya  9:34
+                WALK                             Kupalauskaya  9:34                          Kastrychnickaya  9:36
+           METRO_1_B                          Kastrychnickaya  9:36                         Ploscha Peramogi  9:40
+           METRO_1_B                         Ploscha Peramogi  9:40                   Ploshcha Yacuba Kolasa  9:44
+                WALK                   Ploshcha Yacuba Kolasa  9:44               ст.м. Площадь Якуба Коласа  9:46
+            TRANSFER               ст.м. Площадь Якуба Коласа  9:46               ст.м. Площадь Якуба Коласа  9:47
+           TROL_22_B               ст.м. Площадь Якуба Коласа  9:47                                  Красная  9:50
+           TROL_22_B                                  Красная  9:50                           Богдановича М.  9:56
+           TROL_22_B                           Богдановича М.  9:56                               Кропоткина  9:58
+  DUMMY_START_FINISH                               Кропоткина  9:58                               Кропоткина 11: 0
+SOLUTION 5
+  DUMMY_START_FINISH                             Mahileuskaya  8:58                             Mahileuskaya  9: 0
+           METRO_2_B                             Mahileuskaya  9: 0                             Kupalauskaya  9:24
+               VISIT                             Kupalauskaya  9:24                             Kupalauskaya  9:34
+                WALK                             Kupalauskaya  9:34                          Kastrychnickaya  9:36
+           METRO_1_B                          Kastrychnickaya  9:36                   Ploshcha Yacuba Kolasa  9:44
+                WALK                   Ploshcha Yacuba Kolasa  9:44               ст.м. Площадь Якуба Коласа  9:46
+            TRANSFER               ст.м. Площадь Якуба Коласа  9:46               ст.м. Площадь Якуба Коласа  9:47
+           TROL_22_B               ст.м. Площадь Якуба Коласа  9:47                               Кропоткина  9:58
+  DUMMY_START_FINISH                               Кропоткина  9:58                               Кропоткина 11: 0

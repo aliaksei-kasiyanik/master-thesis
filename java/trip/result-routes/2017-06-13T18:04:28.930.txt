@@ -1,0 +1,216 @@
+RESULTS
+
+Network Size (Arcs count): 156945
+Total Time: 368.042
+
+SOLUTION 1
+Criteria: MAX_POI | Epsilon: 0.0
+Constraints Count: 34378
+Objective Value: 2.0
+Solution Time (sec): 37.542
+  DUMMY_START_FINISH                           Богдановича М.  8:58                           Богдановича М.  9: 1
+           TROL_22_B                           Богдановича М.  9: 1                               Кропоткина  9: 3
+                WALK                               Кропоткина  9: 3                               Кропоткина  9: 4
+                WALK                               Кропоткина  9: 4                               Кропоткина  9: 6
+                WALK                               Кропоткина  9: 6                               Кропоткина  9: 8
+                WALK                               Кропоткина  9: 8                               Кропоткина  9: 9
+                WALK                               Кропоткина  9: 9                               Кропоткина  9:10
+                WALK                               Кропоткина  9:10                               Кропоткина  9:11
+                WALK                               Кропоткина  9:11                               Кропоткина  9:12
+                WALK                               Кропоткина  9:12                         бульвар Шевченко  9:17
+                WALK                         бульвар Шевченко  9:17                          Дворец Молодежи  9:28
+               VISIT                          Дворец Молодежи  9:28                          Дворец Молодежи  9:38
+                WALK                          Дворец Молодежи  9:38                               Кропоткина  9:51
+                WALK                               Кропоткина  9:51                              Театральная  9:59
+                WALK                              Театральная  9:59                                  Niamiha 10:20
+            TRANSFER                                  Niamiha 10:20                                  Niamiha 10:24
+           METRO_2_S                                  Niamiha 10:24                             Kupalauskaya 10:28
+               VISIT                             Kupalauskaya 10:28                             Kupalauskaya 10:38
+                WALK                             Kupalauskaya 10:38                          Kastrychnickaya 10:40
+                WALK                          Kastrychnickaya 10:40                             Kupalauskaya 10:42
+            TRANSFER                             Kupalauskaya 10:42                             Kupalauskaya 10:44
+           METRO_2_S                             Kupalauskaya 10:44                            Praletarskaya 10:52
+           METRO_2_S                            Praletarskaya 10:52                          Traktarny zavod 10:56
+                WALK                          Traktarny zavod 10:56                    ст.м.Тракторный завод 10:57
+            TRAM_6_B                    ст.м.Тракторный завод 10:57                                  Ванеева 10:59
+  DUMMY_START_FINISH                                  Ванеева 10:59                                  Ванеева 11: 0
+
+
+SOLUTION 2
+Criteria: MIN_TIME | Epsilon: 0.0
+Constraints Count: 34379
+Objective Value: 410.0
+Solution Time (sec): 108.457
+                WALK                           Богдановича М.  8:58                      Максима Богдановича  9: 2
+                WALK                      Максима Богдановича  9: 2                               Хоружей В.  9: 6
+                WALK                               Хоружей В.  9: 6                               Кропоткина  9:14
+                WALK                               Кропоткина  9:14                  Дворец детей и молодежи  9:26
+                WALK                  Дворец детей и молодежи  9:26                          Дворец Молодежи  9:28
+               VISIT                          Дворец Молодежи  9:28                          Дворец Молодежи  9:38
+                WALK                          Дворец Молодежи  9:38                  Дворец детей и молодежи  9:40
+                WALK                  Дворец детей и молодежи  9:40                          Дворец Молодежи  9:42
+                WALK                          Дворец Молодежи  9:42                     Старовиленский тракт  9:43
+                WALK                     Старовиленский тракт  9:43                         бульвар Шевченко  9:55
+           TROL_22_S                         бульвар Шевченко  9:55                        Комаровский рынок 10: 1
+                WALK                        Комаровский рынок 10: 1                             пл. Я.Коласа 10: 7
+                WALK                             пл. Я.Коласа 10: 7                   Ploshcha Yacuba Kolasa 10: 8
+           METRO_1_S                   Ploshcha Yacuba Kolasa 10: 8                          Kastrychnickaya 10:16
+                WALK                          Kastrychnickaya 10:16                             Kupalauskaya 10:18
+            TRANSFER                             Kupalauskaya 10:18                             Kupalauskaya 10:20
+               VISIT                             Kupalauskaya 10:20                             Kupalauskaya 10:30
+            TRANSFER                             Kupalauskaya 10:30                             Kupalauskaya 10:32
+           METRO_2_S                             Kupalauskaya 10:32                            Praletarskaya 10:40
+           METRO_2_S                            Praletarskaya 10:40                          Traktarny zavod 10:44
+                WALK                          Traktarny zavod 10:44                                Буденного 10:48
+                WALK                                Буденного 10:48                                  Ванеева 10:50
+  DUMMY_START_FINISH                                  Ванеева 10:50                                  Ванеева 11: 0
+
+
+SOLUTION 3
+Criteria: MIN_CHANGES | Epsilon: 0.0
+Constraints Count: 34380
+Objective Value: 2.0
+Solution Time (sec): 42.486
+                WALK                           Богдановича М.  8:58                      Максима Богдановича  9: 2
+                WALK                      Максима Богдановича  9: 2                               Хоружей В.  9: 6
+                WALK                               Хоружей В.  9: 6                               Кропоткина  9:14
+                WALK                               Кропоткина  9:14                  Дворец детей и молодежи  9:26
+                WALK                  Дворец детей и молодежи  9:26                          Дворец Молодежи  9:28
+               VISIT                          Дворец Молодежи  9:28                          Дворец Молодежи  9:38
+                WALK                          Дворец Молодежи  9:38                  Дворец детей и молодежи  9:40
+                WALK                  Дворец детей и молодежи  9:40                          Дворец Молодежи  9:42
+                WALK                          Дворец Молодежи  9:42                     Старовиленский тракт  9:43
+                WALK                     Старовиленский тракт  9:43                         бульвар Шевченко  9:55
+           TROL_22_S                         бульвар Шевченко  9:55                        Комаровский рынок 10: 1
+                WALK                        Комаровский рынок 10: 1                             пл. Я.Коласа 10: 7
+                WALK                             пл. Я.Коласа 10: 7                   Ploshcha Yacuba Kolasa 10: 8
+           METRO_1_S                   Ploshcha Yacuba Kolasa 10: 8                          Kastrychnickaya 10:16
+                WALK                          Kastrychnickaya 10:16                             Kupalauskaya 10:18
+            TRANSFER                             Kupalauskaya 10:18                             Kupalauskaya 10:20
+               VISIT                             Kupalauskaya 10:20                             Kupalauskaya 10:30
+            TRANSFER                             Kupalauskaya 10:30                             Kupalauskaya 10:32
+           METRO_2_S                             Kupalauskaya 10:32                            Praletarskaya 10:40
+           METRO_2_S                            Praletarskaya 10:40                          Traktarny zavod 10:44
+                WALK                          Traktarny zavod 10:44                                Буденного 10:48
+                WALK                                Буденного 10:48                                  Ванеева 10:50
+  DUMMY_START_FINISH                                  Ванеева 10:50                                  Ванеева 11: 0
+
+
+SOLUTION 4
+Criteria: MIN_TIME_TRANSFER | Epsilon: 0.0
+Constraints Count: 34381
+Objective Value: 4.0
+Solution Time (sec): 46.585
+                WALK                           Богдановича М.  8:58                      Максима Богдановича  9: 2
+                WALK                      Максима Богдановича  9: 2                               Хоружей В.  9: 6
+                WALK                               Хоружей В.  9: 6                               Кропоткина  9:14
+                WALK                               Кропоткина  9:14                  Дворец детей и молодежи  9:26
+                WALK                  Дворец детей и молодежи  9:26                          Дворец Молодежи  9:28
+               VISIT                          Дворец Молодежи  9:28                          Дворец Молодежи  9:38
+                WALK                          Дворец Молодежи  9:38                  Дворец детей и молодежи  9:40
+                WALK                  Дворец детей и молодежи  9:40                          Дворец Молодежи  9:42
+                WALK                          Дворец Молодежи  9:42                     Старовиленский тракт  9:43
+                WALK                     Старовиленский тракт  9:43                         бульвар Шевченко  9:55
+           TROL_22_S                         бульвар Шевченко  9:55                        Комаровский рынок 10: 1
+                WALK                        Комаровский рынок 10: 1                             пл. Я.Коласа 10: 7
+                WALK                             пл. Я.Коласа 10: 7                   Ploshcha Yacuba Kolasa 10: 8
+           METRO_1_S                   Ploshcha Yacuba Kolasa 10: 8                          Kastrychnickaya 10:16
+                WALK                          Kastrychnickaya 10:16                             Kupalauskaya 10:18
+            TRANSFER                             Kupalauskaya 10:18                             Kupalauskaya 10:20
+               VISIT                             Kupalauskaya 10:20                             Kupalauskaya 10:30
+            TRANSFER                             Kupalauskaya 10:30                             Kupalauskaya 10:32
+           METRO_2_S                             Kupalauskaya 10:32                            Praletarskaya 10:40
+           METRO_2_S                            Praletarskaya 10:40                          Traktarny zavod 10:44
+                WALK                          Traktarny zavod 10:44                                Буденного 10:48
+                WALK                                Буденного 10:48                                  Ванеева 10:50
+  DUMMY_START_FINISH                                  Ванеева 10:50                                  Ванеева 11: 0
+
+
+SOLUTION 5
+Criteria: MIN_TIME_WALKING | Epsilon: 0.0
+Constraints Count: 34382
+Objective Value: 40.0
+Solution Time (sec): 26.491
+  DUMMY_START_FINISH                           Богдановича М.  8:58                           Богдановича М.  9:11
+           TROL_22_B                           Богдановича М.  9:11                               Кропоткина  9:13
+                WALK                               Кропоткина  9:13                               Кропоткина  9:14
+                WALK                               Кропоткина  9:14                               Кропоткина  9:15
+                WALK                               Кропоткина  9:15                              Театральная  9:23
+            TRAM_5_B                              Театральная  9:23                          Дворец Молодежи  9:28
+               VISIT                          Дворец Молодежи  9:28                          Дворец Молодежи  9:38
+                WALK                          Дворец Молодежи  9:38                     Старовиленский тракт  9:39
+                WALK                     Старовиленский тракт  9:39                          Дворец Молодежи  9:40
+                WALK                          Дворец Молодежи  9:40                           Кинотеатр Киев  9:53
+           TROL_22_S                           Кинотеатр Киев  9:53                      Максима Богдановича  9:59
+           TROL_22_S                      Максима Богдановича  9:59                        Комаровский рынок 10: 1
+                WALK                        Комаровский рынок 10: 1                               Дом мебели 10: 5
+                WALK                               Дом мебели 10: 5               ст.м. Площадь Якуба Коласа 10: 6
+                WALK               ст.м. Площадь Якуба Коласа 10: 6                   Ploshcha Yacuba Kolasa 10: 8
+           METRO_1_S                   Ploshcha Yacuba Kolasa 10: 8                          Kastrychnickaya 10:16
+                WALK                          Kastrychnickaya 10:16                             Kupalauskaya 10:18
+            TRANSFER                             Kupalauskaya 10:18                             Kupalauskaya 10:20
+               VISIT                             Kupalauskaya 10:20                             Kupalauskaya 10:30
+            TRANSFER                             Kupalauskaya 10:30                             Kupalauskaya 10:32
+           METRO_2_S                             Kupalauskaya 10:32                           Pershamayskaya 10:36
+           METRO_2_S                           Pershamayskaya 10:36                            Praletarskaya 10:40
+           METRO_2_S                            Praletarskaya 10:40                          Traktarny zavod 10:44
+                WALK                          Traktarny zavod 10:44                                  Ванеева 10:50
+  DUMMY_START_FINISH                                  Ванеева 10:50                                  Ванеева 11: 0
+
+
+SOLUTION 6
+Criteria: MIN_COST | Epsilon: 0.0
+Constraints Count: 34383
+Objective Value: 285.0
+Solution Time (sec): 90.466
+  DUMMY_START_FINISH                           Богдановича М.  8:58                           Богдановича М.  9:11
+           TROL_22_B                           Богдановича М.  9:11                               Кропоткина  9:13
+                WALK                               Кропоткина  9:13                               Кропоткина  9:14
+                WALK                               Кропоткина  9:14                              Театральная  9:23
+            TRAM_5_B                              Театральная  9:23                          Дворец Молодежи  9:28
+               VISIT                          Дворец Молодежи  9:28                          Дворец Молодежи  9:38
+                WALK                          Дворец Молодежи  9:38                     Старовиленский тракт  9:39
+                WALK                     Старовиленский тракт  9:39                          Дворец Молодежи  9:40
+                WALK                          Дворец Молодежи  9:40                           Кинотеатр Киев  9:53
+           TROL_22_S                           Кинотеатр Киев  9:53                        Комаровский рынок 10: 1
+                WALK                        Комаровский рынок 10: 1                             пл. Я.Коласа 10: 7
+                WALK                             пл. Я.Коласа 10: 7                   Ploshcha Yacuba Kolasa 10: 8
+           METRO_1_S                   Ploshcha Yacuba Kolasa 10: 8                          Kastrychnickaya 10:16
+                WALK                          Kastrychnickaya 10:16                             Kupalauskaya 10:18
+            TRANSFER                             Kupalauskaya 10:18                             Kupalauskaya 10:20
+               VISIT                             Kupalauskaya 10:20                             Kupalauskaya 10:30
+            TRANSFER                             Kupalauskaya 10:30                             Kupalauskaya 10:32
+           METRO_2_S                             Kupalauskaya 10:32                          Traktarny zavod 10:44
+                WALK                          Traktarny zavod 10:44                                Буденного 10:48
+                WALK                                Буденного 10:48                                  Ванеева 10:50
+  DUMMY_START_FINISH                                  Ванеева 10:50                                  Ванеева 11: 0
+
+
+SOLUTION 7
+Criteria: MIN_CO2 | Epsilon: 0.0
+Constraints Count: 34384
+Objective Value: 0.0
+Solution Time (sec): 16.015
+  DUMMY_START_FINISH                           Богдановича М.  8:58                           Богдановича М.  9:11
+           TROL_22_B                           Богдановича М.  9:11                               Кропоткина  9:13
+                WALK                               Кропоткина  9:13                               Кропоткина  9:14
+                WALK                               Кропоткина  9:14                              Театральная  9:23
+            TRAM_5_B                              Театральная  9:23                          Дворец Молодежи  9:28
+               VISIT                          Дворец Молодежи  9:28                          Дворец Молодежи  9:38
+                WALK                          Дворец Молодежи  9:38                     Старовиленский тракт  9:39
+                WALK                     Старовиленский тракт  9:39                          Дворец Молодежи  9:40
+                WALK                          Дворец Молодежи  9:40                           Кинотеатр Киев  9:53
+           TROL_22_S                           Кинотеатр Киев  9:53                        Комаровский рынок 10: 1
+                WALK                        Комаровский рынок 10: 1                             пл. Я.Коласа 10: 7
+                WALK                             пл. Я.Коласа 10: 7                   Ploshcha Yacuba Kolasa 10: 8
+           METRO_1_S                   Ploshcha Yacuba Kolasa 10: 8                          Kastrychnickaya 10:16
+                WALK                          Kastrychnickaya 10:16                             Kupalauskaya 10:18
+            TRANSFER                             Kupalauskaya 10:18                             Kupalauskaya 10:20
+               VISIT                             Kupalauskaya 10:20                             Kupalauskaya 10:30
+            TRANSFER                             Kupalauskaya 10:30                             Kupalauskaya 10:32
+           METRO_2_S                             Kupalauskaya 10:32                          Traktarny zavod 10:44
+                WALK                          Traktarny zavod 10:44                                Буденного 10:48
+                WALK                                Буденного 10:48                                  Ванеева 10:50
+  DUMMY_START_FINISH                                  Ванеева 10:50                                  Ванеева 11: 0
+
+

@@ -1,0 +1,144 @@
+RESULTS
+
+Network Size (Arcs count): 103367
+Total Time: 76.388
+
+SOLUTION 1
+Criteria: MAX_POI | Epsilon: 0.0
+Constraints Count: 25245
+Objective Value: 2.0
+Solution Time (sec): 22.142
+  DUMMY_START_FINISH                             Mahileuskaya  8:58                             Mahileuskaya  9: 0
+           METRO_2_B                             Mahileuskaya  9: 0                           Autazavodskaya  9: 4
+           METRO_2_B                           Autazavodskaya  9: 4                            Praletarskaya  9:16
+           METRO_2_B                            Praletarskaya  9:16                           Pershamayskaya  9:20
+           METRO_2_B                           Pershamayskaya  9:20                             Kupalauskaya  9:24
+               VISIT                             Kupalauskaya  9:24                             Kupalauskaya  9:34
+                WALK                             Kupalauskaya  9:34                          Kastrychnickaya  9:36
+           METRO_1_B                          Kastrychnickaya  9:36                         Ploscha Peramogi  9:40
+           METRO_1_B                         Ploscha Peramogi  9:40                   Ploshcha Yacuba Kolasa  9:44
+                WALK                   Ploshcha Yacuba Kolasa  9:44                             пл. Я.Коласа  9:45
+            TRAM_5_B                             пл. Я.Коласа  9:45                          Дворец Молодежи  9:57
+               VISIT                          Дворец Молодежи  9:57                          Дворец Молодежи 10: 7
+                WALK                          Дворец Молодежи 10: 7                               Кропоткина 10:21
+                WALK                               Кропоткина 10:21                            Карастояновой 10:43
+                WALK                            Карастояновой 10:43                       Лили Карастояновой 10:44
+            TRANSFER                       Лили Карастояновой 10:44                       Лили Карастояновой 10:48
+           TROL_22_S                       Лили Карастояновой 10:48                                Орловская 10:50
+           TROL_22_S                                Орловская 10:50                                Каховская 10:52
+           TROL_22_S                                Каховская 10:52                               Кропоткина 10:58
+                WALK                               Кропоткина 10:58                               Кропоткина 10:59
+  DUMMY_START_FINISH                               Кропоткина 10:59                               Кропоткина 11: 0
+
+
+SOLUTION 2
+Criteria: MIN_TIME | Epsilon: 0.1
+Constraints Count: 25246
+Objective Value: 380.0
+Solution Time (sec): 39.551
+  DUMMY_START_FINISH                             Mahileuskaya  8:58                             Mahileuskaya  9: 0
+           METRO_2_B                             Mahileuskaya  9: 0                           Autazavodskaya  9: 4
+           METRO_2_B                           Autazavodskaya  9: 4                          Traktarny zavod  9:12
+           METRO_2_B                          Traktarny zavod  9:12                           Pershamayskaya  9:20
+           METRO_2_B                           Pershamayskaya  9:20                             Kupalauskaya  9:24
+               VISIT                             Kupalauskaya  9:24                             Kupalauskaya  9:34
+                WALK                             Kupalauskaya  9:34                          Kastrychnickaya  9:36
+           METRO_1_B                          Kastrychnickaya  9:36                   Ploshcha Yacuba Kolasa  9:44
+                WALK                   Ploshcha Yacuba Kolasa  9:44                             пл. Я.Коласа  9:45
+            TRAM_5_B                             пл. Я.Коласа  9:45                          Дворец Молодежи  9:57
+               VISIT                          Дворец Молодежи  9:57                          Дворец Молодежи 10: 7
+                WALK                          Дворец Молодежи 10: 7                               Кропоткина 10:20
+  DUMMY_START_FINISH                               Кропоткина 10:20                               Кропоткина 11: 0
+
+
+SOLUTION 3
+Criteria: MIN_TIME_WALKING | Epsilon: 0.1
+Constraints Count: 25247
+Objective Value: 16.0
+Solution Time (sec): 2.272
+  DUMMY_START_FINISH                             Mahileuskaya  8:58                             Mahileuskaya  9: 0
+           METRO_2_B                             Mahileuskaya  9: 0                           Autazavodskaya  9: 4
+           METRO_2_B                           Autazavodskaya  9: 4                          Traktarny zavod  9:12
+           METRO_2_B                          Traktarny zavod  9:12                           Pershamayskaya  9:20
+           METRO_2_B                           Pershamayskaya  9:20                             Kupalauskaya  9:24
+               VISIT                             Kupalauskaya  9:24                             Kupalauskaya  9:34
+                WALK                             Kupalauskaya  9:34                          Kastrychnickaya  9:36
+           METRO_1_B                          Kastrychnickaya  9:36                   Ploshcha Yacuba Kolasa  9:44
+                WALK                   Ploshcha Yacuba Kolasa  9:44                             пл. Я.Коласа  9:45
+            TRAM_5_B                             пл. Я.Коласа  9:45                          Дворец Молодежи  9:57
+               VISIT                          Дворец Молодежи  9:57                          Дворец Молодежи 10: 7
+                WALK                          Дворец Молодежи 10: 7                               Кропоткина 10:20
+  DUMMY_START_FINISH                               Кропоткина 10:20                               Кропоткина 11: 0
+
+
+SOLUTION 4
+Criteria: MIN_TIME_TRANSFER | Epsilon: 0.1
+Constraints Count: 25248
+Objective Value: 0.0
+Solution Time (sec): 6.323
+  DUMMY_START_FINISH                             Mahileuskaya  8:58                             Mahileuskaya  9: 0
+           METRO_2_B                             Mahileuskaya  9: 0                           Autazavodskaya  9: 4
+           METRO_2_B                           Autazavodskaya  9: 4                          Traktarny zavod  9:12
+           METRO_2_B                          Traktarny zavod  9:12                           Pershamayskaya  9:20
+           METRO_2_B                           Pershamayskaya  9:20                             Kupalauskaya  9:24
+               VISIT                             Kupalauskaya  9:24                             Kupalauskaya  9:34
+                WALK                             Kupalauskaya  9:34                          Kastrychnickaya  9:36
+           METRO_1_B                          Kastrychnickaya  9:36                   Ploshcha Yacuba Kolasa  9:44
+                WALK                   Ploshcha Yacuba Kolasa  9:44                             пл. Я.Коласа  9:45
+            TRAM_5_B                             пл. Я.Коласа  9:45                          Дворец Молодежи  9:57
+               VISIT                          Дворец Молодежи  9:57                          Дворец Молодежи 10: 7
+                WALK                          Дворец Молодежи 10: 7                               Кропоткина 10:20
+  DUMMY_START_FINISH                               Кропоткина 10:20                               Кропоткина 11: 0
+
+
+SOLUTION 5
+Criteria: MIN_COST | Epsilon: 0.3
+Constraints Count: 25249
+Objective Value: 175.0
+Solution Time (sec): 2.497
+  DUMMY_START_FINISH                             Mahileuskaya  8:58                             Mahileuskaya  9: 0
+           METRO_2_B                             Mahileuskaya  9: 0                             Kupalauskaya  9:24
+               VISIT                             Kupalauskaya  9:24                             Kupalauskaya  9:34
+                WALK                             Kupalauskaya  9:34                          Kastrychnickaya  9:36
+           METRO_1_B                          Kastrychnickaya  9:36                   Ploshcha Yacuba Kolasa  9:44
+                WALK                   Ploshcha Yacuba Kolasa  9:44                             пл. Я.Коласа  9:45
+            TRAM_5_B                             пл. Я.Коласа  9:45                          Дворец Молодежи  9:57
+               VISIT                          Дворец Молодежи  9:57                          Дворец Молодежи 10: 7
+                WALK                          Дворец Молодежи 10: 7                               Кропоткина 10:20
+  DUMMY_START_FINISH                               Кропоткина 10:20                               Кропоткина 11: 0
+
+
+SOLUTION 6
+Criteria: MIN_CHANGES | Epsilon: 0.3
+Constraints Count: 25250
+Objective Value: 0.0
+Solution Time (sec): 1.788
+  DUMMY_START_FINISH                             Mahileuskaya  8:58                             Mahileuskaya  9: 0
+           METRO_2_B                             Mahileuskaya  9: 0                             Kupalauskaya  9:24
+               VISIT                             Kupalauskaya  9:24                             Kupalauskaya  9:34
+                WALK                             Kupalauskaya  9:34                          Kastrychnickaya  9:36
+           METRO_1_B                          Kastrychnickaya  9:36                   Ploshcha Yacuba Kolasa  9:44
+                WALK                   Ploshcha Yacuba Kolasa  9:44                             пл. Я.Коласа  9:45
+            TRAM_5_B                             пл. Я.Коласа  9:45                          Дворец Молодежи  9:57
+               VISIT                          Дворец Молодежи  9:57                          Дворец Молодежи 10: 7
+                WALK                          Дворец Молодежи 10: 7                               Кропоткина 10:20
+  DUMMY_START_FINISH                               Кропоткина 10:20                               Кропоткина 11: 0
+
+
+SOLUTION 7
+Criteria: MIN_CO2 | Epsilon: 0.3
+Constraints Count: 25251
+Objective Value: 0.0
+Solution Time (sec): 1.815
+  DUMMY_START_FINISH                             Mahileuskaya  8:58                             Mahileuskaya  9: 0
+           METRO_2_B                             Mahileuskaya  9: 0                             Kupalauskaya  9:24
+               VISIT                             Kupalauskaya  9:24                             Kupalauskaya  9:34
+                WALK                             Kupalauskaya  9:34                          Kastrychnickaya  9:36
+           METRO_1_B                          Kastrychnickaya  9:36                   Ploshcha Yacuba Kolasa  9:44
+                WALK                   Ploshcha Yacuba Kolasa  9:44                             пл. Я.Коласа  9:45
+            TRAM_5_B                             пл. Я.Коласа  9:45                          Дворец Молодежи  9:57
+               VISIT                          Дворец Молодежи  9:57                          Дворец Молодежи 10: 7
+                WALK                          Дворец Молодежи 10: 7                               Кропоткина 10:20
+  DUMMY_START_FINISH                               Кропоткина 10:20                               Кропоткина 11: 0
+
+

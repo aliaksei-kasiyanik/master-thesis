@@ -37,18 +37,11 @@ public class TripRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        InputParameters parameters = getParameters();
+        double epsilon = 0.0;
+        InputParameters parameters = getParameters(epsilon);
 
         List<BaseArc> arcs = networkService.generateNetwork(parameters);
 
-//        parameters.setCriteria(Arrays.asList(new ImmutablePair<>(RouteCriteria.MIN_TIME, 0.0)));
-
-//        ProblemSolver solver = new ProblemSolver(arcs, parameters);
-//        solver.solve();
-//
-//        double[] initSolution = solver.getLastSolution();
-//        parameters = getParameters();
-//        solver = new ProblemSolver(arcs, parameters, initSolution);
         ProblemSolver solver = new ProblemSolver(arcs, parameters);
         RouteSolution result = solver.solve();
 
@@ -56,11 +49,11 @@ public class TripRunner implements ApplicationRunner {
         printer.print(result);
     }
 
-    private InputParameters getParameters() {
-        String departurePoint = "59317e620cc7842d442760af"; // Mahileuskaya
+    private InputParameters getParameters(double epsilon) {
+        String departurePoint = "5939349989d07f2674224773"; // ДС Зелёный Луг
         LocalTime departureTime =  LocalTime.of(8, 58);
 
-        String arrivalPoint = "592ef61cb929d5fc5c451647";// Кропоткина
+        String arrivalPoint = "59317e620cc7842d442760ad";// Partyzanskaya
         LocalTime arrivalTime = LocalTime.of(11, 0);
 
         Set<Type> modes = EnumSet.of(
@@ -75,13 +68,13 @@ public class TripRunner implements ApplicationRunner {
             put("5939349e89d07f2674224778", 10);
         }};
         List<Pair<RouteCriteria, Double>> criteria = new LinkedList<Pair<RouteCriteria, Double>>() {{
-            add(new ImmutablePair<>(RouteCriteria.MAX_POI, 0.0));
-            add(new ImmutablePair<>(RouteCriteria.MIN_TIME, 0.0));
-            add(new ImmutablePair<>(RouteCriteria.MIN_TIME_WALKING, 0.0));
-            add(new ImmutablePair<>(RouteCriteria.MIN_TIME_TRANSFER, 0.0));
-            add(new ImmutablePair<>(RouteCriteria.MIN_COST, 0.0));
-            add(new ImmutablePair<>(RouteCriteria.MIN_CHANGES, 0.0));
-            add(new ImmutablePair<>(RouteCriteria.MIN_CO2, 0.0));
+            add(new ImmutablePair<>(RouteCriteria.MAX_POI, epsilon));
+            add(new ImmutablePair<>(RouteCriteria.MIN_TIME, epsilon));
+            add(new ImmutablePair<>(RouteCriteria.MIN_CHANGES, epsilon));
+            add(new ImmutablePair<>(RouteCriteria.MIN_TIME_TRANSFER, epsilon));
+            add(new ImmutablePair<>(RouteCriteria.MIN_TIME_WALKING, epsilon));
+            add(new ImmutablePair<>(RouteCriteria.MIN_COST, epsilon));
+            add(new ImmutablePair<>(RouteCriteria.MIN_CO2, epsilon));
         }};
 
         return new InputParameters(

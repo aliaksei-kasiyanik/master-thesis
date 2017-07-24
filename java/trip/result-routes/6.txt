@@ -1,0 +1,132 @@
+RESULTS
+
+Network Size (Arcs count): 103367
+Total Time: 19.286
+
+SOLUTION 1
+Criteria: MIN_TIME | Epsilon: 0.5
+Constraints Count: 25244
+Objective Value: 343.0
+Solution Time (sec): 11.975
+  DUMMY_START_FINISH                             Mahileuskaya  8:58                             Mahileuskaya  9: 0
+           METRO_2_B                             Mahileuskaya  9: 0                           Autazavodskaya  9: 4
+           METRO_2_B                           Autazavodskaya  9: 4                            Partyzanskaya  9: 8
+           METRO_2_B                            Partyzanskaya  9: 8                          Traktarny zavod  9:12
+                WALK                          Traktarny zavod  9:12                    ст.м.Тракторный завод  9:13
+            TRANSFER                    ст.м.Тракторный завод  9:13                    ст.м.Тракторный завод  9:16
+            TRAM_6_S                    ст.м.Тракторный завод  9:16                                Уральская  9:20
+            TRAM_6_S                                Уральская  9:20                             пер. Козлова  9:22
+            TRAM_6_S                             пер. Козлова  9:22                             Берестянская  9:27
+            TRAM_6_S                             Берестянская  9:27                          Бядули Змитрока  9:28
+            TRAM_6_S                          Бядули Змитрока  9:28                                  Красная  9:32
+                WALK                                  Красная  9:32                                  Красная  9:33
+                WALK                                  Красная  9:33                                  Красная  9:34
+                WALK                                  Красная  9:34                                  Красная  9:35
+           TROL_22_B                                  Красная  9:35                                Куйбышева  9:37
+           TROL_22_B                                Куйбышева  9:37                               Кропоткина  9:43
+  DUMMY_START_FINISH                               Кропоткина  9:43                               Кропоткина 11: 0
+
+
+SOLUTION 2
+Criteria: MIN_TIME_TRANSFER | Epsilon: 0.5
+Constraints Count: 25245
+Objective Value: 0.0
+Solution Time (sec): 1.982
+  DUMMY_START_FINISH                             Mahileuskaya  8:58                             Mahileuskaya  9: 0
+           METRO_2_B                             Mahileuskaya  9: 0                            Partyzanskaya  9: 8
+           METRO_2_B                            Partyzanskaya  9: 8                          Traktarny zavod  9:12
+                WALK                          Traktarny zavod  9:12                             пер. Козлова  9:31
+                WALK                             пер. Козлова  9:31                             Ботаническая  9:36
+                WALK                             Ботаническая  9:36                           Гипсовый завод  9:37
+            BUS_19_B                           Гипсовый завод  9:37                                Платонова  9:38
+            BUS_19_B                                Платонова  9:38                               Дом мебели  9:49
+            BUS_19_B                               Дом мебели  9:49                               Хоружей В.  9:53
+                WALK                               Хоружей В.  9:53                           Богдановича М.  9:55
+                WALK                           Богдановича М.  9:55                               Кропоткина 10: 0
+                WALK                               Кропоткина 10: 0                               Кропоткина 10: 1
+                WALK                               Кропоткина 10: 1                               Кропоткина 10: 2
+                WALK                               Кропоткина 10: 2                               Кропоткина 10: 4
+                WALK                               Кропоткина 10: 4                               Кропоткина 10: 5
+  DUMMY_START_FINISH                               Кропоткина 10: 5                               Кропоткина 11: 0
+
+
+SOLUTION 3
+Criteria: MIN_COST | Epsilon: 0.5
+Constraints Count: 25246
+Objective Value: 60.0
+Solution Time (sec): 1.167
+  DUMMY_START_FINISH                             Mahileuskaya  8:58                             Mahileuskaya  9: 0
+           METRO_2_B                             Mahileuskaya  9: 0                                  Niamiha  9:28
+                WALK                                  Niamiha  9:28                              Театральная  9:49
+                WALK                              Театральная  9:49                               Кропоткина  9:58
+                WALK                               Кропоткина  9:58                               Кропоткина 10: 0
+                WALK                               Кропоткина 10: 0                               Кропоткина 10: 1
+                WALK                               Кропоткина 10: 1                               Кропоткина 10: 2
+                WALK                               Кропоткина 10: 2                               Кропоткина 10: 4
+                WALK                               Кропоткина 10: 4                               Кропоткина 10: 5
+  DUMMY_START_FINISH                               Кропоткина 10: 5                               Кропоткина 11: 0
+
+
+SOLUTION 4
+Criteria: MAX_POI | Epsilon: 0.5
+Constraints Count: 25248
+Objective Value: 0.0
+Solution Time (sec): 1.153
+  DUMMY_START_FINISH                             Mahileuskaya  8:58                             Mahileuskaya  9: 0
+           METRO_2_B                             Mahileuskaya  9: 0                                  Niamiha  9:28
+                WALK                                  Niamiha  9:28                              Театральная  9:49
+                WALK                              Театральная  9:49                               Кропоткина  9:58
+                WALK                               Кропоткина  9:58                               Кропоткина 10: 0
+                WALK                               Кропоткина 10: 0                               Кропоткина 10: 1
+                WALK                               Кропоткина 10: 1                               Кропоткина 10: 2
+                WALK                               Кропоткина 10: 2                               Кропоткина 10: 4
+                WALK                               Кропоткина 10: 4                               Кропоткина 10: 5
+  DUMMY_START_FINISH                               Кропоткина 10: 5                               Кропоткина 11: 0
+
+
+SOLUTION 5
+Criteria: MIN_CO2 | Epsilon: 0.5
+Constraints Count: 25249
+Objective Value: 0.0
+Solution Time (sec): 1.011
+  DUMMY_START_FINISH                             Mahileuskaya  8:58                             Mahileuskaya  9: 0
+           METRO_2_B                             Mahileuskaya  9: 0                                  Niamiha  9:28
+                WALK                                  Niamiha  9:28                              Театральная  9:49
+                WALK                              Театральная  9:49                               Кропоткина  9:58
+                WALK                               Кропоткина  9:58                               Кропоткина 10: 0
+                WALK                               Кропоткина 10: 0                               Кропоткина 10: 1
+                WALK                               Кропоткина 10: 1                               Кропоткина 10: 2
+                WALK                               Кропоткина 10: 2                               Кропоткина 10: 4
+                WALK                               Кропоткина 10: 4                               Кропоткина 10: 5
+  DUMMY_START_FINISH                               Кропоткина 10: 5                               Кропоткина 11: 0
+
+
+SOLUTION 6
+Criteria: MIN_CHANGES | Epsilon: 0.5
+Constraints Count: 25250
+Objective Value: 0.0
+Solution Time (sec): 0.969
+  DUMMY_START_FINISH                             Mahileuskaya  8:58                             Mahileuskaya  9: 0
+           METRO_2_B                             Mahileuskaya  9: 0                                  Niamiha  9:28
+                WALK                                  Niamiha  9:28                              Театральная  9:49
+                WALK                              Театральная  9:49                               Кропоткина  9:58
+                WALK                               Кропоткина  9:58                               Кропоткина 10: 0
+                WALK                               Кропоткина 10: 0                               Кропоткина 10: 1
+                WALK                               Кропоткина 10: 1                               Кропоткина 10: 2
+                WALK                               Кропоткина 10: 2                               Кропоткина 10: 4
+                WALK                               Кропоткина 10: 4                               Кропоткина 10: 5
+  DUMMY_START_FINISH                               Кропоткина 10: 5                               Кропоткина 11: 0
+
+
+SOLUTION 7
+Criteria: MIN_TIME_WALKING | Epsilon: 0.5
+Constraints Count: 25251
+Objective Value: 29.0
+Solution Time (sec): 1.029
+  DUMMY_START_FINISH                             Mahileuskaya  8:58                             Mahileuskaya  9: 8
+           METRO_2_B                             Mahileuskaya  9: 8                                  Niamiha  9:36
+                WALK                                  Niamiha  9:36                              Театральная  9:57
+                WALK                              Театральная  9:57                               Кропоткина 10: 5
+  DUMMY_START_FINISH                               Кропоткина 10: 5                               Кропоткина 11: 0
+
+

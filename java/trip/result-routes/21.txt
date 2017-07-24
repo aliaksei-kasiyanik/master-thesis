@@ -1,0 +1,183 @@
+RESULTS
+
+Network Size (Arcs count): 102342
+Total Time: 72.351
+
+SOLUTION 1
+Criteria: MAX_POI | Epsilon: 0.5
+Constraints Count: 24077
+Objective Value: 2.0
+Solution Time (sec): 16.122
+  DUMMY_START_FINISH                           ДС Зелёный Луг  8:58                           ДС Зелёный Луг  9: 4
+           TRAM_11_S                           ДС Зелёный Луг  9: 4                             Калиновского  9: 7
+           TRAM_11_S                             Калиновского  9: 7                          Севастопольская  9:10
+           TRAM_11_S                          Севастопольская  9:10                            Чернышевского  9:16
+           TRAM_11_S                            Чернышевского  9:16                                     БНТУ  9:18
+           TRAM_11_S                                     БНТУ  9:18                               Дорошевича  9:21
+           TRAM_11_S                               Дорошевича  9:21                             пл. Я.Коласа  9:22
+           TRAM_11_S                             пл. Я.Коласа  9:22                              Пугачевская  9:24
+            TRANSFER                              Пугачевская  9:24                              Пугачевская  9:27
+           TRAM_11_B                              Пугачевская  9:27                             пл. Я.Коласа  9:28
+                WALK                             пл. Я.Коласа  9:28                   Ploshcha Yacuba Kolasa  9:29
+                WALK                   Ploshcha Yacuba Kolasa  9:29                             пл. Я.Коласа  9:30
+            TRANSFER                             пл. Я.Коласа  9:30                             пл. Я.Коласа  9:31
+            TRAM_5_B                             пл. Я.Коласа  9:31                          Дворец Молодежи  9:43
+               VISIT                          Дворец Молодежи  9:43                          Дворец Молодежи  9:53
+                WALK                          Дворец Молодежи  9:53                  Дворец детей и молодежи  9:55
+            TRANSFER                  Дворец детей и молодежи  9:55                  Дворец детей и молодежи  9:58
+            TRAM_5_S                  Дворец детей и молодежи  9:58                              Театральная 10: 2
+                WALK                              Театральная 10: 2                                  Niamiha 10:23
+            TRANSFER                                  Niamiha 10:23                                  Niamiha 10:24
+           METRO_2_S                                  Niamiha 10:24                             Kupalauskaya 10:28
+               VISIT                             Kupalauskaya 10:28                             Kupalauskaya 10:38
+            TRANSFER                             Kupalauskaya 10:38                             Kupalauskaya 10:40
+           METRO_2_S                             Kupalauskaya 10:40                           Pershamayskaya 10:44
+           METRO_2_S                           Pershamayskaya 10:44                            Praletarskaya 10:48
+           METRO_2_S                            Praletarskaya 10:48                            Partyzanskaya 10:56
+  DUMMY_START_FINISH                            Partyzanskaya 10:56                            Partyzanskaya 11: 0
+
+
+SOLUTION 2
+Criteria: MIN_TIME | Epsilon: 0.5
+Constraints Count: 24078
+Objective Value: 364.0
+Solution Time (sec): 27.884
+  DUMMY_START_FINISH                           ДС Зелёный Луг  8:58                           ДС Зелёный Луг  9: 2
+            TRAM_6_B                           ДС Зелёный Луг  9: 2                                    Седых  9: 3
+            TRAM_6_B                                    Седых  9: 3                             пл. Я.Коласа  9:21
+                WALK                             пл. Я.Коласа  9:21               ст.м. Площадь Якуба Коласа  9:22
+                WALK               ст.м. Площадь Якуба Коласа  9:22                   Ploshcha Yacuba Kolasa  9:24
+           METRO_1_S                   Ploshcha Yacuba Kolasa  9:24                         Ploscha Peramogi  9:28
+           METRO_1_S                         Ploscha Peramogi  9:28                          Kastrychnickaya  9:32
+                WALK                          Kastrychnickaya  9:32                             Kupalauskaya  9:34
+            TRANSFER                             Kupalauskaya  9:34                             Kupalauskaya  9:36
+               VISIT                             Kupalauskaya  9:36                             Kupalauskaya  9:46
+            TRANSFER                             Kupalauskaya  9:46                             Kupalauskaya  9:48
+           METRO_2_S                             Kupalauskaya  9:48                           Pershamayskaya  9:52
+           METRO_2_S                           Pershamayskaya  9:52                            Partyzanskaya 10: 4
+  DUMMY_START_FINISH                            Partyzanskaya 10: 4                            Partyzanskaya 11: 0
+
+
+SOLUTION 3
+Criteria: MIN_CHANGES | Epsilon: 0.5
+Constraints Count: 24079
+Objective Value: 0.0
+Solution Time (sec): 13.766
+  DUMMY_START_FINISH                           ДС Зелёный Луг  8:58                           ДС Зелёный Луг  9: 2
+            TRAM_6_B                           ДС Зелёный Луг  9: 2                                    Седых  9: 3
+            TRAM_6_B                                    Седых  9: 3                             Калиновского  9: 5
+            TRAM_6_B                             Калиновского  9: 5                          Севастопольская  9: 9
+            TRAM_6_B                          Севастопольская  9: 9                            Волгоградская  9:10
+            TRAM_6_B                            Волгоградская  9:10                               Белинского  9:12
+            TRAM_6_B                               Белинского  9:12                            Чернышевского  9:15
+            TRAM_6_B                            Чернышевского  9:15                                     БНТУ  9:17
+            TRAM_6_B                                     БНТУ  9:17                               Дорошевича  9:19
+            TRAM_6_B                               Дорошевича  9:19                             пл. Я.Коласа  9:21
+                WALK                             пл. Я.Коласа  9:21                   Ploshcha Yacuba Kolasa  9:22
+                WALK                   Ploshcha Yacuba Kolasa  9:22                             пл. Я.Коласа  9:23
+                WALK                             пл. Я.Коласа  9:23                   Ploshcha Yacuba Kolasa  9:24
+           METRO_1_S                   Ploshcha Yacuba Kolasa  9:24                         Ploscha Peramogi  9:28
+                WALK                         Ploscha Peramogi  9:28                             Kupalauskaya  9:44
+               VISIT                             Kupalauskaya  9:44                             Kupalauskaya  9:54
+                WALK                             Kupalauskaya  9:54                          Kastrychnickaya  9:56
+           METRO_1_B                          Kastrychnickaya  9:56                         Ploscha Peramogi 10: 0
+                WALK                         Ploscha Peramogi 10: 0                             Kupalauskaya 10:16
+           METRO_2_S                             Kupalauskaya 10:16                            Praletarskaya 10:24
+           METRO_2_S                            Praletarskaya 10:24                            Partyzanskaya 10:32
+  DUMMY_START_FINISH                            Partyzanskaya 10:32                            Partyzanskaya 11: 0
+
+
+SOLUTION 4
+Criteria: MIN_TIME_TRANSFER | Epsilon: 0.5
+Constraints Count: 24080
+Objective Value: 0.0
+Solution Time (sec): 3.397
+  DUMMY_START_FINISH                           ДС Зелёный Луг  8:58                           ДС Зелёный Луг  9: 2
+            TRAM_6_B                           ДС Зелёный Луг  9: 2                                    Седых  9: 3
+            TRAM_6_B                                    Седых  9: 3                             Калиновского  9: 5
+            TRAM_6_B                             Калиновского  9: 5                          Севастопольская  9: 9
+            TRAM_6_B                          Севастопольская  9: 9                            Волгоградская  9:10
+            TRAM_6_B                            Волгоградская  9:10                               Белинского  9:12
+            TRAM_6_B                               Белинского  9:12                            Чернышевского  9:15
+            TRAM_6_B                            Чернышевского  9:15                                     БНТУ  9:17
+            TRAM_6_B                                     БНТУ  9:17                               Дорошевича  9:19
+            TRAM_6_B                               Дорошевича  9:19                             пл. Я.Коласа  9:21
+                WALK                             пл. Я.Коласа  9:21                   Ploshcha Yacuba Kolasa  9:22
+                WALK                   Ploshcha Yacuba Kolasa  9:22                             пл. Я.Коласа  9:23
+                WALK                             пл. Я.Коласа  9:23                   Ploshcha Yacuba Kolasa  9:24
+           METRO_1_S                   Ploshcha Yacuba Kolasa  9:24                         Ploscha Peramogi  9:28
+                WALK                         Ploscha Peramogi  9:28                             Kupalauskaya  9:44
+               VISIT                             Kupalauskaya  9:44                             Kupalauskaya  9:54
+                WALK                             Kupalauskaya  9:54                          Kastrychnickaya  9:56
+           METRO_1_B                          Kastrychnickaya  9:56                         Ploscha Peramogi 10: 0
+                WALK                         Ploscha Peramogi 10: 0                             Kupalauskaya 10:16
+           METRO_2_S                             Kupalauskaya 10:16                            Praletarskaya 10:24
+           METRO_2_S                            Praletarskaya 10:24                            Partyzanskaya 10:32
+  DUMMY_START_FINISH                            Partyzanskaya 10:32                            Partyzanskaya 11: 0
+
+
+SOLUTION 5
+Criteria: MIN_TIME_WALKING | Epsilon: 0.5
+Constraints Count: 24081
+Objective Value: 37.0
+Solution Time (sec): 3.243
+  DUMMY_START_FINISH                           ДС Зелёный Луг  8:58                           ДС Зелёный Луг  9: 2
+            TRAM_6_B                           ДС Зелёный Луг  9: 2                                    Седых  9: 3
+            TRAM_6_B                                    Седых  9: 3                             Калиновского  9: 5
+            TRAM_6_B                             Калиновского  9: 5                          Севастопольская  9: 9
+            TRAM_6_B                          Севастопольская  9: 9                            Волгоградская  9:10
+            TRAM_6_B                            Волгоградская  9:10                               Белинского  9:12
+            TRAM_6_B                               Белинского  9:12                            Чернышевского  9:15
+            TRAM_6_B                            Чернышевского  9:15                                     БНТУ  9:17
+            TRAM_6_B                                     БНТУ  9:17                               Дорошевича  9:19
+            TRAM_6_B                               Дорошевича  9:19                             пл. Я.Коласа  9:21
+                WALK                             пл. Я.Коласа  9:21                   Ploshcha Yacuba Kolasa  9:22
+                WALK                   Ploshcha Yacuba Kolasa  9:22                             пл. Я.Коласа  9:23
+                WALK                             пл. Я.Коласа  9:23                   Ploshcha Yacuba Kolasa  9:24
+           METRO_1_S                   Ploshcha Yacuba Kolasa  9:24                         Ploscha Peramogi  9:28
+                WALK                         Ploscha Peramogi  9:28                             Kupalauskaya  9:44
+               VISIT                             Kupalauskaya  9:44                             Kupalauskaya  9:54
+                WALK                             Kupalauskaya  9:54                          Kastrychnickaya  9:56
+           METRO_1_B                          Kastrychnickaya  9:56                         Ploscha Peramogi 10: 0
+                WALK                         Ploscha Peramogi 10: 0                             Kupalauskaya 10:16
+           METRO_2_S                             Kupalauskaya 10:16                            Praletarskaya 10:24
+           METRO_2_S                            Praletarskaya 10:24                            Partyzanskaya 10:32
+  DUMMY_START_FINISH                            Partyzanskaya 10:32                            Partyzanskaya 11: 0
+
+
+SOLUTION 6
+Criteria: MIN_COST | Epsilon: 0.5
+Constraints Count: 24082
+Objective Value: 175.0
+Solution Time (sec): 5.446
+  DUMMY_START_FINISH                           ДС Зелёный Луг  8:58                           ДС Зелёный Луг  9: 2
+            TRAM_6_B                           ДС Зелёный Луг  9: 2                                  Красная  9:23
+                WALK                                  Красная  9:23                                  Красная  9:24
+                WALK                                  Красная  9:24                                  Красная  9:25
+                WALK                                  Красная  9:25                             Kupalauskaya  9:48
+               VISIT                             Kupalauskaya  9:48                             Kupalauskaya  9:58
+                WALK                             Kupalauskaya  9:58                          Kastrychnickaya 10: 0
+           METRO_1_B                          Kastrychnickaya 10: 0                         Ploscha Peramogi 10: 4
+                WALK                         Ploscha Peramogi 10: 4                             Kupalauskaya 10:20
+           METRO_2_S                             Kupalauskaya 10:20                            Partyzanskaya 10:36
+  DUMMY_START_FINISH                            Partyzanskaya 10:36                            Partyzanskaya 11: 0
+
+
+SOLUTION 7
+Criteria: MIN_CO2 | Epsilon: 0.5
+Constraints Count: 24083
+Objective Value: 0.0
+Solution Time (sec): 2.493
+  DUMMY_START_FINISH                           ДС Зелёный Луг  8:58                           ДС Зелёный Луг  9: 2
+            TRAM_6_B                           ДС Зелёный Луг  9: 2                                  Красная  9:23
+                WALK                                  Красная  9:23                                  Красная  9:24
+                WALK                                  Красная  9:24                                  Красная  9:25
+                WALK                                  Красная  9:25                             Kupalauskaya  9:48
+               VISIT                             Kupalauskaya  9:48                             Kupalauskaya  9:58
+                WALK                             Kupalauskaya  9:58                          Kastrychnickaya 10: 0
+           METRO_1_B                          Kastrychnickaya 10: 0                         Ploscha Peramogi 10: 4
+                WALK                         Ploscha Peramogi 10: 4                             Kupalauskaya 10:20
+           METRO_2_S                             Kupalauskaya 10:20                            Partyzanskaya 10:36
+  DUMMY_START_FINISH                            Partyzanskaya 10:36                            Partyzanskaya 11: 0
+
+

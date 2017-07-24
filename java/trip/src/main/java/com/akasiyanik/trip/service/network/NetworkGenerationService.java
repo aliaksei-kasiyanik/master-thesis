@@ -46,7 +46,7 @@ public class NetworkGenerationService {
             allArcs.addAll(walkingArcsGenerator.generateArcs(parameters, allArcs));
         }
         allArcs.addAll(dummyArcsGenerator.generateArcs(parameters, allArcs));
-        allArcs = removeUnreacheableArcs(allArcs, parameters);
+//        allArcs = removeUnreacheableArcs(allArcs, parameters);
         List<BaseArc> result = new ArrayList<>(allArcs);
         return result;
     }

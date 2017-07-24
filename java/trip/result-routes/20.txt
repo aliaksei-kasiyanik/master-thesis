@@ -1,0 +1,156 @@
+RESULTS
+
+Network Size (Arcs count): 102342
+Total Time: 72.845
+
+SOLUTION 1
+Criteria: MAX_POI | Epsilon: 0.25
+Constraints Count: 24077
+Objective Value: 2.0
+Solution Time (sec): 23.953
+  DUMMY_START_FINISH                           ДС Зелёный Луг  8:58                           ДС Зелёный Луг  9:12
+            TRAM_5_B                           ДС Зелёный Луг  9:12                          Дворец Молодежи  9:43
+               VISIT                          Дворец Молодежи  9:43                          Дворец Молодежи  9:53
+                WALK                          Дворец Молодежи  9:53                     Старовиленский тракт  9:54
+            TRANSFER                     Старовиленский тракт  9:54                     Старовиленский тракт  9:57
+            TRAM_5_S                     Старовиленский тракт  9:57                              Театральная 10: 2
+                WALK                              Театральная 10: 2                                  Niamiha 10:23
+            TRANSFER                                  Niamiha 10:23                                  Niamiha 10:24
+           METRO_2_S                                  Niamiha 10:24                             Kupalauskaya 10:28
+               VISIT                             Kupalauskaya 10:28                             Kupalauskaya 10:38
+                WALK                             Kupalauskaya 10:38                          Kastrychnickaya 10:40
+                WALK                          Kastrychnickaya 10:40                             Kupalauskaya 10:42
+            TRANSFER                             Kupalauskaya 10:42                             Kupalauskaya 10:44
+           METRO_2_S                             Kupalauskaya 10:44                           Pershamayskaya 10:48
+           METRO_2_S                           Pershamayskaya 10:48                            Praletarskaya 10:52
+           METRO_2_S                            Praletarskaya 10:52                          Traktarny zavod 10:56
+           METRO_2_S                          Traktarny zavod 10:56                            Partyzanskaya 11: 0
+
+
+SOLUTION 2
+Criteria: MIN_TIME | Epsilon: 0.25
+Constraints Count: 24078
+Objective Value: 364.0
+Solution Time (sec): 25.81
+  DUMMY_START_FINISH                           ДС Зелёный Луг  8:58                           ДС Зелёный Луг  9: 2
+            TRAM_6_B                           ДС Зелёный Луг  9: 2                                    Седых  9: 3
+            TRAM_6_B                                    Седых  9: 3                             пл. Я.Коласа  9:21
+                WALK                             пл. Я.Коласа  9:21               ст.м. Площадь Якуба Коласа  9:22
+                WALK               ст.м. Площадь Якуба Коласа  9:22                   Ploshcha Yacuba Kolasa  9:24
+           METRO_1_S                   Ploshcha Yacuba Kolasa  9:24                         Ploscha Peramogi  9:28
+           METRO_1_S                         Ploscha Peramogi  9:28                          Kastrychnickaya  9:32
+                WALK                          Kastrychnickaya  9:32                             Kupalauskaya  9:34
+            TRANSFER                             Kupalauskaya  9:34                             Kupalauskaya  9:36
+               VISIT                             Kupalauskaya  9:36                             Kupalauskaya  9:46
+            TRANSFER                             Kupalauskaya  9:46                             Kupalauskaya  9:48
+           METRO_2_S                             Kupalauskaya  9:48                          Traktarny zavod 10: 0
+           METRO_2_S                          Traktarny zavod 10: 0                            Partyzanskaya 10: 4
+  DUMMY_START_FINISH                            Partyzanskaya 10: 4                            Partyzanskaya 11: 0
+
+
+SOLUTION 3
+Criteria: MIN_CHANGES | Epsilon: 0.25
+Constraints Count: 24079
+Objective Value: 1.0
+Solution Time (sec): 6.07
+  DUMMY_START_FINISH                           ДС Зелёный Луг  8:58                           ДС Зелёный Луг  9: 8
+           TRAM_11_S                           ДС Зелёный Луг  9: 8                                    Седых  9: 9
+           TRAM_11_S                                    Седых  9: 9                            Волгоградская  9:15
+           TRAM_11_S                            Волгоградская  9:15                            Чернышевского  9:20
+           TRAM_11_S                            Чернышевского  9:20                             пл. Я.Коласа  9:26
+                WALK                             пл. Я.Коласа  9:26               ст.м. Площадь Якуба Коласа  9:27
+                WALK               ст.м. Площадь Якуба Коласа  9:27                             пл. Я.Коласа  9:28
+            TRAM_6_B                             пл. Я.Коласа  9:28                     просп. Независимости  9:31
+                WALK                     просп. Независимости  9:31                          Kastrychnickaya  9:50
+                WALK                          Kastrychnickaya  9:50                             Kupalauskaya  9:52
+               VISIT                             Kupalauskaya  9:52                             Kupalauskaya 10: 2
+            TRANSFER                             Kupalauskaya 10: 2                             Kupalauskaya 10: 4
+           METRO_2_S                             Kupalauskaya 10: 4                          Traktarny zavod 10:16
+           METRO_2_S                          Traktarny zavod 10:16                            Partyzanskaya 10:20
+  DUMMY_START_FINISH                            Partyzanskaya 10:20                            Partyzanskaya 11: 0
+
+
+SOLUTION 4
+Criteria: MIN_TIME_TRANSFER | Epsilon: 0.25
+Constraints Count: 24080
+Objective Value: 2.0
+Solution Time (sec): 8.974
+  DUMMY_START_FINISH                           ДС Зелёный Луг  8:58                           ДС Зелёный Луг  9: 8
+           TRAM_11_S                           ДС Зелёный Луг  9: 8                                    Седых  9: 9
+           TRAM_11_S                                    Седых  9: 9                            Волгоградская  9:15
+           TRAM_11_S                            Волгоградская  9:15                            Чернышевского  9:20
+           TRAM_11_S                            Чернышевского  9:20                             пл. Я.Коласа  9:26
+                WALK                             пл. Я.Коласа  9:26               ст.м. Площадь Якуба Коласа  9:27
+                WALK               ст.м. Площадь Якуба Коласа  9:27                             пл. Я.Коласа  9:28
+            TRAM_6_B                             пл. Я.Коласа  9:28                     просп. Независимости  9:31
+                WALK                     просп. Независимости  9:31                          Kastrychnickaya  9:50
+                WALK                          Kastrychnickaya  9:50                             Kupalauskaya  9:52
+               VISIT                             Kupalauskaya  9:52                             Kupalauskaya 10: 2
+            TRANSFER                             Kupalauskaya 10: 2                             Kupalauskaya 10: 4
+           METRO_2_S                             Kupalauskaya 10: 4                          Traktarny zavod 10:16
+           METRO_2_S                          Traktarny zavod 10:16                            Partyzanskaya 10:20
+  DUMMY_START_FINISH                            Partyzanskaya 10:20                            Partyzanskaya 11: 0
+
+
+SOLUTION 5
+Criteria: MIN_TIME_WALKING | Epsilon: 0.25
+Constraints Count: 24081
+Objective Value: 1.0
+Solution Time (sec): 5.289
+  DUMMY_START_FINISH                           ДС Зелёный Луг  8:58                           ДС Зелёный Луг  9: 2
+            TRAM_6_B                           ДС Зелёный Луг  9: 2                                    Седых  9: 3
+            TRAM_6_B                                    Седых  9: 3                             Калиновского  9: 5
+            TRAM_6_B                             Калиновского  9: 5                      Магазин Электроника  9: 7
+            TRAM_6_B                      Магазин Электроника  9: 7                          Севастопольская  9: 9
+            TRAM_6_B                          Севастопольская  9: 9                            Волгоградская  9:10
+            TRAM_6_B                            Волгоградская  9:10                               Белинского  9:12
+            TRAM_6_B                               Белинского  9:12                            Чернышевского  9:15
+            TRAM_6_B                            Чернышевского  9:15                             пл. Я.Коласа  9:21
+            TRAM_6_B                             пл. Я.Коласа  9:21                              Пугачевская  9:22
+            TRAM_6_B                              Пугачевская  9:22                                  Красная  9:23
+            TRAM_6_B                                  Красная  9:23                                Платонова  9:29
+            TRAM_6_B                                Платонова  9:29                             Ботаническая  9:32
+            TRAM_6_B                             Ботаническая  9:32                    ст.м.Тракторный завод  9:38
+                WALK                    ст.м.Тракторный завод  9:38                          Traktarny zavod  9:39
+            TRANSFER                          Traktarny zavod  9:39                          Traktarny zavod  9:40
+           METRO_2_B                          Traktarny zavod  9:40                             Kupalauskaya  9:52
+               VISIT                             Kupalauskaya  9:52                             Kupalauskaya 10: 2
+            TRANSFER                             Kupalauskaya 10: 2                             Kupalauskaya 10: 4
+           METRO_2_S                             Kupalauskaya 10: 4                            Praletarskaya 10:12
+           METRO_2_S                            Praletarskaya 10:12                          Traktarny zavod 10:16
+           METRO_2_S                          Traktarny zavod 10:16                            Partyzanskaya 10:20
+  DUMMY_START_FINISH                            Partyzanskaya 10:20                            Partyzanskaya 11: 0
+
+
+SOLUTION 6
+Criteria: MIN_COST | Epsilon: 0.25
+Constraints Count: 24082
+Objective Value: 175.0
+Solution Time (sec): 1.551
+  DUMMY_START_FINISH                           ДС Зелёный Луг  8:58                           ДС Зелёный Луг  9: 2
+            TRAM_6_B                           ДС Зелёный Луг  9: 2                    ст.м.Тракторный завод  9:38
+                WALK                    ст.м.Тракторный завод  9:38                          Traktarny zavod  9:39
+            TRANSFER                          Traktarny zavod  9:39                          Traktarny zavod  9:40
+           METRO_2_B                          Traktarny zavod  9:40                             Kupalauskaya  9:52
+               VISIT                             Kupalauskaya  9:52                             Kupalauskaya 10: 2
+            TRANSFER                             Kupalauskaya 10: 2                             Kupalauskaya 10: 4
+           METRO_2_S                             Kupalauskaya 10: 4                            Partyzanskaya 10:20
+  DUMMY_START_FINISH                            Partyzanskaya 10:20                            Partyzanskaya 11: 0
+
+
+SOLUTION 7
+Criteria: MIN_CO2 | Epsilon: 0.25
+Constraints Count: 24083
+Objective Value: 0.0
+Solution Time (sec): 1.198
+  DUMMY_START_FINISH                           ДС Зелёный Луг  8:58                           ДС Зелёный Луг  9: 2
+            TRAM_6_B                           ДС Зелёный Луг  9: 2                    ст.м.Тракторный завод  9:38
+                WALK                    ст.м.Тракторный завод  9:38                          Traktarny zavod  9:39
+            TRANSFER                          Traktarny zavod  9:39                          Traktarny zavod  9:40
+           METRO_2_B                          Traktarny zavod  9:40                             Kupalauskaya  9:52
+               VISIT                             Kupalauskaya  9:52                             Kupalauskaya 10: 2
+            TRANSFER                             Kupalauskaya 10: 2                             Kupalauskaya 10: 4
+           METRO_2_S                             Kupalauskaya 10: 4                            Partyzanskaya 10:20
+  DUMMY_START_FINISH                            Partyzanskaya 10:20                            Partyzanskaya 11: 0
+
+

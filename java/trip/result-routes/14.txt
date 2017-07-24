@@ -1,0 +1,118 @@
+RESULTS
+
+Network Size (Arcs count): 97004
+Total Time: 23.422
+
+SOLUTION 1
+Criteria: MIN_TIME | Epsilon: 0.25
+Constraints Count: 25447
+Objective Value: 353.0
+Solution Time (sec): 15.074
+  DUMMY_START_FINISH                            Ак. Купревича  8:58                            Ак. Купревича  9: 2
+            BUS_25_S                            Ак. Купревича  9: 2      Институт неврологии и нейрохирургии  9: 5
+            BUS_25_S      Институт неврологии и нейрохирургии  9: 5                                   Роддом  9: 6
+            BUS_25_S                                   Роддом  9: 6                           Дом Милосердия  9:10
+            BUS_25_S                           Дом Милосердия  9:10                               Жасминовая  9:11
+            BUS_25_S                               Жасминовая  9:11                         ст.м. Московская  9:17
+            BUS_25_S                         ст.м. Московская  9:17                               Дом Печати  9:23
+            BUS_25_S                               Дом Печати  9:23                                Бровки П.  9:26
+                WALK                                Бровки П.  9:26                               Дорошевича  9:31
+            TRANSFER                               Дорошевича  9:31                               Дорошевича  9:32
+            TRAM_6_B                               Дорошевича  9:32                                  Ванеева  9:53
+  DUMMY_START_FINISH                                  Ванеева  9:53                                  Ванеева 11: 0
+
+
+SOLUTION 2
+Criteria: MIN_TIME_TRANSFER | Epsilon: 0.25
+Constraints Count: 25448
+Objective Value: 0.0
+Solution Time (sec): 1.742
+  DUMMY_START_FINISH                            Ак. Купревича  8:58                            Ак. Купревича  9: 2
+            BUS_25_S                            Ак. Купревича  9: 2      Институт неврологии и нейрохирургии  9: 5
+            BUS_25_S      Институт неврологии и нейрохирургии  9: 5                           Академия связи  9: 7
+            BUS_25_S                           Академия связи  9: 7                         ст.м. Московская  9:17
+            BUS_25_S                         ст.м. Московская  9:17                   ст.м. Парк Челюскинцев  9:20
+            BUS_25_S                   ст.м. Парк Челюскинцев  9:20                               Дом мебели  9:29
+                WALK                               Дом мебели  9:29                        Комаровский рынок  9:33
+            BUS_19_S                        Комаровский рынок  9:33                           Гипсовый завод  9:46
+            BUS_19_S                           Гипсовый завод  9:46                             пер. Козлова  9:49
+            BUS_19_S                             пер. Козлова  9:49                                Уральская  9:50
+                WALK                                Уральская  9:50                                Уральская  9:52
+                WALK                                Уральская  9:52                                Уральская  9:54
+                WALK                                Уральская  9:54                                Уральская  9:56
+                WALK                                Уральская  9:56                                Уральская  9:58
+                WALK                                Уральская  9:58                                Уральская 10: 0
+            TRAM_6_B                                Уральская 10: 0                                  Ванеева 10: 6
+  DUMMY_START_FINISH                                  Ванеева 10: 6                                  Ванеева 11: 0
+
+
+SOLUTION 3
+Criteria: MIN_COST | Epsilon: 0.25
+Constraints Count: 25449
+Objective Value: 110.0
+Solution Time (sec): 1.547
+  DUMMY_START_FINISH                            Ак. Купревича  8:58                            Ак. Купревича  9: 2
+            BUS_25_S                            Ак. Купревича  9: 2                               Дом мебели  9:29
+                WALK                               Дом мебели  9:29               ст.м. Площадь Якуба Коласа  9:30
+                WALK               ст.м. Площадь Якуба Коласа  9:30                             пл. Я.Коласа  9:31
+                WALK                             пл. Я.Коласа  9:31                         Ploscha Peramogi  9:44
+                WALK                         Ploscha Peramogi  9:44                     просп. Независимости  9:50
+            TRAM_6_B                     просп. Независимости  9:50                                  Ванеева 10: 6
+  DUMMY_START_FINISH                                  Ванеева 10: 6                                  Ванеева 11: 0
+
+
+SOLUTION 4
+Criteria: MAX_POI | Epsilon: 0.25
+Constraints Count: 25451
+Objective Value: 0.0
+Solution Time (sec): 1.182
+  DUMMY_START_FINISH                            Ак. Купревича  8:58                            Ак. Купревича  9: 2
+            BUS_25_S                            Ак. Купревича  9: 2                               Дом мебели  9:29
+                WALK                               Дом мебели  9:29               ст.м. Площадь Якуба Коласа  9:30
+                WALK               ст.м. Площадь Якуба Коласа  9:30                             пл. Я.Коласа  9:31
+                WALK                             пл. Я.Коласа  9:31                         Ploscha Peramogi  9:44
+                WALK                         Ploscha Peramogi  9:44                     просп. Независимости  9:50
+            TRAM_6_B                     просп. Независимости  9:50                                  Ванеева 10: 6
+  DUMMY_START_FINISH                                  Ванеева 10: 6                                  Ванеева 11: 0
+
+
+SOLUTION 5
+Criteria: MIN_CO2 | Epsilon: 0.25
+Constraints Count: 25452
+Objective Value: 152.0
+Solution Time (sec): 1.219
+  DUMMY_START_FINISH                            Ак. Купревича  8:58                            Ак. Купревича  9: 2
+            BUS_25_S                            Ак. Купревича  9: 2                             пл. Калинина  9:21
+                WALK                             пл. Калинина  9:21                               Дорошевича  9:37
+                WALK                               Дорошевича  9:37               ст.м. Площадь Якуба Коласа  9:46
+                WALK               ст.м. Площадь Якуба Коласа  9:46                             пл. Я.Коласа  9:47
+            TRAM_6_B                             пл. Я.Коласа  9:47                                  Ванеева 10: 6
+  DUMMY_START_FINISH                                  Ванеева 10: 6                                  Ванеева 11: 0
+
+
+SOLUTION 6
+Criteria: MIN_CHANGES | Epsilon: 0.25
+Constraints Count: 25453
+Objective Value: 0.0
+Solution Time (sec): 1.389
+  DUMMY_START_FINISH                            Ак. Купревича  8:58                            Ак. Купревича  9: 2
+            BUS_25_S                            Ак. Купревича  9: 2                             пл. Калинина  9:21
+                WALK                             пл. Калинина  9:21                               Дорошевича  9:37
+                WALK                               Дорошевича  9:37               ст.м. Площадь Якуба Коласа  9:46
+                WALK               ст.м. Площадь Якуба Коласа  9:46                             пл. Я.Коласа  9:47
+            TRAM_6_B                             пл. Я.Коласа  9:47                                  Ванеева 10: 6
+  DUMMY_START_FINISH                                  Ванеева 10: 6                                  Ванеева 11: 0
+
+
+SOLUTION 7
+Criteria: MIN_TIME_WALKING | Epsilon: 0.25
+Constraints Count: 25454
+Objective Value: 12.0
+Solution Time (sec): 1.269
+  DUMMY_START_FINISH                            Ак. Купревича  8:58                            Ак. Купревича  9: 2
+            BUS_25_S                            Ак. Купревича  9: 2                               Дом Печати  9:23
+                WALK                               Дом Печати  9:23                            Чернышевского  9:35
+            TRAM_6_B                            Чернышевского  9:35                                  Ванеева 10: 0
+  DUMMY_START_FINISH                                  Ванеева 10: 0                                  Ванеева 11: 0
+
+

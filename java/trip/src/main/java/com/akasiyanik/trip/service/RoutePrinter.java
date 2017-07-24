@@ -25,6 +25,9 @@ import java.util.stream.Collectors;
 @Component
 public class RoutePrinter {
 
+    @Autowired
+    private MongoStopRepository stopRepository;
+
     private final Logger logger = LoggerFactory.getLogger(RoutePrinter.class);
 
     private static final String RESULT_DIR = "result-routes";
@@ -49,15 +52,18 @@ public class RoutePrinter {
             lines.add("Objective Value: " + problemSolution.getObjectiveValue());
             lines.add("Solution Time (sec): "+ (problemSolution.getTime() / 1000.0));
             lines.addAll(
-                    problemSolution.getRoute().stream().map(arc -> String.format("%20s %40s %2d:%2d %40s %2d:%2d",
+                    problemSolution.getRoute().stream().map(arc -> {
+
+                     return String.format("%20s %40s(%7f,%7f) %2d:%2d %40s %2d:%2d",
                             arc.getMode(),
                             stopRepository.findById(arc.getI().getId()).getName(),
                             arc.getI().getLocalTime().getHour(),
                             arc.getI().getLocalTime().getMinute(),
                             stopRepository.findById(arc.getJ().getId()).getName(),
                             arc.getJ().getLocalTime().getHour(),
-                            arc.getJ().getLocalTime().getMinute()
-                    )).collect(Collectors.toList())
+                            arc.getJ().getLocalTime().getMinute();
+                    })).collect(Collectors.toList());
+
             );
             lines.add("\n");
             i++;

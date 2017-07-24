@@ -170,8 +170,8 @@ public class ProblemSolver {
             model.setParam(IloCplex.Param.Emphasis.MIP, IloCplex.MIPEmphasis.Optimality);
             model.setParam(IloCplex.IntParam.ParallelMode, IloCplex.ParallelMode.Opportunistic);
             model.setParam(IloCplex.IntParam.Threads, 4);
-            model.setParam(IloCplex.Param.MIP.Strategy.NodeSelect, IloCplex.NodeSelect.DFS);
-            model.setParam(IloCplex.Param.MIP.Strategy.Search, IloCplex.MIPSearch.Dynamic);
+//            model.setParam(IloCplex.Param.MIP.Strategy.NodeSelect, IloCplex.NodeSelect.DFS);
+//            model.setParam(IloCplex.Param.MIP.Strategy.Search, IloCplex.MIPSearch.Dynamic);
             x = model.boolVarArray(arcs.size());
 
             addMandatoryConstraints();

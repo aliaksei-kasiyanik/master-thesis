@@ -1,0 +1,41 @@
+SOLUTION 1
+  DUMMY_START_FINISH                             Mahileuskaya  8:58                             Mahileuskaya  9: 0
+           METRO_2_B                             Mahileuskaya  9: 0                           Autazavodskaya  9: 4
+           METRO_2_B                           Autazavodskaya  9: 4                            Partyzanskaya  9: 8
+           METRO_2_B                            Partyzanskaya  9: 8                          Traktarny zavod  9:12
+           METRO_2_B                          Traktarny zavod  9:12                            Praletarskaya  9:16
+           METRO_2_B                            Praletarskaya  9:16                           Pershamayskaya  9:20
+           METRO_2_B                           Pershamayskaya  9:20                             Kupalauskaya  9:24
+                WALK                             Kupalauskaya  9:24                          Kastrychnickaya  9:26
+            TRANSFER                          Kastrychnickaya  9:26                          Kastrychnickaya  9:28
+           METRO_1_B                          Kastrychnickaya  9:28                         Ploscha Peramogi  9:32
+           METRO_1_B                         Ploscha Peramogi  9:32                   Ploshcha Yacuba Kolasa  9:36
+                WALK                   Ploshcha Yacuba Kolasa  9:36                               Дом мебели  9:39
+                WALK                               Дом мебели  9:39                        Комаровский рынок  9:43
+                WALK                        Комаровский рынок  9:43                        Комаровский рынок  9:44
+                WALK                        Комаровский рынок  9:44                        Комаровский рынок  9:45
+                WALK                        Комаровский рынок  9:45                        Комаровский рынок  9:46
+            BUS_25_S                        Комаровский рынок  9:46                           Богдановича М.  9:49
+            BUS_25_S                           Богдановича М.  9:49                               Кропоткина  9:50
+                WALK                               Кропоткина  9:50                               Кропоткина  9:51
+  DUMMY_START_FINISH                               Кропоткина  9:51                               Кропоткина 11: 0
+SOLUTION 2
+  DUMMY_START_FINISH                             Mahileuskaya  8:58                             Mahileuskaya  9: 0
+           METRO_2_B                             Mahileuskaya  9: 0                           Autazavodskaya  9: 4
+           METRO_2_B                           Autazavodskaya  9: 4                            Partyzanskaya  9: 8
+           METRO_2_B                            Partyzanskaya  9: 8                          Traktarny zavod  9:12
+           METRO_2_B                          Traktarny zavod  9:12                            Praletarskaya  9:16
+           METRO_2_B                            Praletarskaya  9:16                           Pershamayskaya  9:20
+           METRO_2_B                           Pershamayskaya  9:20                             Kupalauskaya  9:24
+                WALK                             Kupalauskaya  9:24                          Kastrychnickaya  9:26
+            TRANSFER                          Kastrychnickaya  9:26                          Kastrychnickaya  9:28
+           METRO_1_B                          Kastrychnickaya  9:28                         Ploscha Peramogi  9:32
+           METRO_1_B                         Ploscha Peramogi  9:32                   Ploshcha Yacuba Kolasa  9:36
+                WALK                   Ploshcha Yacuba Kolasa  9:36               ст.м. Площадь Якуба Коласа  9:38
+                WALK               ст.м. Площадь Якуба Коласа  9:38                               Дом мебели  9:39
+            TRANSFER                               Дом мебели  9:39                               Дом мебели  9:44
+            BUS_25_S                               Дом мебели  9:44                        Комаровский рынок  9:46
+            BUS_25_S                        Комаровский рынок  9:46                           Богдановича М.  9:49
+            BUS_25_S                           Богдановича М.  9:49                               Кропоткина  9:50
+                WALK                               Кропоткина  9:50                               Кропоткина  9:51
+  DUMMY_START_FINISH                               Кропоткина  9:51                               Кропоткина 11: 0

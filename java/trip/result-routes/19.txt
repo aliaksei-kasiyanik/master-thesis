@@ -1,0 +1,197 @@
+RESULTS
+
+Network Size (Arcs count): 102342
+Total Time: 135.203
+
+SOLUTION 1
+Criteria: MAX_POI | Epsilon: 0.0
+Constraints Count: 24077
+Objective Value: 2.0
+Solution Time (sec): 24.478
+  DUMMY_START_FINISH                           ДС Зелёный Луг  8:58                           ДС Зелёный Луг  9: 3
+            TRANSFER                           ДС Зелёный Луг  9: 3                           ДС Зелёный Луг  9: 9
+            TRAM_6_B                           ДС Зелёный Луг  9: 9                      Магазин Электроника  9:14
+            TRAM_6_B                      Магазин Электроника  9:14                            Волгоградская  9:17
+            TRAM_6_B                            Волгоградская  9:17                               Белинского  9:19
+            TRANSFER                               Белинского  9:19                               Белинского  9:21
+            TRAM_5_B                               Белинского  9:21                          Дворец Молодежи  9:43
+               VISIT                          Дворец Молодежи  9:43                          Дворец Молодежи  9:53
+                WALK                          Дворец Молодежи  9:53                     Старовиленский тракт  9:54
+            TRANSFER                     Старовиленский тракт  9:54                     Старовиленский тракт  9:57
+            TRAM_5_S                     Старовиленский тракт  9:57                              Пугачевская 10: 8
+                WALK                              Пугачевская 10: 8               ст.м. Площадь Якуба Коласа 10:14
+                WALK               ст.м. Площадь Якуба Коласа 10:14                   Ploshcha Yacuba Kolasa 10:16
+            TRANSFER                   Ploshcha Yacuba Kolasa 10:16                   Ploshcha Yacuba Kolasa 10:20
+           METRO_1_S                   Ploshcha Yacuba Kolasa 10:20                          Kastrychnickaya 10:28
+                WALK                          Kastrychnickaya 10:28                             Kupalauskaya 10:30
+            TRANSFER                             Kupalauskaya 10:30                             Kupalauskaya 10:32
+               VISIT                             Kupalauskaya 10:32                             Kupalauskaya 10:42
+            TRANSFER                             Kupalauskaya 10:42                             Kupalauskaya 10:44
+           METRO_2_S                             Kupalauskaya 10:44                            Praletarskaya 10:52
+           METRO_2_S                            Praletarskaya 10:52                            Partyzanskaya 11: 0
+
+
+SOLUTION 2
+Criteria: MIN_TIME | Epsilon: 0.0
+Constraints Count: 24078
+Objective Value: 412.0
+Solution Time (sec): 22.27
+  DUMMY_START_FINISH                           ДС Зелёный Луг  8:58                           ДС Зелёный Луг  9: 9
+            TRAM_6_B                           ДС Зелёный Луг  9: 9                              Пугачевская  9:29
+            TRANSFER                              Пугачевская  9:29                              Пугачевская  9:33
+            TRAM_5_B                              Пугачевская  9:33                                Куйбышева  9:35
+            TRAM_5_B                                Куйбышева  9:35                           Богдановича М.  9:37
+            TRAM_5_B                           Богдановича М.  9:37                          Дворец Молодежи  9:43
+               VISIT                          Дворец Молодежи  9:43                          Дворец Молодежи  9:53
+                WALK                          Дворец Молодежи  9:53                     Старовиленский тракт  9:54
+                WALK                     Старовиленский тракт  9:54                          Дворец Молодежи  9:55
+                WALK                          Дворец Молодежи  9:55                     Старовиленский тракт  9:56
+            TRANSFER                     Старовиленский тракт  9:56                     Старовиленский тракт  9:57
+            TRAM_5_S                     Старовиленский тракт  9:57                  Дворец детей и молодежи  9:58
+            TRAM_5_S                  Дворец детей и молодежи  9:58                             пл. Я.Коласа 10:10
+                WALK                             пл. Я.Коласа 10:10                   Ploshcha Yacuba Kolasa 10:11
+            TRANSFER                   Ploshcha Yacuba Kolasa 10:11                   Ploshcha Yacuba Kolasa 10:12
+           METRO_1_S                   Ploshcha Yacuba Kolasa 10:12                         Ploscha Peramogi 10:16
+           METRO_1_S                         Ploscha Peramogi 10:16                          Kastrychnickaya 10:20
+                WALK                          Kastrychnickaya 10:20                             Kupalauskaya 10:22
+            TRANSFER                             Kupalauskaya 10:22                             Kupalauskaya 10:24
+               VISIT                             Kupalauskaya 10:24                             Kupalauskaya 10:34
+            TRANSFER                             Kupalauskaya 10:34                             Kupalauskaya 10:36
+           METRO_2_S                             Kupalauskaya 10:36                           Pershamayskaya 10:40
+           METRO_2_S                           Pershamayskaya 10:40                            Praletarskaya 10:44
+           METRO_2_S                            Praletarskaya 10:44                            Partyzanskaya 10:52
+  DUMMY_START_FINISH                            Partyzanskaya 10:52                            Partyzanskaya 11: 0
+
+
+SOLUTION 3
+Criteria: MIN_CHANGES | Epsilon: 0.0
+Constraints Count: 24079
+Objective Value: 4.0
+Solution Time (sec): 19.458
+  DUMMY_START_FINISH                           ДС Зелёный Луг  8:58                           ДС Зелёный Луг  9: 2
+            TRAM_6_B                           ДС Зелёный Луг  9: 2                                    Седых  9: 3
+            TRAM_6_B                                    Седых  9: 3                                  Красная  9:23
+                WALK                                  Красная  9:23                                  Красная  9:24
+                WALK                                  Красная  9:24                                  Красная  9:25
+                WALK                                  Красная  9:25                                  Красная  9:26
+                WALK                                  Красная  9:26                              Пугачевская  9:28
+           TRAM_11_S                              Пугачевская  9:28                                  Красная  9:29
+                WALK                                  Красная  9:29                                Куйбышева  9:35
+            TRAM_5_B                                Куйбышева  9:35                                  Переспа  9:41
+            TRAM_5_B                                  Переспа  9:41                          Дворец Молодежи  9:43
+               VISIT                          Дворец Молодежи  9:43                          Дворец Молодежи  9:53
+                WALK                          Дворец Молодежи  9:53                  Дворец детей и молодежи  9:55
+            TRANSFER                  Дворец детей и молодежи  9:55                  Дворец детей и молодежи  9:58
+            TRAM_5_S                  Дворец детей и молодежи  9:58                                  Переспа 10: 0
+            TRAM_5_S                                  Переспа 10: 0                           Богдановича М. 10: 4
+            TRAM_5_S                           Богдановича М. 10: 4                             пл. Я.Коласа 10:10
+                WALK                             пл. Я.Коласа 10:10                   Ploshcha Yacuba Kolasa 10:11
+            TRANSFER                   Ploshcha Yacuba Kolasa 10:11                   Ploshcha Yacuba Kolasa 10:12
+           METRO_1_S                   Ploshcha Yacuba Kolasa 10:12                          Kastrychnickaya 10:20
+                WALK                          Kastrychnickaya 10:20                             Kupalauskaya 10:22
+            TRANSFER                             Kupalauskaya 10:22                             Kupalauskaya 10:24
+               VISIT                             Kupalauskaya 10:24                             Kupalauskaya 10:34
+            TRANSFER                             Kupalauskaya 10:34                             Kupalauskaya 10:36
+           METRO_2_S                             Kupalauskaya 10:36                            Praletarskaya 10:44
+           METRO_2_S                            Praletarskaya 10:44                            Partyzanskaya 10:52
+  DUMMY_START_FINISH                            Partyzanskaya 10:52                            Partyzanskaya 11: 0
+
+
+SOLUTION 4
+Criteria: MIN_TIME_TRANSFER | Epsilon: 0.0
+Constraints Count: 24080
+Objective Value: 6.0
+Solution Time (sec): 27.463
+  DUMMY_START_FINISH                           ДС Зелёный Луг  8:58                           ДС Зелёный Луг  9:12
+            TRAM_5_B                           ДС Зелёный Луг  9:12                          Дворец Молодежи  9:43
+               VISIT                          Дворец Молодежи  9:43                          Дворец Молодежи  9:53
+                WALK                          Дворец Молодежи  9:53                     Старовиленский тракт  9:54
+                WALK                     Старовиленский тракт  9:54                          Дворец Молодежи  9:55
+                WALK                          Дворец Молодежи  9:55                     Старовиленский тракт  9:56
+            TRANSFER                     Старовиленский тракт  9:56                     Старовиленский тракт  9:57
+            TRAM_5_S                     Старовиленский тракт  9:57                             пл. Я.Коласа 10:10
+                WALK                             пл. Я.Коласа 10:10                   Ploshcha Yacuba Kolasa 10:11
+            TRANSFER                   Ploshcha Yacuba Kolasa 10:11                   Ploshcha Yacuba Kolasa 10:12
+           METRO_1_S                   Ploshcha Yacuba Kolasa 10:12                          Kastrychnickaya 10:20
+                WALK                          Kastrychnickaya 10:20                             Kupalauskaya 10:22
+            TRANSFER                             Kupalauskaya 10:22                             Kupalauskaya 10:24
+               VISIT                             Kupalauskaya 10:24                             Kupalauskaya 10:34
+            TRANSFER                             Kupalauskaya 10:34                             Kupalauskaya 10:36
+           METRO_2_S                             Kupalauskaya 10:36                           Pershamayskaya 10:40
+           METRO_2_S                           Pershamayskaya 10:40                            Partyzanskaya 10:52
+  DUMMY_START_FINISH                            Partyzanskaya 10:52                            Partyzanskaya 11: 0
+
+
+SOLUTION 5
+Criteria: MIN_TIME_WALKING | Epsilon: 0.0
+Constraints Count: 24081
+Objective Value: 6.0
+Solution Time (sec): 22.179
+  DUMMY_START_FINISH                           ДС Зелёный Луг  8:58                           ДС Зелёный Луг  9:12
+            TRAM_5_B                           ДС Зелёный Луг  9:12                          Дворец Молодежи  9:43
+               VISIT                          Дворец Молодежи  9:43                          Дворец Молодежи  9:53
+                WALK                          Дворец Молодежи  9:53                     Старовиленский тракт  9:54
+                WALK                     Старовиленский тракт  9:54                          Дворец Молодежи  9:55
+                WALK                          Дворец Молодежи  9:55                     Старовиленский тракт  9:56
+            TRANSFER                     Старовиленский тракт  9:56                     Старовиленский тракт  9:57
+            TRAM_5_S                     Старовиленский тракт  9:57                             пл. Я.Коласа 10:10
+                WALK                             пл. Я.Коласа 10:10                   Ploshcha Yacuba Kolasa 10:11
+            TRANSFER                   Ploshcha Yacuba Kolasa 10:11                   Ploshcha Yacuba Kolasa 10:12
+           METRO_1_S                   Ploshcha Yacuba Kolasa 10:12                          Kastrychnickaya 10:20
+                WALK                          Kastrychnickaya 10:20                             Kupalauskaya 10:22
+            TRANSFER                             Kupalauskaya 10:22                             Kupalauskaya 10:24
+               VISIT                             Kupalauskaya 10:24                             Kupalauskaya 10:34
+            TRANSFER                             Kupalauskaya 10:34                             Kupalauskaya 10:36
+           METRO_2_S                             Kupalauskaya 10:36                           Pershamayskaya 10:40
+           METRO_2_S                           Pershamayskaya 10:40                            Partyzanskaya 10:52
+  DUMMY_START_FINISH                            Partyzanskaya 10:52                            Partyzanskaya 11: 0
+
+
+SOLUTION 6
+Criteria: MIN_COST | Epsilon: 0.0
+Constraints Count: 24082
+Objective Value: 230.0
+Solution Time (sec): 11.829
+  DUMMY_START_FINISH                           ДС Зелёный Луг  8:58                           ДС Зелёный Луг  9:12
+            TRAM_5_B                           ДС Зелёный Луг  9:12                          Дворец Молодежи  9:43
+               VISIT                          Дворец Молодежи  9:43                          Дворец Молодежи  9:53
+                WALK                          Дворец Молодежи  9:53                     Старовиленский тракт  9:54
+                WALK                     Старовиленский тракт  9:54                          Дворец Молодежи  9:55
+                WALK                          Дворец Молодежи  9:55                     Старовиленский тракт  9:56
+            TRANSFER                     Старовиленский тракт  9:56                     Старовиленский тракт  9:57
+            TRAM_5_S                     Старовиленский тракт  9:57                             пл. Я.Коласа 10:10
+                WALK                             пл. Я.Коласа 10:10                   Ploshcha Yacuba Kolasa 10:11
+            TRANSFER                   Ploshcha Yacuba Kolasa 10:11                   Ploshcha Yacuba Kolasa 10:12
+           METRO_1_S                   Ploshcha Yacuba Kolasa 10:12                          Kastrychnickaya 10:20
+                WALK                          Kastrychnickaya 10:20                             Kupalauskaya 10:22
+            TRANSFER                             Kupalauskaya 10:22                             Kupalauskaya 10:24
+               VISIT                             Kupalauskaya 10:24                             Kupalauskaya 10:34
+            TRANSFER                             Kupalauskaya 10:34                             Kupalauskaya 10:36
+           METRO_2_S                             Kupalauskaya 10:36                            Partyzanskaya 10:52
+  DUMMY_START_FINISH                            Partyzanskaya 10:52                            Partyzanskaya 11: 0
+
+
+SOLUTION 7
+Criteria: MIN_CO2 | Epsilon: 0.0
+Constraints Count: 24083
+Objective Value: 0.0
+Solution Time (sec): 7.526
+  DUMMY_START_FINISH                           ДС Зелёный Луг  8:58                           ДС Зелёный Луг  9:12
+            TRAM_5_B                           ДС Зелёный Луг  9:12                          Дворец Молодежи  9:43
+               VISIT                          Дворец Молодежи  9:43                          Дворец Молодежи  9:53
+                WALK                          Дворец Молодежи  9:53                     Старовиленский тракт  9:54
+                WALK                     Старовиленский тракт  9:54                          Дворец Молодежи  9:55
+                WALK                          Дворец Молодежи  9:55                     Старовиленский тракт  9:56
+            TRANSFER                     Старовиленский тракт  9:56                     Старовиленский тракт  9:57
+            TRAM_5_S                     Старовиленский тракт  9:57                             пл. Я.Коласа 10:10
+                WALK                             пл. Я.Коласа 10:10                   Ploshcha Yacuba Kolasa 10:11
+            TRANSFER                   Ploshcha Yacuba Kolasa 10:11                   Ploshcha Yacuba Kolasa 10:12
+           METRO_1_S                   Ploshcha Yacuba Kolasa 10:12                          Kastrychnickaya 10:20
+                WALK                          Kastrychnickaya 10:20                             Kupalauskaya 10:22
+            TRANSFER                             Kupalauskaya 10:22                             Kupalauskaya 10:24
+               VISIT                             Kupalauskaya 10:24                             Kupalauskaya 10:34
+            TRANSFER                             Kupalauskaya 10:34                             Kupalauskaya 10:36
+           METRO_2_S                             Kupalauskaya 10:36                            Partyzanskaya 10:52
+  DUMMY_START_FINISH                            Partyzanskaya 10:52                            Partyzanskaya 11: 0
+
+
